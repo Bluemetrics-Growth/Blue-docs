@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hero Chat — BlueDocs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#000253',secondary:'#0f29e9','bm-cyan':'#00bbff','bm-purple':'#7b00dc','bm-pink':'#f100a0','bm-neutral-100':'#f0f2f8','bm-neutral-200':'#dfe3ee','bm-neutral-400':'#9ba3be','bm-neutral-500':'#6b7280'}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Wix+Madefor+Text:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    body { margin:0; display:flex; align-items:center; justify-content:center; min-height:100vh; background:#030a2a; padding:32px; box-sizing:border-box; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .hero-grid {
+      background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .mockup-browser { display:flex; flex-direction:column; width:100%; height:100%; border-radius:14px; overflow:hidden; background:#0d0f1c; border:1px solid rgba(255,255,255,0.10); box-shadow:0 32px 72px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05); }
+    .mockup-topbar { display:flex; align-items:center; gap:10px; padding:10px 14px; background:#13162a; border-bottom:1px solid rgba(255,255,255,0.07); flex-shrink:0; }
+    .mock-wdot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .mockup-body { display:flex; flex:1; overflow:hidden; min-height:0; }
+    .mockup-sidebar { width:136px; flex-shrink:0; padding:12px 8px; border-right:1px solid rgba(255,255,255,0.06); background:#0d0f1c; overflow:hidden; }
+    .mock-doc-row { display:flex; align-items:center; gap:6px; padding:5px 6px; border-radius:6px; margin-bottom:3px; transition:background 0.15s; cursor:default; }
+    .mock-doc-row:hover { background:rgba(255,255,255,0.05); }
+    .mock-doc-row span.material-symbols-outlined { font-size:13px; color:rgba(0,187,255,0.55); flex-shrink:0; }
+    .mock-doc-name { font-size:10px; color:rgba(255,255,255,0.42); font-family:'Wix Madefor Text',sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .mockup-chat { flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0; }
+    #mock-messages { flex:1; padding:14px 12px; overflow:hidden; display:flex; flex-direction:column; gap:10px; min-height:0; }
+    .mock-msg-user { align-self:flex-end; background:rgba(15,41,233,0.75); color:#fff; padding:8px 12px; border-radius:12px 12px 2px 12px; font-size:12px; line-height:1.5; max-width:82%; font-family:'Wix Madefor Text',sans-serif; animation: mockSlideIn 0.3s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .mock-msg-ai { align-self:flex-start; background:rgba(255,255,255,0.055); border:1px solid rgba(255,255,255,0.10); color:rgba(255,255,255,0.88); padding:10px 12px; border-radius:2px 12px 12px 12px; font-size:11.5px; line-height:1.65; max-width:88%; font-family:'Wix Madefor Text',sans-serif; }
+    .mock-ai-header { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+    .mock-ai-avatar { width:18px; height:18px; border-radius:50%; background:linear-gradient(135deg,#0f29e9,#7b00dc); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:9px; color:#fff; font-weight:700; font-family:'Outfit',sans-serif; }
+    .mock-ai-name { font-size:10px; font-weight:600; color:rgba(0,187,255,0.8); font-family:'Outfit',sans-serif; letter-spacing:0.04em; }
+    .mock-msg-line { opacity:0; transform:translateY(5px); transition:opacity 0.28s ease, transform 0.28s ease; }
+    .mock-msg-line.vis { opacity:1; transform:none; }
+    .mock-thinking-wrap { align-self:flex-start; background:rgba(255,255,255,0.055); border:1px solid rgba(255,255,255,0.10); padding:10px 14px; border-radius:2px 12px 12px 12px; display:flex; gap:4px; align-items:center; }
+    .mock-dot-pulse { width:5px; height:5px; border-radius:50%; background:#00bbff; animation:dotBounce 1.1s ease-in-out infinite; }
+    .mock-dot-pulse:nth-child(2) { animation-delay:0.18s; }
+    .mock-dot-pulse:nth-child(3) { animation-delay:0.36s; }
+    .mockup-input-bar { padding:9px 12px; border-top:1px solid rgba(255,255,255,0.07); background:#13162a; display:flex; align-items:center; gap:8px; flex-shrink:0; }
+    #mock-input-text { flex:1; font-size:11.5px; color:rgba(255,255,255,0.75); font-family:'Wix Madefor Text',sans-serif; min-width:0; white-space:nowrap; overflow:hidden; }
+    .mock-cursor { display:inline-block; width:1.5px; height:12px; background:#00bbff; animation:cursorBlink 0.85s step-end infinite; vertical-align:middle; margin-left:1px; }
+    @keyframes dotBounce { 0%,80%,100% { transform:translateY(0); opacity:0.35; } 40% { transform:translateY(-5px); opacity:1; } }
+    @keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+    @keyframes mockSlideIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+  </style>
+</head>
+<body>
+  <div style="width:100%;max-width:860px;height:520px;">
+    <div class="mockup-browser">
+      <div class="mockup-topbar">
+        <div style="display:flex;gap:5px;">
+          <div class="mock-wdot" style="background:#ff5f57;"></div>
+          <div class="mock-wdot" style="background:#febc2e;"></div>
+          <div class="mock-wdot" style="background:#28c840;"></div>
+        </div>
+        <div style="flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,0.35);font-family:'Outfit',sans-serif;letter-spacing:0.05em;">BlueDocs</div>
+        <div style="font-size:9.5px;color:rgba(0,187,255,0.75);background:rgba(0,187,255,0.09);border:1px solid rgba(0,187,255,0.22);padding:2px 9px;border-radius:20px;font-family:'Wix Madefor Text',sans-serif;white-space:nowrap;">Grupo Montanha</div>
+      </div>
+      <div class="mockup-body">
+        <div class="mockup-sidebar">
+          <p style="font-size:9px;color:rgba(255,255,255,0.22);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;font-family:'Outfit',sans-serif;">Documentos</p>
+          <div class="mock-doc-row"><span class="material-symbols-outlined" style="font-size:13px;color:rgba(0,187,255,0.55);">description</span><span class="mock-doc-name">Contrato_FornA.pdf</span></div>
+          <div class="mock-doc-row"><span class="material-symbols-outlined" style="font-size:13px;color:rgba(0,187,255,0.55);">description</span><span class="mock-doc-name">Edital_PP_2024.pdf</span></div>
+          <div class="mock-doc-row"><span class="material-symbols-outlined" style="font-size:13px;color:rgba(0,187,255,0.55);">description</span><span class="mock-doc-name">Contrato_LogX.pdf</span></div>
+          <div class="mock-doc-row"><span class="material-symbols-outlined" style="font-size:13px;color:rgba(123,0,220,0.6);">gavel</span><span class="mock-doc-name">Acordo_Serv_Y.pdf</span></div>
+          <div class="mock-doc-row"><span class="material-symbols-outlined" style="font-size:13px;color:rgba(255,255,255,0.3);">folder</span><span class="mock-doc-name">Arquivo Q3</span></div>
+          <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);">
+            <p style="font-size:9px;color:rgba(255,255,255,0.22);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;font-family:'Outfit',sans-serif;">Histórico</p>
+            <div style="font-size:10px;color:rgba(255,255,255,0.28);font-family:'Wix Madefor Text',sans-serif;line-height:2;">Consulta Q3</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.28);font-family:'Wix Madefor Text',sans-serif;line-height:2;">Análise edital</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.28);font-family:'Wix Madefor Text',sans-serif;line-height:2;">Revisão risco</div>
+          </div>
+        </div>
+        <div class="mockup-chat">
+          <div id="mock-messages"></div>
+          <div class="mockup-input-bar">
+            <span class="material-symbols-outlined" style="font-size:14px;color:rgba(255,255,255,0.25);">search</span>
+            <span id="mock-input-text"><span class="mock-cursor"></span></span>
+            <span class="material-symbols-outlined" style="font-size:15px;color:rgba(15,41,233,0.7);cursor:pointer;">send</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function() {
+    const conversations = [
+      { q: 'Quais contratos vencem em Q3?', lines: ['Encontrei <strong>3 contratos</strong> com vencimento entre julho e setembro.','📄 Fornecedor A — vence em <strong style="color:#00bbff">14/07</strong>','📄 Logística X — vence em <strong style="color:#00bbff">02/09</strong>','⚠️ Serviços Y — <span style="color:#febc2e">18 dias para renovação</span>'] },
+      { q: 'Estamos qualificados para esse edital?', lines: ['✅ Sim. A empresa atende <strong>8 de 10</strong> requisitos técnicos.','Pendências identificadas:','⚠️ Certidão FGTS — <span style="color:#febc2e">vencida em 12/04</span>','⚠️ Atestado técnico — <span style="color:#febc2e">desatualizado</span>'] },
+      { q: 'Com base no nosso histórico, esse contrato é um risco?', lines: ['⚠️ <strong>Risco moderado.</strong> Cláusulas com histórico de disputas:','Cláusula 7.3 — <span style="color:#f100a0">reajuste unilateral de índice</span>','Cláusula 12.1 — <span style="color:#f100a0">prazo de resposta em 24h</span>','Recomendo revisão antes de assinar.'] }
+    ];
+    const messagesEl = document.getElementById('mock-messages');
+    const inputTextEl = document.getElementById('mock-input-text');
+    if (!messagesEl || !inputTextEl) return;
+    let turn = 0;
+    function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+    function setInput(text) { inputTextEl.innerHTML = text + '<span class="mock-cursor"></span>'; }
+    async function typeInput(text) {
+      let typed = '';
+      const charDelay = 1600 / text.length;
+      for (const ch of text) { typed += ch; setInput(typed); await delay(charDelay); }
+    }
+    function appendMessage(html, cls) { const el = document.createElement('div'); el.className = cls; el.innerHTML = html; messagesEl.appendChild(el); return el; }
+    function appendThinking() { const el = document.createElement('div'); el.className = 'mock-thinking-wrap'; el.innerHTML = '<div class="mock-dot-pulse"></div><div class="mock-dot-pulse"></div><div class="mock-dot-pulse"></div>'; messagesEl.appendChild(el); return el; }
+    async function runTurn(conv) {
+      await typeInput(conv.q);
+      await delay(200);
+      setInput('');
+      appendMessage(conv.q, 'mock-msg-user');
+      await delay(300);
+      const thinking = appendThinking();
+      await delay(1100);
+      thinking.remove();
+      const aiEl = document.createElement('div');
+      aiEl.className = 'mock-msg-ai';
+      aiEl.innerHTML = `<div class="mock-ai-header"><div class="mock-ai-avatar">BD</div><span class="mock-ai-name">BlueDocs</span></div>${conv.lines.map(l => `<div class="mock-msg-line">${l}</div>`).join('')}`;
+      messagesEl.appendChild(aiEl);
+      const lineEls = aiEl.querySelectorAll('.mock-msg-line');
+      for (let i = 0; i < lineEls.length; i++) { await delay(i === 0 ? 0 : 130); lineEls[i].classList.add('vis'); }
+      await delay(3600);
+      messagesEl.style.transition = 'opacity 0.6s ease';
+      messagesEl.style.opacity = '0';
+      await delay(650);
+      messagesEl.innerHTML = '';
+      messagesEl.style.opacity = '1';
+      setInput('');
+    }
+    async function loop() { await delay(800); while (true) { await runTurn(conversations[turn % conversations.length]); turn++; await delay(400); } }
+    loop();
+  })();
+  </script>
+</body>
+</html>

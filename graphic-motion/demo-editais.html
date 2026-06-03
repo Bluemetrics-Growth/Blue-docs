@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Demo Editais — BlueDocs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#000253',secondary:'#0f29e9','bm-cyan':'#00bbff','bm-purple':'#7b00dc','bm-pink':'#f100a0','bm-neutral-100':'#f0f2f8','bm-neutral-200':'#dfe3ee','bm-neutral-400':'#9ba3be','bm-neutral-500':'#6b7280'}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Wix+Madefor+Text:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    body { margin:0; display:flex; align-items:center; justify-content:center; min-height:100vh; background:#f8f9fc; padding:32px; box-sizing:border-box; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .rfp-wrap { display:flex; gap:12px; min-height:270px; }
+    .rfp-doc { flex:0 0 43%; position:relative; background:rgba(0,2,83,0.025); border:1px solid rgba(0,2,83,0.07); border-radius:10px; overflow:hidden; padding:13px 11px; }
+    .rfp-scan { position:absolute; left:0; right:0; top:0; height:1.5px; background:linear-gradient(90deg,transparent,rgba(15,41,233,0.5) 30%,rgba(0,187,255,0.8) 50%,rgba(15,41,233,0.5) 70%,transparent); box-shadow:0 0 10px rgba(0,187,255,0.4); animation:rfpScan 3s cubic-bezier(0.4,0,0.6,1) 0.2s forwards; z-index:2; pointer-events:none; }
+    @keyframes rfpScan { 0%{top:0;opacity:0} 5%{opacity:1} 90%{opacity:1} 100%{top:100%;opacity:0} }
+    .rfp-doc-hdr { text-align:center; padding-bottom:9px; margin-bottom:9px; border-bottom:1px solid rgba(0,2,83,0.07); }
+    .rfp-doc-title { font-size:9px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; color:rgba(0,2,83,0.62); margin-bottom:2px; font-family:'Outfit',sans-serif; }
+    .rfp-doc-sub { font-size:7.5px; color:rgba(0,2,83,0.32); font-family:'Wix Madefor Text',sans-serif; }
+    .rfp-cla { border-radius:5px; padding:5px 7px 5px 9px; margin-bottom:6px; border-left:2px solid rgba(0,2,83,0.09); opacity:0; animation:rfpReveal 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .rfp-cla-lbl { font-size:7.5px; font-weight:800; letter-spacing:0.07em; text-transform:uppercase; color:rgba(0,2,83,0.38); margin-bottom:4px; font-family:'Outfit',sans-serif; }
+    .rfp-cla-lines { display:flex; flex-direction:column; gap:3px; }
+    .rfp-cla-ln { height:4px; border-radius:2px; background:rgba(0,2,83,0.08); }
+    .rfp-c1 { animation-delay:.15s; }
+    .rfp-c2 { animation-delay:.45s; border-left-color:#0f29e9!important; background:rgba(15,41,233,0.04); }
+    .rfp-c2 .rfp-cla-lbl { color:rgba(15,41,233,0.65); }
+    .rfp-c2 .rfp-cla-ln { background:rgba(15,41,233,0.10); }
+    .rfp-c3 { animation-delay:.75s; }
+    .rfp-c4 { animation-delay:1.05s; border-left-color:#febc2e!important; background:rgba(254,188,46,0.05); }
+    .rfp-c4 .rfp-cla-lbl { color:rgba(254,188,46,0.80); }
+    .rfp-c4 .rfp-cla-ln { background:rgba(254,188,46,0.13); }
+    .rfp-c5 { animation-delay:1.35s; border-left-color:#f100a0!important; background:rgba(241,0,160,0.04); }
+    .rfp-c5 .rfp-cla-lbl { color:rgba(241,0,160,0.70); }
+    .rfp-c5 .rfp-cla-ln { background:rgba(241,0,160,0.10); }
+    @keyframes rfpReveal { from{opacity:0;transform:translateX(-5px)} to{opacity:1;transform:none} }
+    .rfp-reqs { flex:1; display:flex; flex-direction:column; }
+    .rfp-reqs-hdr { font-size:9px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; color:rgba(0,2,83,0.28); margin-bottom:8px; font-family:'Outfit',sans-serif; }
+    .rfp-req { display:flex; align-items:center; gap:7px; padding:7px 9px; border-radius:7px; margin-bottom:5px; border:1px solid; opacity:0; animation:rfpSlideIn 0.38s cubic-bezier(0.22,1,0.36,1) forwards; font-family:'Wix Madefor Text',sans-serif; }
+    .rfp-ok { background:rgba(0,200,80,0.05); border-color:rgba(0,200,80,0.16); }
+    .rfp-warn { background:rgba(254,188,46,0.06); border-color:rgba(254,188,46,0.22); }
+    .rfp-ico { width:18px; height:18px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:800; }
+    .rfp-ok .rfp-ico { background:rgba(0,200,80,0.15); color:#00c850; }
+    .rfp-warn .rfp-ico { background:rgba(254,188,46,0.15); color:#febc2e; }
+    .rfp-req-txt { font-size:11px; font-weight:500; color:rgba(0,2,83,0.72); flex:1; line-height:1.2; }
+    .rfp-req-badge { font-size:8.5px; font-weight:700; color:#febc2e; background:rgba(254,188,46,0.10); border:1px solid rgba(254,188,46,0.24); padding:2px 7px; border-radius:100px; white-space:nowrap; flex-shrink:0; }
+    .rfp-r1 { animation-delay:.85s; } .rfp-r2 { animation-delay:1.25s; } .rfp-r3 { animation-delay:1.65s; } .rfp-r4 { animation-delay:2.05s; } .rfp-r5 { animation-delay:2.45s; }
+    @keyframes rfpSlideIn { from{opacity:0;transform:translateX(12px)} to{opacity:1;transform:none} }
+    .rfp-result { margin-top:auto; padding-top:6px; opacity:0; animation:rfpReveal 0.45s cubic-bezier(0.22,1,0.36,1) 2.9s forwards; }
+    .rfp-result-inner { display:flex; align-items:center; gap:8px; padding:8px 11px; border-radius:9px; background:linear-gradient(135deg,rgba(0,200,80,0.07),rgba(15,41,233,0.05)); border:1px solid rgba(0,200,80,0.20); }
+    .rfp-result-ico { width:24px; height:24px; border-radius:50%; background:rgba(0,200,80,0.14); border:1.5px solid rgba(0,200,80,0.35); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:11px; color:#00c850; font-weight:800; }
+    .rfp-result-lbl { font-size:10px; font-weight:700; color:#00c850; letter-spacing:0.04em; text-transform:uppercase; font-family:'Outfit',sans-serif; line-height:1.2; }
+    .rfp-result-sub { font-size:10.5px; color:rgba(0,2,83,0.48); font-family:'Wix Madefor Text',sans-serif; margin-top:1px; }
+    .pulse-dot { animation:pulseOpacity 1.8s ease-in-out infinite; }
+    @keyframes pulseOpacity { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  </style>
+</head>
+<body>
+  <div style="width:100%;max-width:640px;">
+    <div class="rounded-2xl bg-white overflow-hidden" style="box-shadow:0 8px 48px rgba(0,2,83,0.10);border:1px solid rgba(0,2,83,0.07);">
+      <!-- Browser chrome -->
+      <div class="px-5 py-3.5 flex items-center gap-2 border-b" style="border-color:#f0f2f8;">
+        <div class="flex gap-1.5">
+          <div class="w-3 h-3 rounded-full" style="background:#e5e7eb;"></div>
+          <div class="w-3 h-3 rounded-full" style="background:#e5e7eb;"></div>
+          <div class="w-3 h-3 rounded-full" style="background:#e5e7eb;"></div>
+        </div>
+        <div class="flex-1 ml-3 h-5 rounded-full flex items-center px-3" style="background:#f0f2f8;">
+          <span style="font-size:11px;color:#9ba3be;font-family:monospace;">Edital_047_2024.pdf — Análise de Qualificação</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold" style="background:rgba(0,209,0,0.08);color:#00a800;">
+          <span class="w-1.5 h-1.5 rounded-full inline-block pulse-dot" style="background:#00c850;"></span>Verificando
+        </div>
+      </div>
+      <!-- Content -->
+      <div class="p-5">
+        <div class="rfp-wrap">
+          <!-- Document -->
+          <div class="rfp-doc">
+            <div class="rfp-scan"></div>
+            <div class="rfp-doc-hdr">
+              <div class="rfp-doc-title">Edital Nº 047/2024</div>
+              <div class="rfp-doc-sub">Concorrência Pública — Obras e Serviços</div>
+            </div>
+            <div class="rfp-cla rfp-c1">
+              <div class="rfp-cla-lbl">Cláusula 1ª · Do Objeto</div>
+              <div class="rfp-cla-lines">
+                <div class="rfp-cla-ln" style="width:86%"></div>
+                <div class="rfp-cla-ln" style="width:71%"></div>
+              </div>
+            </div>
+            <div class="rfp-cla rfp-c2">
+              <div class="rfp-cla-lbl">Cláusula 2ª · Dos Requisitos</div>
+              <div class="rfp-cla-lines">
+                <div class="rfp-cla-ln" style="width:91%"></div>
+                <div class="rfp-cla-ln" style="width:77%"></div>
+                <div class="rfp-cla-ln" style="width:64%"></div>
+              </div>
+            </div>
+            <div class="rfp-cla rfp-c3">
+              <div class="rfp-cla-lbl">Cláusula 5ª · Da Proposta</div>
+              <div class="rfp-cla-lines">
+                <div class="rfp-cla-ln" style="width:88%"></div>
+                <div class="rfp-cla-ln" style="width:73%"></div>
+              </div>
+            </div>
+            <div class="rfp-cla rfp-c4">
+              <div class="rfp-cla-lbl">Cláusula 7ª · Dos Prazos</div>
+              <div class="rfp-cla-lines">
+                <div class="rfp-cla-ln" style="width:83%"></div>
+                <div class="rfp-cla-ln" style="width:67%"></div>
+              </div>
+            </div>
+            <div class="rfp-cla rfp-c5">
+              <div class="rfp-cla-lbl">Cláusula 12ª · Das Multas</div>
+              <div class="rfp-cla-lines">
+                <div class="rfp-cla-ln" style="width:79%"></div>
+                <div class="rfp-cla-ln" style="width:91%"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Requirements -->
+          <div class="rfp-reqs">
+            <div class="rfp-reqs-hdr">Requisitos extraídos</div>
+            <div class="rfp-req rfp-ok rfp-r1">
+              <div class="rfp-ico">✓</div>
+              <span class="rfp-req-txt">CNPJ ativo e regular</span>
+            </div>
+            <div class="rfp-req rfp-ok rfp-r2">
+              <div class="rfp-ico">✓</div>
+              <span class="rfp-req-txt">Certidão neg. — Receita Federal</span>
+            </div>
+            <div class="rfp-req rfp-ok rfp-r3">
+              <div class="rfp-ico">✓</div>
+              <span class="rfp-req-txt">Atestado de capacidade técnica</span>
+            </div>
+            <div class="rfp-req rfp-warn rfp-r4">
+              <div class="rfp-ico">⚠</div>
+              <span class="rfp-req-txt">Certidão FGTS</span>
+              <span class="rfp-req-badge">Vencida em 12/04</span>
+            </div>
+            <div class="rfp-req rfp-ok rfp-r5">
+              <div class="rfp-ico">✓</div>
+              <span class="rfp-req-txt">Registro CREA — válido</span>
+            </div>
+            <div class="rfp-result">
+              <div class="rfp-result-inner">
+                <div class="rfp-result-ico">✓</div>
+                <div>
+                  <div class="rfp-result-lbl">Empresa qualificada</div>
+                  <div class="rfp-result-sub">Atende 6/7 requisitos técnicos</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

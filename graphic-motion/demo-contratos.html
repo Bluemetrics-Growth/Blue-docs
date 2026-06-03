@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Demo Contratos — BlueDocs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#000253',secondary:'#0f29e9','bm-cyan':'#00bbff','bm-purple':'#7b00dc','bm-pink':'#f100a0','bm-neutral-100':'#f0f2f8','bm-neutral-200':'#dfe3ee','bm-neutral-400':'#9ba3be','bm-neutral-500':'#6b7280'}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Wix+Madefor+Text:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    body { margin:0; display:flex; align-items:center; justify-content:center; min-height:100vh; background:#f8f9fc; padding:32px; box-sizing:border-box; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .sol-scan-line { position:absolute; left:0; right:0; top:0; height:2px; background:linear-gradient(90deg,transparent 0%,rgba(15,41,233,0.5) 40%,rgba(0,187,255,0.7) 50%,rgba(15,41,233,0.5) 60%,transparent 100%); animation:solScan 4s cubic-bezier(0.4,0,0.6,1) infinite; z-index:2; pointer-events:none; }
+    @keyframes solScan { 0%{top:0%;opacity:0} 4%{opacity:1} 92%{opacity:1} 100%{top:100%;opacity:0} }
+    .sol-clause { opacity:0; animation:clauseReveal 0.45s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .sol-clause-1 { animation-delay:0.6s; }
+    .sol-clause-2 { animation-delay:1.3s; }
+    .sol-clause-3 { animation-delay:2.1s; }
+    @keyframes clauseReveal { from{opacity:0;transform:translateX(-6px)} to{opacity:1;transform:none} }
+    .sol-risk-badge { animation:badgePulse 2.8s ease-in-out infinite; }
+    .sol-risk-badge-amber { animation-delay:0s; }
+    .sol-risk-badge-red { animation-delay:0.9s; }
+    .sol-risk-badge-blue { animation-delay:1.8s; }
+    @keyframes badgePulse { 0%,100%{box-shadow:none} 50%{box-shadow:0 0 0 3px rgba(15,41,233,0.08)} }
+    .sol-summary-bar { opacity:0; animation:clauseReveal 0.4s ease 2.8s forwards; }
+    .pulse-dot { animation:pulseOpacity 1.8s ease-in-out infinite; }
+    @keyframes pulseOpacity { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  </style>
+</head>
+<body>
+  <div style="width:100%;max-width:620px;">
+    <div class="rounded-2xl bg-white overflow-hidden" style="box-shadow:0 8px 48px rgba(0,2,83,0.10);border:1px solid rgba(0,2,83,0.07);">
+      <div class="px-5 py-3.5 flex items-center gap-2 border-b" style="border-color:#f0f2f8;">
+        <div class="flex gap-1.5">
+          <div class="w-3 h-3 rounded-full" style="background:#e5e7eb;"></div>
+          <div class="w-3 h-3 rounded-full" style="background:#e5e7eb;"></div>
+          <div class="w-3 h-3 rounded-full" style="background:#e5e7eb;"></div>
+        </div>
+        <div class="flex-1 ml-3 h-5 rounded-full flex items-center px-3" style="background:#f0f2f8;">
+          <span style="font-size:11px;color:#9ba3be;font-family:monospace;">Contrato_NDA_v3.pdf — Análise de Cláusulas</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold" style="background:rgba(0,209,0,0.08);color:#00a800;">
+          <span class="w-1.5 h-1.5 rounded-full inline-block pulse-dot" style="background:#00c850;"></span>Analisando
+        </div>
+      </div>
+      <div class="p-4 relative overflow-hidden">
+        <div class="sol-scan-line"></div>
+        <div style="font-family:'Wix Madefor Text',sans-serif;">
+          <div class="flex items-center justify-between mb-3 pb-2.5" style="border-bottom:1px solid rgba(0,2,83,0.06);">
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:13px;color:#0f29e9;'>description</span>
+              <span style="font-size:11px;font-weight:600;color:#000253;">Contrato_Fornecimento_Ano_NDA_v3.pdf</span>
+            </div>
+            <span style="font-size:9px;font-weight:600;padding:2px 8px;border-radius:20px;background:rgba(254,188,46,0.12);color:#b87500;">8 riscos identificados</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:10px;">
+            <div style="height:7px;border-radius:4px;width:94%;background:rgba(0,2,83,0.07);"></div>
+            <div style="height:7px;border-radius:4px;width:80%;background:rgba(0,2,83,0.05);"></div>
+            <div style="height:7px;border-radius:4px;width:88%;background:rgba(0,2,83,0.07);"></div>
+          </div>
+          <div class="sol-clause sol-clause-1" style="border-radius:8px;padding:9px 11px;margin-bottom:9px;background:rgba(254,188,46,0.07);border-left:3px solid #febc2e;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+              <div style="flex:1;">
+                <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#b87500;">Cláusula 7.3 · Reajuste de índice</span>
+                <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+                  <div style="height:6px;border-radius:3px;width:90%;background:rgba(184,117,0,0.16);"></div>
+                  <div style="height:6px;border-radius:3px;width:72%;background:rgba(184,117,0,0.12);"></div>
+                </div>
+              </div>
+              <div class="sol-risk-badge sol-risk-badge-amber" style="flex-shrink:0;border-radius:7px;padding:5px 9px;text-align:center;background:rgba(254,188,46,0.13);border:1px solid rgba(254,188,46,0.25);min-width:68px;">
+                <div style="font-size:9px;font-weight:700;color:#b87500;">⚠ Moderado</div>
+                <div style="font-size:8px;color:rgba(184,117,0,0.65);margin-top:2px;">Unilateral</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:9px;">
+            <div style="height:7px;border-radius:4px;width:82%;background:rgba(0,2,83,0.06);"></div>
+            <div style="height:7px;border-radius:4px;width:95%;background:rgba(0,2,83,0.07);"></div>
+          </div>
+          <div class="sol-clause sol-clause-2" style="border-radius:8px;padding:9px 11px;margin-bottom:9px;background:rgba(241,0,160,0.05);border-left:3px solid #f100a0;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+              <div style="flex:1;">
+                <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#c4006c;">Cláusula 12.1 · Penalidades contratuais</span>
+                <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+                  <div style="height:6px;border-radius:3px;width:78%;background:rgba(196,0,108,0.16);"></div>
+                  <div style="height:6px;border-radius:3px;width:86%;background:rgba(196,0,108,0.12);"></div>
+                </div>
+              </div>
+              <div class="sol-risk-badge sol-risk-badge-red" style="flex-shrink:0;border-radius:7px;padding:5px 9px;text-align:center;background:rgba(241,0,160,0.09);border:1px solid rgba(241,0,160,0.22);min-width:68px;">
+                <div style="font-size:9px;font-weight:700;color:#c4006c;">🔴 Crítico</div>
+                <div style="font-size:8px;color:rgba(196,0,108,0.65);margin-top:2px;">Sem limite</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:9px;">
+            <div style="height:7px;border-radius:4px;width:88%;background:rgba(0,2,83,0.06);"></div>
+            <div style="height:7px;border-radius:4px;width:67%;background:rgba(0,2,83,0.05);"></div>
+          </div>
+          <div class="sol-clause sol-clause-3" style="border-radius:8px;padding:9px 11px;margin-bottom:11px;background:rgba(15,41,233,0.04);border-left:3px solid #0f29e9;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+              <div style="flex:1;">
+                <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#0f29e9;">Cláusula 3.2 · Prazo de vigência</span>
+                <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+                  <div style="height:6px;border-radius:3px;width:84%;background:rgba(15,41,233,0.13);"></div>
+                  <div style="height:6px;border-radius:3px;width:60%;background:rgba(15,41,233,0.09);"></div>
+                </div>
+              </div>
+              <div class="sol-risk-badge sol-risk-badge-blue" style="flex-shrink:0;border-radius:7px;padding:5px 9px;text-align:center;background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.18);min-width:68px;">
+                <div style="font-size:9px;font-weight:700;color:#0f29e9;">ℹ Atenção</div>
+                <div style="font-size:8px;color:rgba(15,41,233,0.55);margin-top:2px;">Tácita</div>
+              </div>
+            </div>
+          </div>
+          <div class="sol-summary-bar" style="border-radius:8px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,2,83,0.03);border:1px solid rgba(0,2,83,0.07);">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:14px;color:#0f29e9;'>check_circle</span>
+              <span style="font-size:10px;font-weight:600;color:rgba(0,2,83,0.45);">Análise concluída · 47 cláusulas</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:10px;font-weight:700;color:#c4006c;">1 crítico</span>
+              <span style="font-size:10px;font-weight:700;color:#b87500;">1 moderado</span>
+              <span style="font-size:10px;font-weight:700;color:#0f29e9;">1 atenção</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,3113 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="scroll-behavior:smooth;">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MNVPH77L');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BlueDocs | Inteligência Artificial para Documentação</title>
+<link rel="icon" type="image/png" href="/favicon.ico"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Wix+Madefor+Text:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --primary: #000253;
+    --secondary: #0f29e9;
+    --bm-pink: #f100a0;
+    --bm-purple: #7b00dc;
+    --bm-cyan: #00bbff;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  .grad-deep  { background: linear-gradient(135deg, #030a8b 0%, #0c27e8 50%, #7b00dc 100%); }
+  .grad-brand { background: linear-gradient(135deg, #0f29e9 0%, #7b00dc 100%); }
+
+  .shadow-glow-blue  { box-shadow: 0 0 32px rgba(12,39,232,0.22); }
+  .shadow-glow-pink  { box-shadow: 0 0 24px rgba(15,41,233,0.30); }
+
+  /* Grid overlays */
+  .hero-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size: 52px 52px;
+  }
+  .dot-pattern {
+    background-image: radial-gradient(circle, rgba(15,41,233,0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+
+  /* Nav link underline */
+  .nav-link { position: relative; padding-bottom: 2px; }
+  .nav-link::after {
+    content: '';
+    position: absolute; bottom: -2px; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--secondary), var(--bm-purple));
+    border-radius: 2px;
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .nav-link.active { color: #0f29e9; }
+
+  /* Shimmer button */
+  .btn-shimmer { position: relative; overflow: hidden; }
+  .btn-shimmer::after {
+    content: '';
+    position: absolute; top: -50%; left: -70%;
+    width: 50%; height: 200%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.18), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.55s ease;
+  }
+  .btn-shimmer:hover::after { left: 130%; }
+  .btn-shimmer:hover { opacity: 0.93; transform: translateY(-1px); }
+
+  /* Ghost button */
+  .btn-ghost { transition: background 0.2s, transform 0.2s; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.11); transform: translateY(-1px); }
+
+  /* Card lift */
+  .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .card-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,2,83,0.10);
+  }
+
+  /* Problem card bottom accent line */
+  .problem-card .accent-line {
+    height: 2px;
+    background: #dfe3ee;
+    transition: background 0.4s ease;
+  }
+  .problem-card:hover .accent-line {
+    background: linear-gradient(90deg, var(--bm-cyan), transparent);
+  }
+  .problem-card .card-icon { transition: all 0.3s ease; }
+  .problem-card:hover .card-icon {
+    background: linear-gradient(135deg, var(--bm-cyan), var(--bm-purple)) !important;
+    color: white !important;
+  }
+
+  /* Dark problem cards */
+  .problem-card-dark {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .problem-card-dark:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,187,255,0.32) !important;
+    box-shadow: 0 16px 40px rgba(0,187,255,0.08);
+  }
+  .problem-card-dark:hover .problem-accent-line {
+    background: linear-gradient(90deg, rgba(0,187,255,0.7), transparent) !important;
+  }
+
+  /* Stats strip */
+  .stat-strip-item {
+    position: relative;
+  }
+  .stat-strip-item + .stat-strip-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 20%; bottom: 20%;
+    width: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+  }
+
+  /* Solution card top bar */
+  .sol-card { position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .sol-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .sol-card:hover::before { opacity: 1; }
+  .sol-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(0,2,83,0.09); }
+  .sol-pink::before  { background: linear-gradient(90deg, var(--bm-cyan), var(--bm-purple)); }
+  .sol-blue::before  { background: linear-gradient(90deg, var(--secondary), var(--bm-cyan)); }
+  .sol-purple::before{ background: linear-gradient(90deg, var(--bm-purple), var(--bm-cyan)); }
+  .sol-cyan::before  { background: linear-gradient(90deg, var(--bm-cyan), var(--secondary)); }
+
+  /* Phase node pulse */
+  @keyframes pulsePink {
+    0%,100% { box-shadow: 0 0 0 0 rgba(0,187,255,0.45); }
+    50%      { box-shadow: 0 0 0 14px rgba(0,187,255,0); }
+  }
+  .node-pulse { animation: pulsePink 2.8s ease-in-out infinite; }
+
+  /* Table featured column */
+  .col-featured {
+    background: linear-gradient(180deg, rgba(15,41,233,0.04) 0%, rgba(123,0,220,0.05) 100%);
+    border-left: 1.5px solid rgba(15,41,233,0.14);
+    border-right: 1.5px solid rgba(15,41,233,0.14);
+  }
+
+  /* Gradient text */
+  .text-grad-blue   { background: linear-gradient(135deg, var(--secondary), var(--bm-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .text-grad-blue   { background: linear-gradient(135deg, var(--bm-cyan), var(--bm-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .text-grad-purple { background: linear-gradient(135deg, var(--bm-purple), var(--bm-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* CTA mesh */
+  .cta-bg {
+    background:
+      radial-gradient(ellipse at 8% 55%, rgba(15,41,233,0.18) 0%, transparent 42%),
+      radial-gradient(ellipse at 92% 75%, rgba(0,187,255,0.14) 0%, transparent 42%),
+      #0c1130;
+  }
+
+  /* Visual placeholder */
+  .visual-frame {
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.035);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Input focus */
+  .form-input:focus {
+    outline: none;
+    border-color: var(--secondary) !important;
+    box-shadow: 0 0 0 3px rgba(15,41,233,0.1);
+  }
+
+  /* Methodology progress line */
+  @keyframes growLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .line-grow { transform-origin: left; animation: growLine 1.6s cubic-bezier(0.22,1,0.36,1) forwards; animation-play-state: paused; }
+  .line-grow.animate { animation-play-state: running; }
+
+  /* Solution tabs */
+  .sol-tab {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 20px; border-radius: 100px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600;
+    border: 1.5px solid rgba(0,2,83,0.13); color: rgba(0,2,83,0.48);
+    background: white; cursor: pointer; white-space: nowrap;
+    transition: all 0.25s ease;
+  }
+  .sol-tab:hover { border-color: rgba(15,41,233,0.3); color: #0f29e9; background: rgba(15,41,233,0.04); }
+  .sol-tab.active { background: #0f29e9; border-color: #0f29e9; color: white; box-shadow: 0 4px 14px rgba(15,41,233,0.26); }
+
+  @keyframes solFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .sol-panel { display: none; }
+  .sol-panel.active { display: block; animation: solFadeIn 0.35s ease forwards; }
+  .sol-visual { display: none; }
+  .sol-visual.active { display: block; animation: solFadeIn 0.35s ease forwards; }
+
+  /* Animate pulse dot */
+  @keyframes pulseOpacity {
+    0%,100% { opacity: 1; } 50% { opacity: 0.4; }
+  }
+  .pulse-dot { animation: pulseOpacity 1.8s ease-in-out infinite; }
+
+  /* Eyebrow accent */
+  .eyebrow-line { display: inline-flex; align-items: center; gap: 8px; }
+  .eyebrow-line::before,.eyebrow-line::after { content: ''; display: block; height: 1px; width: 24px; }
+
+  /* Problem fluid path */
+  .data-stream {
+    background: linear-gradient(180deg, transparent 0%, #0f29e9 20%, #7b00dc 55%, #00bbff 85%, transparent 100%);
+    width: 2px;
+    filter: drop-shadow(0 0 7px rgba(0,187,255,0.55));
+  }
+  .stream-node {
+    box-shadow: 0 0 20px rgba(0,187,255,0.32), inset 0 0 8px rgba(0,187,255,0.14);
+  }
+  .glass-pain-card {
+    background: rgba(255,255,255,0.048);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.09);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .glass-pain-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,187,255,0.28) !important;
+    box-shadow: 0 20px 44px rgba(0,0,0,0.20);
+  }
+
+  /* Navbar scroll transition */
+  #main-nav {
+    background: rgba(255,255,255,1);
+    border-bottom: 1px solid transparent;
+    box-shadow: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  #main-nav.nav-scrolled {
+    border-bottom-color: rgba(0,2,83,0.08);
+    box-shadow: 0 2px 16px rgba(0,2,83,0.08);
+  }
+
+  /* ── Lead Modal ── */
+  #lead-modal { display:none; }
+  #lead-modal.open { display:flex; }
+  body.modal-open { overflow:hidden; }
+
+  .modal-input {
+    width:100%; border:1.5px solid #dfe3ee; border-radius:10px;
+    padding:11px 14px; font-size:14px; color:#000253; outline:none;
+    transition:border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+  }
+  .modal-input:focus { border-color:#0f29e9; box-shadow:0 0 0 3px rgba(15,41,233,0.10); }
+  .modal-input::placeholder { color:#b0b8d0; }
+  .modal-label { display:block; font-size:12px; font-weight:600; color:#000253; margin-bottom:6px; letter-spacing:0.01em; }
+  .modal-select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000253' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; }
+
+  .modal-step { display:none; }
+  .modal-step.active { display:block; }
+
+  .step-dot { width:8px; height:8px; border-radius:50%; background:#dfe3ee; transition:background 0.3s; }
+  .step-dot.active { background:#0f29e9; }
+
+  @keyframes modalIn {
+    from { opacity:0; transform:scale(0.96) translateY(12px); }
+    to   { opacity:1; transform:scale(1) translateY(0); }
+  }
+  .modal-card { animation: modalIn 0.28s ease forwards; }
+
+  /* Mobile hamburger */
+  .ham-line { display:block; width:22px; height:2px; background:#000253; border-radius:2px; transition:transform 0.25s ease, opacity 0.25s ease; }
+  #hamburger.open .ham-line-1 { transform:translateY(7px) rotate(45deg); }
+  #hamburger.open .ham-line-2 { opacity:0; }
+  #hamburger.open .ham-line-3 { transform:translateY(-7px) rotate(-45deg); }
+  #mobile-nav { display:none; }
+  #mobile-nav.open { display:block; }
+
+  /* Scrollable tabs on mobile */
+  .no-scrollbar::-webkit-scrollbar { display:none; }
+  .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+
+  /* ── Floating CTA ──────────────────────────────────────────── */
+  #float-cta {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 40;
+    opacity: 0;
+    transform: translateY(18px);
+    pointer-events: none;
+    transition: opacity 0.38s cubic-bezier(0.22,1,0.36,1), transform 0.38s cubic-bezier(0.22,1,0.36,1);
+  }
+  #float-cta.visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .float-cta-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 22px 13px 18px;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #0f29e9 0%, #7b00dc 100%);
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 8px 28px rgba(15,41,233,0.40), 0 2px 8px rgba(0,0,0,0.14);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .float-cta-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .float-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(15,41,233,0.48), 0 3px 12px rgba(0,0,0,0.18);
+  }
+  .float-cta-ring {
+    position: absolute; inset: -4px;
+    border-radius: 100px;
+    border: 2px solid rgba(15,41,233,0.4);
+    animation: floatRing 2.4s ease-out 0.4s infinite;
+    pointer-events: none;
+  }
+  @keyframes floatRing {
+    0%   { transform: scale(1);    opacity: 0.7; }
+    100% { transform: scale(1.18); opacity: 0; }
+  }
+  @media (max-width: 767px) {
+    #float-cta { bottom: 16px; right: 16px; left: 16px; }
+    .float-cta-btn { width: 100%; justify-content: center; padding: 15px 22px; font-size: 15px; }
+    .float-cta-ring { display: none; }
+  }
+
+  /* Metrics bar: fix divide-y on 2-col mobile grid (items in same row shouldn't get top border) */
+  @media (max-width:767px) {
+    .metrics-grid > *:nth-child(2) { border-top:0 !important; }
+  }
+
+  /* Solution visual badge: prevent horizontal overflow on mobile */
+  @media (max-width:767px) {
+    .sol-visual > div.relative { padding-bottom:2.5rem; }
+  }
+
+  /* ── Hero Mockup ─────────────────────────────────────────── */
+  .mockup-browser {
+    display:flex; flex-direction:column;
+    width:100%; height:100%;
+    border-radius:14px; overflow:hidden;
+    background:#0d0f1c;
+    border:1px solid rgba(255,255,255,0.10);
+    box-shadow:0 32px 72px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05);
+  }
+  .mockup-topbar {
+    display:flex; align-items:center; gap:10px;
+    padding:10px 14px;
+    background:#13162a;
+    border-bottom:1px solid rgba(255,255,255,0.07);
+    flex-shrink:0;
+  }
+  .mock-wdot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .mockup-body { display:flex; flex:1; overflow:hidden; min-height:0; }
+  .mockup-sidebar {
+    width:136px; flex-shrink:0;
+    padding:12px 8px;
+    border-right:1px solid rgba(255,255,255,0.06);
+    background:#0d0f1c;
+    overflow:hidden;
+  }
+  .mock-doc-row {
+    display:flex; align-items:center; gap:6px;
+    padding:5px 6px; border-radius:6px;
+    margin-bottom:3px;
+    transition:background 0.15s;
+    cursor:default;
+  }
+  .mock-doc-row:hover { background:rgba(255,255,255,0.05); }
+  .mock-doc-row span.material-symbols-outlined { font-size:13px; color:rgba(0,187,255,0.55); flex-shrink:0; }
+  .mock-doc-name { font-size:10px; color:rgba(255,255,255,0.42); font-family:'Wix Madefor Text',sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .mockup-chat { flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0; }
+  #mock-messages {
+    flex:1; padding:14px 12px;
+    overflow:hidden; display:flex; flex-direction:column; gap:10px;
+    min-height:0;
+  }
+  .mock-msg-user {
+    align-self:flex-end;
+    background:rgba(15,41,233,0.75);
+    color:#fff;
+    padding:8px 12px;
+    border-radius:12px 12px 2px 12px;
+    font-size:12px; line-height:1.5;
+    max-width:82%;
+    font-family:'Wix Madefor Text',sans-serif;
+    animation: mockSlideIn 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .mock-msg-ai {
+    align-self:flex-start;
+    background:rgba(255,255,255,0.055);
+    border:1px solid rgba(255,255,255,0.10);
+    color:rgba(255,255,255,0.88);
+    padding:10px 12px;
+    border-radius:2px 12px 12px 12px;
+    font-size:11.5px; line-height:1.65;
+    max-width:88%;
+    font-family:'Wix Madefor Text',sans-serif;
+  }
+  .mock-ai-header {
+    display:flex; align-items:center; gap:6px;
+    margin-bottom:6px;
+  }
+  .mock-ai-avatar {
+    width:18px; height:18px; border-radius:50%;
+    background:linear-gradient(135deg,#0f29e9,#7b00dc);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    font-size:9px; color:#fff; font-weight:700; font-family:'Outfit',sans-serif;
+  }
+  .mock-ai-name { font-size:10px; font-weight:600; color:rgba(0,187,255,0.8); font-family:'Outfit',sans-serif; letter-spacing:0.04em; }
+  .mock-msg-line { opacity:0; transform:translateY(5px); transition:opacity 0.28s ease, transform 0.28s ease; }
+  .mock-msg-line.vis { opacity:1; transform:none; }
+  .mock-thinking-wrap {
+    align-self:flex-start;
+    background:rgba(255,255,255,0.055);
+    border:1px solid rgba(255,255,255,0.10);
+    padding:10px 14px;
+    border-radius:2px 12px 12px 12px;
+    display:flex; gap:4px; align-items:center;
+  }
+  .mock-dot-pulse {
+    width:5px; height:5px; border-radius:50%;
+    background:#00bbff;
+    animation:dotBounce 1.1s ease-in-out infinite;
+  }
+  .mock-dot-pulse:nth-child(2) { animation-delay:0.18s; }
+  .mock-dot-pulse:nth-child(3) { animation-delay:0.36s; }
+  .mockup-input-bar {
+    padding:9px 12px;
+    border-top:1px solid rgba(255,255,255,0.07);
+    background:#13162a;
+    display:flex; align-items:center; gap:8px;
+    flex-shrink:0;
+  }
+  #mock-input-text {
+    flex:1; font-size:11.5px; color:rgba(255,255,255,0.75);
+    font-family:'Wix Madefor Text',sans-serif;
+    min-width:0; white-space:nowrap; overflow:hidden;
+  }
+  .mock-cursor {
+    display:inline-block; width:1.5px; height:12px;
+    background:#00bbff;
+    animation:cursorBlink 0.85s step-end infinite;
+    vertical-align:middle; margin-left:1px;
+  }
+  @keyframes dotBounce {
+    0%,80%,100% { transform:translateY(0); opacity:0.35; }
+    40%          { transform:translateY(-5px); opacity:1; }
+  }
+  @keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+  @keyframes mockSlideIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+  @keyframes mockFadeOut { from{opacity:1} to{opacity:0} }
+  .mock-fade-out { animation:mockFadeOut 0.6s ease forwards; }
+
+  @media (max-width: 1023px) {
+    .mockup-sidebar { display: none; }
+    .visual-frame { aspect-ratio: 1/1 !important; }
+    #mock-messages { padding: 10px 8px; gap: 8px; }
+    .mock-msg-user { font-size: 11.5px; }
+    .mock-msg-ai { font-size: 11px; }
+    .mockup-topbar { padding: 8px 10px; }
+    .mockup-input-bar { padding: 7px 10px; }
+  }
+
+  /* Contract analysis visual */
+  .sol-scan-line {
+    position: absolute; left: 0; right: 0; top: 0; height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(15,41,233,0.5) 40%, rgba(0,187,255,0.7) 50%, rgba(15,41,233,0.5) 60%, transparent 100%);
+    animation: solScan 4s cubic-bezier(0.4,0,0.6,1) infinite;
+    z-index: 2; pointer-events: none;
+  }
+  @keyframes solScan {
+    0%   { top: 0%;   opacity: 0; }
+    4%   { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .sol-clause { opacity: 0; animation: clauseReveal 0.45s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .sol-clause-1 { animation-delay: 0.6s; }
+  .sol-clause-2 { animation-delay: 1.3s; }
+  .sol-clause-3 { animation-delay: 2.1s; }
+  @keyframes clauseReveal {
+    from { opacity: 0; transform: translateX(-6px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .sol-risk-badge { animation: badgePulse 2.8s ease-in-out infinite; }
+  .sol-risk-badge-amber { animation-delay: 0s; }
+  .sol-risk-badge-red   { animation-delay: 0.9s; }
+  .sol-risk-badge-blue  { animation-delay: 1.8s; }
+  @keyframes badgePulse {
+    0%,100% { box-shadow: none; }
+    50%     { box-shadow: 0 0 0 3px rgba(15,41,233,0.08); }
+  }
+  .sol-summary-bar { opacity: 0; animation: clauseReveal 0.4s ease 2.8s forwards; }
+
+  /* ── Editais & RFPs visual ─────────────────────────────────── */
+  .rfp-wrap { display:flex; gap:12px; min-height:270px; }
+  .rfp-doc { flex:0 0 43%; position:relative; background:rgba(0,2,83,0.025); border:1px solid rgba(0,2,83,0.07); border-radius:10px; overflow:hidden; padding:13px 11px; }
+  .rfp-scan { position:absolute; left:0; right:0; top:0; height:1.5px; background:linear-gradient(90deg,transparent,rgba(15,41,233,0.5) 30%,rgba(0,187,255,0.8) 50%,rgba(15,41,233,0.5) 70%,transparent); box-shadow:0 0 10px rgba(0,187,255,0.4); animation:rfpScan 3s cubic-bezier(0.4,0,0.6,1) 0.2s forwards; z-index:2; pointer-events:none; }
+  @keyframes rfpScan { 0%{top:0;opacity:0} 5%{opacity:1} 90%{opacity:1} 100%{top:100%;opacity:0} }
+  .rfp-doc-hdr { text-align:center; padding-bottom:9px; margin-bottom:9px; border-bottom:1px solid rgba(0,2,83,0.07); }
+  .rfp-doc-title { font-size:9px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; color:rgba(0,2,83,0.62); margin-bottom:2px; font-family:'Outfit',sans-serif; }
+  .rfp-doc-sub { font-size:7.5px; color:rgba(0,2,83,0.32); font-family:'Wix Madefor Text',sans-serif; }
+  .rfp-cla { border-radius:5px; padding:5px 7px 5px 9px; margin-bottom:6px; border-left:2px solid rgba(0,2,83,0.09); opacity:0; animation:rfpReveal 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .rfp-cla-lbl { font-size:7.5px; font-weight:800; letter-spacing:0.07em; text-transform:uppercase; color:rgba(0,2,83,0.38); margin-bottom:4px; font-family:'Outfit',sans-serif; }
+  .rfp-cla-lines { display:flex; flex-direction:column; gap:3px; }
+  .rfp-cla-ln { height:4px; border-radius:2px; background:rgba(0,2,83,0.08); }
+  .rfp-c1 { animation-delay:.15s; }
+  .rfp-c2 { animation-delay:.45s; border-left-color:#0f29e9 !important; background:rgba(15,41,233,0.04); }
+  .rfp-c2 .rfp-cla-lbl { color:rgba(15,41,233,0.65); }
+  .rfp-c2 .rfp-cla-ln  { background:rgba(15,41,233,0.10); }
+  .rfp-c3 { animation-delay:.75s; }
+  .rfp-c4 { animation-delay:1.05s; border-left-color:#febc2e !important; background:rgba(254,188,46,0.05); }
+  .rfp-c4 .rfp-cla-lbl { color:rgba(254,188,46,0.80); }
+  .rfp-c4 .rfp-cla-ln  { background:rgba(254,188,46,0.13); }
+  .rfp-c5 { animation-delay:1.35s; border-left-color:#f100a0 !important; background:rgba(241,0,160,0.04); }
+  .rfp-c5 .rfp-cla-lbl { color:rgba(241,0,160,0.70); }
+  .rfp-c5 .rfp-cla-ln  { background:rgba(241,0,160,0.10); }
+  @keyframes rfpReveal { from{opacity:0;transform:translateX(-5px)} to{opacity:1;transform:none} }
+  .rfp-reqs { flex:1; display:flex; flex-direction:column; }
+  .rfp-reqs-hdr { font-size:9px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; color:rgba(0,2,83,0.28); margin-bottom:8px; font-family:'Outfit',sans-serif; }
+  .rfp-req { display:flex; align-items:center; gap:7px; padding:7px 9px; border-radius:7px; margin-bottom:5px; border:1px solid; opacity:0; animation:rfpSlideIn 0.38s cubic-bezier(0.22,1,0.36,1) forwards; font-family:'Wix Madefor Text',sans-serif; }
+  .rfp-ok   { background:rgba(0,200,80,0.05);   border-color:rgba(0,200,80,0.16); }
+  .rfp-warn { background:rgba(254,188,46,0.06); border-color:rgba(254,188,46,0.22); }
+  .rfp-ico { width:18px; height:18px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:800; }
+  .rfp-ok   .rfp-ico { background:rgba(0,200,80,0.15);   color:#00c850; }
+  .rfp-warn .rfp-ico { background:rgba(254,188,46,0.15); color:#febc2e; }
+  .rfp-req-txt   { font-size:11px; font-weight:500; color:rgba(0,2,83,0.72); flex:1; line-height:1.2; }
+  .rfp-req-badge { font-size:8.5px; font-weight:700; color:#febc2e; background:rgba(254,188,46,0.10); border:1px solid rgba(254,188,46,0.24); padding:2px 7px; border-radius:100px; white-space:nowrap; flex-shrink:0; }
+  .rfp-r1 { animation-delay:.85s; }
+  .rfp-r2 { animation-delay:1.25s; }
+  .rfp-r3 { animation-delay:1.65s; }
+  .rfp-r4 { animation-delay:2.05s; }
+  .rfp-r5 { animation-delay:2.45s; }
+  @keyframes rfpSlideIn { from{opacity:0;transform:translateX(12px)} to{opacity:1;transform:none} }
+  .rfp-result { margin-top:auto; padding-top:6px; opacity:0; animation:rfpReveal 0.45s cubic-bezier(0.22,1,0.36,1) 2.9s forwards; }
+  .rfp-result-inner { display:flex; align-items:center; gap:8px; padding:8px 11px; border-radius:9px; background:linear-gradient(135deg,rgba(0,200,80,0.07),rgba(15,41,233,0.05)); border:1px solid rgba(0,200,80,0.20); }
+  .rfp-result-ico { width:24px; height:24px; border-radius:50%; background:rgba(0,200,80,0.14); border:1.5px solid rgba(0,200,80,0.35); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:11px; color:#00c850; font-weight:800; }
+  .rfp-result-lbl { font-size:10px; font-weight:700; color:#00c850; letter-spacing:0.04em; text-transform:uppercase; font-family:'Outfit',sans-serif; line-height:1.2; }
+  .rfp-result-sub { font-size:10.5px; color:rgba(0,2,83,0.48); font-family:'Wix Madefor Text',sans-serif; margin-top:1px; }
+
+  /* ── Due Diligence visual ────────────────────────────────────── */
+  .dd-wrap { display:flex; gap:10px; min-height:255px; }
+  .dd-tree { flex:0 0 46%; display:flex; flex-direction:column; background:rgba(0,2,83,0.02); border:1px solid rgba(0,2,83,0.07); border-radius:10px; padding:11px 10px; }
+  .dd-tree-hdr { display:flex; align-items:center; gap:5px; font-size:8px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:rgba(0,2,83,0.32); font-family:'Outfit',sans-serif; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid rgba(0,2,83,0.07); }
+  .dd-cat { display:flex; align-items:flex-start; gap:6px; margin-bottom:7px; opacity:0; animation:ddReveal 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .dd-cat1 { animation-delay:0.15s; }
+  .dd-cat2 { animation-delay:0.4s; }
+  .dd-cat3 { animation-delay:0.7s; }
+  .dd-cat4 { animation-delay:1.0s; }
+  .dd-cat5 { animation-delay:1.3s; }
+  .dd-cat-ico { width:22px; height:22px; border-radius:5px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .dd-cat-info { flex:1; min-width:0; }
+  .dd-cat-name { display:flex; align-items:baseline; justify-content:space-between; gap:4px; margin-bottom:4px; }
+  .dd-cat-lbl { font-size:10.5px; font-weight:600; color:rgba(0,2,83,0.76); font-family:'Wix Madefor Text',sans-serif; }
+  .dd-cat-cnt { font-size:8px; color:rgba(0,2,83,0.30); font-family:'Outfit',sans-serif; white-space:nowrap; }
+  .dd-track { height:3.5px; border-radius:2px; background:rgba(0,2,83,0.08); overflow:hidden; }
+  .dd-bar { height:100%; border-radius:2px; width:0; }
+  .dd-bar-done { background:#00c850; animation:ddBarFull 0.8s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .dd-bar-scan { background:linear-gradient(90deg,#0f29e9,#00bbff); animation:ddBarPart 1.0s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .dd-cat1 .dd-bar-done { animation-delay:0.3s; }
+  .dd-cat2 .dd-bar-done { animation-delay:0.55s; }
+  .dd-cat3 .dd-bar-scan { animation-delay:0.9s; }
+  .dd-cat-badge { font-size:8px; font-weight:700; padding:2px 6px; border-radius:100px; white-space:nowrap; flex-shrink:0; margin-top:1px; font-family:'Outfit',sans-serif; }
+  .dd-badge-done { background:rgba(0,200,80,0.09); color:#00a840; border:1px solid rgba(0,200,80,0.18); }
+  .dd-badge-scan { background:rgba(15,41,233,0.07); color:#0f29e9; border:1px solid rgba(15,41,233,0.14); }
+  .dd-badge-wait { background:rgba(0,2,83,0.04); color:rgba(0,2,83,0.28); border:1px solid rgba(0,2,83,0.08); }
+  @keyframes ddBarFull { from{width:0} to{width:100%} }
+  @keyframes ddBarPart { from{width:0} to{width:62%} }
+  @keyframes ddReveal { from{opacity:0;transform:translateX(-5px)} to{opacity:1;transform:none} }
+  .dd-findings { flex:1; display:flex; flex-direction:column; }
+  .dd-finds-hdr { font-size:9px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; color:rgba(0,2,83,0.28); margin-bottom:8px; font-family:'Outfit',sans-serif; }
+  .dd-find { display:flex; align-items:center; gap:6px; padding:6px 9px; border-radius:7px; margin-bottom:5px; border:1px solid; opacity:0; animation:ddSlideIn 0.38s cubic-bezier(0.22,1,0.36,1) forwards; font-family:'Wix Madefor Text',sans-serif; }
+  .dd-find-ok   { background:rgba(0,200,80,0.04);   border-color:rgba(0,200,80,0.14); }
+  .dd-find-warn { background:rgba(254,188,46,0.05); border-color:rgba(254,188,46,0.18); }
+  .dd-find-risk { background:rgba(241,0,160,0.04);  border-color:rgba(241,0,160,0.16); }
+  .dd-find-ico { width:17px; height:17px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:8.5px; font-weight:800; }
+  .dd-find-ok   .dd-find-ico { background:rgba(0,200,80,0.14);   color:#00c850; }
+  .dd-find-warn .dd-find-ico { background:rgba(254,188,46,0.14); color:#b87500; }
+  .dd-find-risk .dd-find-ico { background:rgba(241,0,160,0.10);  color:#f100a0; }
+  .dd-find-txt { font-size:10px; font-weight:500; color:rgba(0,2,83,0.72); flex:1; line-height:1.2; }
+  .dd-find-tag { font-size:8px; font-weight:700; padding:2px 6px; border-radius:100px; flex-shrink:0; font-family:'Outfit',sans-serif; }
+  .dd-tag-ok   { background:rgba(0,200,80,0.09);   color:#00a840; border:1px solid rgba(0,200,80,0.18); }
+  .dd-tag-warn { background:rgba(254,188,46,0.09); color:#b87500; border:1px solid rgba(254,188,46,0.22); }
+  .dd-tag-risk { background:rgba(241,0,160,0.07);  color:#c4006c; border:1px solid rgba(241,0,160,0.18); }
+  .dd-f1 { animation-delay:0.55s; }
+  .dd-f2 { animation-delay:1.1s; }
+  .dd-f3 { animation-delay:1.7s; }
+  .dd-f4 { animation-delay:2.3s; }
+  @keyframes ddSlideIn { from{opacity:0;transform:translateX(10px)} to{opacity:1;transform:none} }
+  .dd-summary { margin-top:auto; padding-top:6px; opacity:0; animation:ddReveal 0.45s cubic-bezier(0.22,1,0.36,1) 2.9s forwards; }
+  .dd-summary-inner { display:flex; align-items:center; gap:8px; padding:8px 11px; border-radius:9px; background:linear-gradient(135deg,rgba(0,187,255,0.05),rgba(15,41,233,0.04)); border:1px solid rgba(0,187,255,0.18); }
+  .dd-summary-dot { width:7px; height:7px; border-radius:50%; background:#00bbff; flex-shrink:0; animation:ddPulse 1.5s ease-in-out 3s infinite; }
+  .dd-summary-lbl { font-size:10px; font-weight:700; color:rgba(0,2,83,0.65); font-family:'Outfit',sans-serif; flex:1; }
+  .dd-summary-cnt { font-size:9px; font-weight:700; color:#f100a0; font-family:'Outfit',sans-serif; }
+  @keyframes ddPulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* ── Auditoria & Compliance visual ──────────────────────────── */
+  .ac-wrap { display:flex; flex-direction:column; gap:8px; min-height:255px; }
+  .ac-topbar { display:flex; align-items:center; justify-content:space-between; padding-bottom:8px; border-bottom:1px solid rgba(0,2,83,0.07); margin-bottom:2px; opacity:0; animation:acFadeUp 0.35s cubic-bezier(0.22,1,0.36,1) 0.1s forwards; }
+  .ac-topbar-title { font-size:9px; font-weight:800; letter-spacing:0.10em; text-transform:uppercase; color:rgba(0,2,83,0.30); font-family:'Outfit',sans-serif; }
+  .ac-topbar-stats { display:flex; gap:6px; }
+  .ac-stat { font-size:8px; font-weight:700; padding:2px 7px; border-radius:100px; font-family:'Outfit',sans-serif; }
+  .ac-stat-ok   { background:rgba(0,200,80,0.08); color:#00a840; border:1px solid rgba(0,200,80,0.18); }
+  .ac-stat-warn { background:rgba(254,188,46,0.08); color:#b87500; border:1px solid rgba(254,188,46,0.22); }
+  .ac-stat-risk { background:rgba(241,0,160,0.07); color:#c4006c; border:1px solid rgba(241,0,160,0.18); }
+
+  /* Timeline log */
+  .ac-log { display:flex; flex-direction:column; gap:5px; flex:1; }
+  .ac-entry { display:flex; align-items:flex-start; gap:8px; opacity:0; animation:acSlideIn 0.38s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .ac-e1 { animation-delay:0.30s; } .ac-e2 { animation-delay:0.75s; } .ac-e3 { animation-delay:1.20s; }
+  .ac-e4 { animation-delay:1.65s; } .ac-e5 { animation-delay:2.10s; }
+  .ac-spine { display:flex; flex-direction:column; align-items:center; flex-shrink:0; width:18px; }
+  .ac-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:4px; }
+  .ac-dot-ok   { background:#00c850; box-shadow:0 0 0 2px rgba(0,200,80,0.18); }
+  .ac-dot-warn { background:#febc2e; box-shadow:0 0 0 2px rgba(254,188,46,0.22); }
+  .ac-dot-risk { background:#f100a0; box-shadow:0 0 0 2px rgba(241,0,160,0.18); }
+  .ac-dot-info { background:#00bbff; box-shadow:0 0 0 2px rgba(0,187,255,0.18); }
+  .ac-line { flex:1; width:1.5px; background:rgba(0,2,83,0.06); margin-top:2px; min-height:14px; }
+  .ac-card { flex:1; padding:7px 10px; border-radius:8px; border:1px solid; font-family:'Wix Madefor Text',sans-serif; }
+  .ac-card-ok   { background:rgba(0,200,80,0.03);   border-color:rgba(0,200,80,0.14); }
+  .ac-card-warn { background:rgba(254,188,46,0.04); border-color:rgba(254,188,46,0.18); }
+  .ac-card-risk { background:rgba(241,0,160,0.03);  border-color:rgba(241,0,160,0.16); }
+  .ac-card-info { background:rgba(0,187,255,0.03);  border-color:rgba(0,187,255,0.15); }
+  .ac-card-top { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:2px; }
+  .ac-card-lbl { font-size:10.5px; font-weight:600; color:rgba(0,2,83,0.78); line-height:1.2; }
+  .ac-card-tag { font-size:7.5px; font-weight:700; padding:1.5px 5px; border-radius:100px; white-space:nowrap; font-family:'Outfit',sans-serif; flex-shrink:0; }
+  .ac-tag-ok   { background:rgba(0,200,80,0.09);   color:#00a840; border:1px solid rgba(0,200,80,0.18); }
+  .ac-tag-warn { background:rgba(254,188,46,0.09); color:#b87500; border:1px solid rgba(254,188,46,0.22); }
+  .ac-tag-risk { background:rgba(241,0,160,0.07);  color:#c4006c; border:1px solid rgba(241,0,160,0.18); }
+  .ac-tag-info { background:rgba(0,187,255,0.07);  color:#007faa; border:1px solid rgba(0,187,255,0.20); }
+  .ac-card-sub { font-size:9.5px; color:rgba(0,2,83,0.42); line-height:1.35; }
+  .ac-card-ref { font-size:8.5px; font-weight:600; color:rgba(0,2,83,0.28); font-family:'Outfit',sans-serif; margin-top:2px; }
+
+  /* Scanning entry (animated bar) */
+  .ac-e5 .ac-card-lbl { display:flex; align-items:center; gap:6px; }
+  .ac-scan-bar { flex:1; height:3px; border-radius:2px; background:rgba(0,2,83,0.07); overflow:hidden; max-width:80px; }
+  .ac-scan-fill { height:100%; border-radius:2px; background:linear-gradient(90deg,#0f29e9,#00bbff); width:0; animation:acScan 2.5s cubic-bezier(0.22,1,0.36,1) 2.3s forwards; }
+  @keyframes acScan { 0%{width:0} 60%{width:72%} 100%{width:72%} }
+
+  /* Progress ring (compliance score) */
+  .ac-score-wrap { display:flex; align-items:center; gap:10px; margin-top:6px; padding:8px 11px; border-radius:9px; background:linear-gradient(135deg,rgba(15,41,233,0.04),rgba(0,187,255,0.03)); border:1px solid rgba(0,187,255,0.14); opacity:0; animation:acFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) 2.8s forwards; }
+  .ac-ring-svg { flex-shrink:0; }
+  .ac-ring-bg  { fill:none; stroke:rgba(0,2,83,0.07); stroke-width:3; }
+  .ac-ring-arc { fill:none; stroke:#00c850; stroke-width:3; stroke-linecap:round; stroke-dasharray:75.4; stroke-dashoffset:75.4; animation:acRingFill 1.1s cubic-bezier(0.22,1,0.36,1) 2.9s forwards; transform-origin:center; transform:rotate(-90deg); }
+  .ac-ring-arc-warn { fill:none; stroke:#febc2e; stroke-width:3; stroke-linecap:round; stroke-dasharray:75.4; stroke-dashoffset:75.4; animation:acRingWarn 1.1s cubic-bezier(0.22,1,0.36,1) 2.9s forwards; transform-origin:center; transform:rotate(-90deg); }
+  @keyframes acRingFill { to { stroke-dashoffset: 15.1 } }  /* 80% of 75.4 */
+  @keyframes acRingWarn { to { stroke-dashoffset: 28.3 } }  /* 62% */
+  .ac-ring-num { font-size:10px; font-weight:800; fill:rgba(0,2,83,0.72); font-family:'Outfit',sans-serif; }
+  .ac-score-info { flex:1; min-width:0; }
+  .ac-score-lbl { font-size:10px; font-weight:700; color:rgba(0,2,83,0.68); font-family:'Outfit',sans-serif; }
+  .ac-score-sub { font-size:9px; color:rgba(0,2,83,0.38); font-family:'Wix Madefor Text',sans-serif; margin-top:1px; }
+  .ac-score-right { font-size:9px; font-weight:700; color:#0f29e9; font-family:'Outfit',sans-serif; white-space:nowrap; }
+
+  @keyframes acFadeUp   { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:none} }
+  @keyframes acSlideIn  { from{opacity:0;transform:translateX(8px)} to{opacity:1;transform:none} }
+
+  /* ===== LOGO MARQUEE ===== */
+  .logos-viewport {
+    overflow: hidden;
+    background: #fff;
+    isolation: isolate;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+  }
+  .logos-track {
+    display: flex;
+    width: max-content;
+    animation: logoScroll 40s linear infinite;
+  }
+  .logos-set {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 0 30px;
+    flex-shrink: 0;
+  }
+  @keyframes logoScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .logo-client {
+    height: 28px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    filter: grayscale(1) sepia(1) hue-rotate(198deg) saturate(5) brightness(0.58);
+    opacity: 0.68;
+    mix-blend-mode: multiply;
+    transition: opacity 0.25s ease;
+    flex-shrink: 0;
+    display: block;
+  }
+  .logo-client:hover { opacity: 1; }
+</style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "inverse-surface": "#303037",
+          "secondary": "#0f29e9",
+          "primary-fixed": "#e0e0ff",
+          "bm-cyan": "#00bbff",
+          "bm-lime": "#caca00",
+          "on-tertiary-container": "#e66957",
+          "bm-neutral-400": "#97a0bc",
+          "secondary-fixed-dim": "#bdc2ff",
+          "surface-variant": "#e4e1eb",
+          "bm-neutral-100": "#eef0f7",
+          "on-secondary": "#ffffff",
+          "on-background": "#1b1b22",
+          "inverse-on-surface": "#f2eff9",
+          "on-primary-container": "#7b84f6",
+          "error-container": "#ffdad6",
+          "bm-orange": "#ff4400",
+          "bm-pink": "#f100a0",
+          "bm-green": "#00d100",
+          "bm-neutral-300": "#c4cadd",
+          "secondary-container": "#384cff",
+          "on-tertiary-fixed-variant": "#852217",
+          "on-secondary-fixed": "#000865",
+          "surface-container": "#efecf7",
+          "tertiary-fixed-dim": "#ffb4a8",
+          "surface-container-highest": "#e4e1eb",
+          "outline-variant": "#c6c5d5",
+          "surface-container-low": "#f5f2fc",
+          "bm-neutral-700": "#333b57",
+          "inverse-primary": "#bec2ff",
+          "secondary-fixed": "#dfe0ff",
+          "on-secondary-container": "#e1e2ff",
+          "on-primary-fixed": "#00036b",
+          "error": "#ba1a1a",
+          "on-error-container": "#93000a",
+          "on-error": "#ffffff",
+          "tertiary-container": "#590000",
+          "tertiary": "#320000",
+          "primary-container": "#030a8b",
+          "bm-neutral-200": "#dfe3ee",
+          "bm-purple": "#7b00dc",
+          "bm-neutral-500": "#6a7494",
+          "primary-fixed-dim": "#bec2ff",
+          "on-tertiary": "#ffffff",
+          "bm-neutral-50": "#f6f7fb",
+          "surface-tint": "#4952c1",
+          "bm-neutral-800": "#1e2440",
+          "bm-neutral-900": "#0c1130",
+          "outline": "#767684",
+          "surface": "#fbf8ff",
+          "bm-pale-blue": "#bee0e3",
+          "surface-bright": "#fbf8ff",
+          "on-primary": "#ffffff",
+          "on-surface-variant": "#454653",
+          "surface-container-lowest": "#ffffff",
+          "tertiary-fixed": "#ffdad4",
+          "on-surface": "#1b1b22",
+          "on-tertiary-fixed": "#410000",
+          "primary": "#000253",
+          "surface-dim": "#dbd9e3",
+          "bm-neutral-600": "#4c5575",
+          "surface-container-high": "#e9e7f1",
+          "on-primary-fixed-variant": "#2f38a8",
+          "background": "#fbf8ff",
+          "bm-midnight": "#162132",
+          "on-secondary-fixed-variant": "#001fde"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "xs": "4px",
+          "container-max": "1240px",
+          "lg": "24px",
+          "gutter": "24px",
+          "xl": "48px",
+          "md": "16px",
+          "base": "4px",
+          "sm": "8px"
+        },
+        "fontFamily": {
+          "h3": ["Outfit"],
+          "display": ["Outfit"],
+          "body-sm": ["Wix Madefor Text"],
+          "body": ["Wix Madefor Text"],
+          "caption": ["Wix Madefor Text"],
+          "eyebrow": ["Wix Madefor Text"],
+          "h4": ["Outfit"],
+          "lede": ["Wix Madefor Text"],
+          "h1": ["Outfit"],
+          "h2": ["Outfit"]
+        },
+        "fontSize": {
+          "h3": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "display": ["76px", {"lineHeight": "1.08", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+          "body-sm": ["14px", {"lineHeight": "1.45", "fontWeight": "400"}],
+          "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "caption": ["12px", {"lineHeight": "1.45", "fontWeight": "500"}],
+          "eyebrow": ["12px", {"lineHeight": "1.45", "letterSpacing": "0.12em", "fontWeight": "600"}],
+          "h4": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+          "lede": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "h1": ["60px", {"lineHeight": "1.08", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+          "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wx726t1eb2");
+</script>
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/22531017.js"></script>
+<!-- End of HubSpot Embed Code -->
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MNVPH77L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ===== FLOATING CTA ===== -->
+<div id="float-cta" aria-hidden="true">
+  <div class="float-cta-ring"></div>
+  <button class="float-cta-btn" onclick="openLeadModal('float-cta')" aria-label="Agendar diagnóstico gratuito">
+    <span class="material-symbols-outlined" style="font-size:18px;font-variation-settings:'FILL' 1,'wght' 500;">send</span>
+    Diagnóstico gratuito
+  </button>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<header id="main-nav" class="sticky top-0 z-50 w-full">
+  <nav class="flex justify-between items-center max-w-[1240px] mx-auto px-6 py-3.5">
+    <a href="#hero" class="flex items-center gap-2.5 group" style="text-decoration:none;">
+      <img alt="BlueMetrics" style="height:18px;width:auto;opacity:0.75;transition:opacity 0.2s;" class="group-hover:opacity-100" src="bluemetrics_logo_RGB_blue_horizontal.png"/>
+      <div style="width:1px;height:28px;background:#e5e7ef;flex-shrink:0;"></div>
+      <div style="display:flex;flex-direction:column;gap:1px;line-height:1;">
+        <span style="font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;color:#0f29e9;letter-spacing:-0.01em;">BlueDocs</span>
+        <span style="font-family:'Outfit',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:#9ca3af;">Solução</span>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-7 text-sm font-medium">
+      <a class="nav-link text-bm-neutral-600 hover:text-primary transition-colors duration-200" href="#hero" data-section="hero">BlueDocs</a>
+      <a class="nav-link text-bm-neutral-600 hover:text-primary transition-colors duration-200" href="#custo-invisivel" data-section="custo-invisivel">Custo invisível</a>
+      <a class="nav-link text-bm-neutral-600 hover:text-primary transition-colors duration-200" href="#solucoes" data-section="solucoes">Soluções</a>
+      <a class="nav-link text-bm-neutral-600 hover:text-primary transition-colors duration-200" href="#comparativo" data-section="comparativo">Comparativo</a>
+      <a class="nav-link text-bm-neutral-600 hover:text-primary transition-colors duration-200" href="#cases" data-section="cases">Cases</a>
+      <a class="nav-link text-bm-neutral-600 hover:text-primary transition-colors duration-200" href="#porque" data-section="porque">Por quê?</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="openLeadModal('navbar')" class="btn-shimmer grad-brand text-white px-5 py-2.5 rounded-lg text-sm font-semibold shadow-glow-pink transition-transform hidden md:block">
+        Diagnóstico gratuito
+      </button>
+      <button id="hamburger" onclick="toggleMobileNav()" class="md:hidden flex flex-col justify-center gap-[5px] w-10 h-10 rounded-lg" aria-label="Abrir menu">
+        <span class="ham-line ham-line-1"></span>
+        <span class="ham-line ham-line-2"></span>
+        <span class="ham-line ham-line-3"></span>
+      </button>
+    </div>
+  </nav>
+  <!-- Mobile navigation panel -->
+  <div id="mobile-nav" class="md:hidden bg-white border-t border-bm-neutral-100 px-6 pb-5 shadow-lg">
+    <div class="flex flex-col pt-1 mb-4">
+      <a href="#hero" onclick="toggleMobileNav()" class="block py-3.5 text-sm font-medium text-bm-neutral-700 border-b border-bm-neutral-100 hover:text-secondary transition-colors">BlueDocs</a>
+      <a href="#custo-invisivel" onclick="toggleMobileNav()" class="block py-3.5 text-sm font-medium text-bm-neutral-700 border-b border-bm-neutral-100 hover:text-secondary transition-colors">Custo invisível</a>
+      <a href="#solucoes" onclick="toggleMobileNav()" class="block py-3.5 text-sm font-semibold text-secondary border-b border-bm-neutral-100">Soluções</a>
+      <a href="#cases" onclick="toggleMobileNav()" class="block py-3.5 text-sm font-medium text-bm-neutral-700 border-b border-bm-neutral-100 hover:text-secondary transition-colors">Cases</a>
+      <a href="#porque" onclick="toggleMobileNav()" class="block py-3.5 text-sm font-medium text-bm-neutral-700 hover:text-secondary transition-colors">Por quê?</a>
+    </div>
+    <button onclick="openLeadModal('navbar-mobile'); toggleMobileNav();" class="btn-shimmer grad-brand text-white w-full py-3 rounded-lg text-sm font-semibold shadow-glow-pink">
+      Diagnóstico gratuito
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero" class="grad-deep relative overflow-hidden min-h-[580px]" style="scroll-margin-top:72px;">
+  <!-- Grid overlay -->
+  <div class="absolute inset-0 hero-grid pointer-events-none"></div>
+  <!-- Radial glows -->
+  <div class="absolute top-0 right-0 w-[700px] h-[700px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(123,0,220,0.55) 0%, transparent 65%); transform: translate(35%,-30%); filter: blur(10px);"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(0,187,255,0.35) 0%, transparent 65%); transform: translate(-25%,30%); filter: blur(8px);"></div>
+
+  <div class="max-w-[1240px] mx-auto px-6 py-12 md:py-16 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Left: Content -->
+      <div class="reveal">
+        <div class="flex sm:inline-flex items-center gap-2.5 px-4 py-1.5 mb-7 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-bm-cyan pulse-dot shrink-0"></span>
+          <span class="text-white font-eyebrow uppercase tracking-wider text-[11px]">Bluedocs | IA generativa sob medida para documentos</span>
+        </div>
+        <h1 class="font-display text-white mb-4 leading-[1.06]" style="font-size:clamp(36px,3.8vw,50px); letter-spacing:-0.03em; font-weight:700;">Um agente de IA que entrega o trabalho de 3 analistas sem erro, sem retrabalho.</h1>
+        <p class="font-lede mb-7 max-w-lg leading-relaxed" style="font-size:17px; color:rgba(255,255,255,0.78);">Inteligência Artificial que transforma seu backoffice documental em vantagem competitiva. Produza mais com o mesmo time, mais eficiência sem abrir mão da precisão.</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button onclick="openLeadModal('hero-primary')" class="btn-shimmer bg-white text-primary font-semibold px-8 py-3.5 rounded-lg shadow-glow-blue transition-transform">
+            Diagnóstico gratuito
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: BlueDocs Chat Mockup -->
+      <div class="flex mt-10 lg:mt-0 items-stretch reveal reveal-d2">
+        <div class="visual-frame w-full" style="aspect-ratio:16/10; padding:0;">
+          <div class="mockup-browser">
+
+            <!-- Top bar -->
+            <div class="mockup-topbar">
+              <div style="display:flex;gap:5px;">
+                <div class="mock-wdot" style="background:#ff5f57;"></div>
+                <div class="mock-wdot" style="background:#febc2e;"></div>
+                <div class="mock-wdot" style="background:#28c840;"></div>
+              </div>
+              <div style="flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,0.35);font-family:'Outfit',sans-serif;letter-spacing:0.05em;">BlueDocs</div>
+              <div style="font-size:9.5px;color:rgba(0,187,255,0.75);background:rgba(0,187,255,0.09);border:1px solid rgba(0,187,255,0.22);padding:2px 9px;border-radius:20px;font-family:'Wix Madefor Text',sans-serif;white-space:nowrap;">Grupo Montanha</div>
+            </div>
+
+            <!-- Body -->
+            <div class="mockup-body">
+
+              <!-- Sidebar -->
+              <div class="mockup-sidebar">
+                <p style="font-size:9px;color:rgba(255,255,255,0.22);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;font-family:'Outfit',sans-serif;">Documentos</p>
+                <div class="mock-doc-row">
+                  <span class="material-symbols-outlined" style="font-size:13px;color:rgba(0,187,255,0.55);">description</span>
+                  <span class="mock-doc-name">Contrato_FornA.pdf</span>
+                </div>
+                <div class="mock-doc-row">
+                  <span class="material-symbols-outlined" style="font-size:13px;color:rgba(0,187,255,0.55);">description</span>
+                  <span class="mock-doc-name">Edital_PP_2024.pdf</span>
+                </div>
+                <div class="mock-doc-row">
+                  <span class="material-symbols-outlined" style="font-size:13px;color:rgba(0,187,255,0.55);">description</span>
+                  <span class="mock-doc-name">Contrato_LogX.pdf</span>
+                </div>
+                <div class="mock-doc-row">
+                  <span class="material-symbols-outlined" style="font-size:13px;color:rgba(123,0,220,0.6);">gavel</span>
+                  <span class="mock-doc-name">Acordo_Serv_Y.pdf</span>
+                </div>
+                <div class="mock-doc-row">
+                  <span class="material-symbols-outlined" style="font-size:13px;color:rgba(255,255,255,0.3);">folder</span>
+                  <span class="mock-doc-name">Arquivo Q3</span>
+                </div>
+                <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);">
+                  <p style="font-size:9px;color:rgba(255,255,255,0.22);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;font-family:'Outfit',sans-serif;">Histórico</p>
+                  <div style="font-size:10px;color:rgba(255,255,255,0.28);font-family:'Wix Madefor Text',sans-serif;line-height:2;">Consulta Q3</div>
+                  <div style="font-size:10px;color:rgba(255,255,255,0.28);font-family:'Wix Madefor Text',sans-serif;line-height:2;">Análise edital</div>
+                  <div style="font-size:10px;color:rgba(255,255,255,0.28);font-family:'Wix Madefor Text',sans-serif;line-height:2;">Revisão risco</div>
+                </div>
+              </div>
+
+              <!-- Chat -->
+              <div class="mockup-chat">
+                <div id="mock-messages"></div>
+                <div class="mockup-input-bar">
+                  <span class="material-symbols-outlined" style="font-size:14px;color:rgba(255,255,255,0.25);">search</span>
+                  <span id="mock-input-text"><span class="mock-cursor"></span></span>
+                  <span class="material-symbols-outlined" style="font-size:15px;color:rgba(15,41,233,0.7);cursor:pointer;">send</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL PROOF LOGOS ===== -->
+<section class="bg-white" style="border-top:1px solid #e8eaf0; border-bottom:1px solid #e8eaf0; padding:28px 0 32px;">
+  <p style="text-align:center; margin-bottom:20px; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(0,2,83,0.30); font-family:'Outfit',sans-serif;">Empresas que confiam</p>
+  <div class="logos-viewport">
+    <div class="logos-track">
+      <div class="logos-set">
+        <img src="Logos%20-%20cases/Philco-logo.png" class="logo-client" alt="Philco">
+        <img src="Logos%20-%20cases/britania-logo.png" class="logo-client" alt="Britania" style="height:32px;">
+        <img src="Logos%20-%20cases/webmotors-logo.png" class="logo-client" alt="Webmotors">
+        <img src="Logos%20-%20cases/logo%20-%20belshop.png" class="logo-client" alt="BelShop" style="height:52px;">
+        <img src="Logos%20-%20cases/7945321e6aa6c97c9276d8b844553a9cf11648d8-1226x417.png" class="logo-client" alt="Dafiti">
+        <img src="Logos%20-%20cases/LobbyCRE.AI-logo-1.png" class="logo-client" alt="LobbyCRE.AI">
+        <img src="Logos%20-%20cases/logo%20-%20jorge.png" class="logo-client" alt="Jorge Bischoff" style="height:36px;">
+        <img src="Logos%20-%20cases/logo%20-%20benoit.png" class="logo-client" alt="Lojas Benoit" style="height:32px;">
+        <img src="Logos%20-%20cases/5875ee7d-b912-4309-b6f3-9660d83beda7-1715796501678.png" class="logo-client" alt="3E" style="height:36px;">
+      </div>
+      <div class="logos-set" aria-hidden="true">
+        <img src="Logos%20-%20cases/Philco-logo.png" class="logo-client" alt="">
+        <img src="Logos%20-%20cases/britania-logo.png" class="logo-client" alt="" style="height:32px;">
+        <img src="Logos%20-%20cases/webmotors-logo.png" class="logo-client" alt="">
+        <img src="Logos%20-%20cases/logo%20-%20belshop.png" class="logo-client" alt="" style="height:52px;">
+        <img src="Logos%20-%20cases/7945321e6aa6c97c9276d8b844553a9cf11648d8-1226x417.png" class="logo-client" alt="">
+        <img src="Logos%20-%20cases/LobbyCRE.AI-logo-1.png" class="logo-client" alt="">
+        <img src="Logos%20-%20cases/logo%20-%20jorge.png" class="logo-client" alt="" style="height:36px;">
+        <img src="Logos%20-%20cases/logo%20-%20benoit.png" class="logo-client" alt="" style="height:32px;">
+        <img src="Logos%20-%20cases/5875ee7d-b912-4309-b6f3-9660d83beda7-1715796501678.png" class="logo-client" alt="" style="height:36px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== PROBLEM SECTION ===== -->
+<section id="custo-invisivel" class="py-24 grad-deep relative overflow-hidden" style="scroll-margin-top:72px;">
+  <!-- Subtle grid -->
+  <div class="absolute inset-0 hero-grid opacity-[0.28] pointer-events-none"></div>
+  <!-- Ambient glows -->
+  <div class="absolute top-0 right-0 w-[700px] h-[700px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(0,187,255,0.07) 0%, transparent 65%); transform: translate(30%,-20%); filter: blur(20px);"></div>
+  <div class="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(15,41,233,0.10) 0%, transparent 65%); transform: translate(-20%,25%); filter: blur(20px);"></div>
+
+  <div class="max-w-[1240px] mx-auto px-6 relative">
+
+    <!-- Section header -->
+    <div class="mb-14 text-center reveal">
+      <span class="font-eyebrow uppercase mb-4 block" style="color: rgba(0,187,255,0.9); letter-spacing:0.15em;">
+        <span class="inline-block w-5 h-px align-middle mr-2" style="background:#00bbff; opacity:0.8;"></span>Custo de Oportunidade<span class="inline-block w-5 h-px align-middle ml-2" style="background:#00bbff; opacity:0.8;"></span>
+      </span>
+      <h2 class="font-h2 text-h2 text-white mb-5">Seu time lê documentos.<br>A IA entende todos.</h2>
+      <p class="text-body max-w-[540px] mx-auto" style="color:rgba(255,255,255,0.72);">Operações jurídicas e comerciais ainda dependem de leitura humana para decisões críticas. O custo invisível é enorme. E cresce todo dia.</p>
+    </div>
+
+    <!-- 2×2 Pain cards grid -->
+    <div class="grid md:grid-cols-2 gap-5 mb-5">
+
+      <!-- Card 1 -->
+      <div class="glass-pain-card p-8 rounded-2xl reveal">
+        <div class="flex items-start justify-between gap-4 mb-5">
+          <div class="flex items-start gap-4 flex-1">
+            <div class="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center" style="background: linear-gradient(135deg,rgba(0,187,255,0.18),rgba(123,0,220,0.18)); border: 1px solid rgba(0,187,255,0.22);">
+              <span class="material-symbols-outlined" style="font-size:21px; color:#00bbff;">schedule</span>
+            </div>
+            <h4 class="font-h4 text-[20px] text-white leading-snug">Leitura manual que consome horas e acumula riscos</h4>
+          </div>
+          <div class="flex-shrink-0 rounded-xl px-3 py-2 text-center" style="background:rgba(5,15,140,0.85); border:1px solid rgba(0,187,255,0.38); min-width:64px;">
+            <span style="color:#00bbff; font-weight:700; font-size:19px; line-height:1; letter-spacing:-0.03em; display:block;">40%</span>
+            <span style="color:rgba(255,255,255,0.82); font-size:9px; line-height:1.3; margin-top:3px; display:block;">do tempo em<br>leitura manual</span>
+          </div>
+        </div>
+        <p class="text-[15px] leading-relaxed" style="color:rgba(255,255,255,0.84);">Documentos de 200+ páginas lidos linha a linha por analistas sênior. Um trabalho caro, lento, e que ainda expõe a empresa a erros humanos em pontos críticos.</p>
+        <div class="h-px mt-6" style="background: linear-gradient(90deg, rgba(0,187,255,0.4), transparent);"></div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="glass-pain-card p-8 rounded-2xl reveal reveal-d1">
+        <div class="flex items-start justify-between gap-4 mb-5">
+          <div class="flex items-start gap-4 flex-1">
+            <div class="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center" style="background: linear-gradient(135deg,rgba(0,187,255,0.18),rgba(123,0,220,0.18)); border: 1px solid rgba(0,187,255,0.22);">
+              <span class="material-symbols-outlined" style="font-size:21px; color:#00bbff;">gavel</span>
+            </div>
+            <h4 class="font-h4 text-[20px] text-white leading-snug">Uma vírgula mal lida pode custar uma fortuna</h4>
+          </div>
+          <div class="flex-shrink-0 rounded-xl px-3 py-2 text-center" style="background:rgba(5,15,140,0.85); border:1px solid rgba(0,187,255,0.38); min-width:64px;">
+            <span style="color:#00bbff; font-weight:700; font-size:19px; line-height:1; letter-spacing:-0.04em; display:block;">3×</span>
+            <span style="color:rgba(255,255,255,0.82); font-size:9px; line-height:1.3; margin-top:3px; display:block;">mais caro revisar<br>sem automação</span>
+          </div>
+        </div>
+        <p class="text-[15px] leading-relaxed" style="color:rgba(255,255,255,0.84);">Erros em processos jurídicos e comerciais geram multas, litígios e rescisões milionárias. Com leitura humana em escala, o risco não é apenas possível: é inevitável.</p>
+        <div class="h-px mt-6" style="background: linear-gradient(90deg, rgba(0,187,255,0.4), transparent);"></div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="glass-pain-card p-8 rounded-2xl reveal">
+        <div class="flex items-start justify-between gap-4 mb-5">
+          <div class="flex items-start gap-4 flex-1">
+            <div class="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center" style="background: linear-gradient(135deg,rgba(0,187,255,0.18),rgba(123,0,220,0.18)); border: 1px solid rgba(0,187,255,0.22);">
+              <span class="material-symbols-outlined" style="font-size:21px; color:#00bbff;">payments</span>
+            </div>
+            <h4 class="font-h4 text-[20px] text-white leading-snug">Backoffice analítico que sangra caixa</h4>
+          </div>
+          <div class="flex-shrink-0 rounded-xl px-3 py-2 text-center" style="background:rgba(5,15,140,0.85); border:1px solid rgba(0,187,255,0.38); min-width:64px;">
+            <span style="color:#00bbff; font-weight:700; font-size:19px; line-height:1; letter-spacing:-0.02em; display:block;">72h</span>
+            <span style="color:rgba(255,255,255,0.82); font-size:9px; line-height:1.3; margin-top:3px; display:block;">tempo médio de<br>due diligence</span>
+          </div>
+        </div>
+        <p class="text-[15px] leading-relaxed" style="color:rgba(255,255,255,0.84);">Equipes especializadas para leitura de documentos escalam mal e custam caro. Você paga por horas lidas, não por decisões tomadas.</p>
+        <div class="h-px mt-6" style="background: linear-gradient(90deg, rgba(0,187,255,0.4), transparent);"></div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="glass-pain-card p-8 rounded-2xl reveal reveal-d1">
+        <div class="flex items-start justify-between gap-4 mb-5">
+          <div class="flex items-start gap-4 flex-1">
+            <div class="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center" style="background: linear-gradient(135deg,rgba(0,187,255,0.18),rgba(123,0,220,0.18)); border: 1px solid rgba(0,187,255,0.22);">
+              <span class="material-symbols-outlined" style="font-size:21px; color:#00bbff;">inventory_2</span>
+            </div>
+            <h4 class="font-h4 text-[20px] text-white leading-snug">Seu acervo é um buraco negro</h4>
+          </div>
+          <div class="flex-shrink-0 rounded-xl px-3 py-2 text-center" style="background:rgba(5,15,140,0.85); border:1px solid rgba(123,0,220,0.42); min-width:64px;">
+            <span class="material-symbols-outlined" style="font-size:19px; color:#c084fc; display:block; line-height:1; padding-top:2px;">folder_off</span>
+            <span style="color:rgba(255,255,255,0.82); font-size:9px; line-height:1.3; margin-top:3px; display:block;">sem<br>visibilidade</span>
+          </div>
+        </div>
+        <p class="text-[15px] leading-relaxed" style="color:rgba(255,255,255,0.84);">Décadas de documentos arquivados, mas ninguém sabe o que está dentro de cada um. Conhecimento institucional preso em PDFs inacessíveis.</p>
+        <div class="h-px mt-6" style="background: linear-gradient(90deg, rgba(0,187,255,0.4), transparent);"></div>
+      </div>
+
+    </div>
+
+    <!-- Featured card -->
+    <div class="glass-pain-card p-10 rounded-3xl w-full text-center relative overflow-hidden reveal reveal-d2" style="border-color: rgba(0,187,255,0.14) !important;">
+      <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 50% 0%, rgba(15,41,233,0.10) 0%, transparent 65%);"></div>
+      <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background: linear-gradient(135deg,rgba(0,187,255,0.18),rgba(123,0,220,0.18)); border: 1px solid rgba(0,187,255,0.22);">
+        <span class="material-symbols-outlined" style="font-size:26px; color:#00bbff;">manage_search</span>
+      </div>
+      <h4 class="font-h4 text-[24px] text-white mb-4 leading-snug">Due diligence que trava decisões</h4>
+      <p class="text-[15px] leading-relaxed max-w-lg mx-auto" style="color:rgba(255,255,255,0.84);">M&A, licitações e auditorias paralisados pela velocidade de leitura humana. Oportunidades perdidas enquanto o concorrente já decidiu.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SOLUTION TABS ===== -->
+<section id="solucoes" class="py-24 bg-white relative overflow-hidden" style="scroll-margin-top:72px;">
+  <div class="absolute inset-0 dot-pattern opacity-30 pointer-events-none"></div>
+
+  <div class="max-w-[1240px] mx-auto px-6 relative">
+
+    <!-- Section header -->
+    <div class="mb-12 text-center reveal">
+      <span class="font-eyebrow uppercase text-secondary mb-3 block" style="letter-spacing:0.14em;">
+        <span class="inline-block w-5 h-px bg-secondary mr-2 align-middle"></span>Nossa Solução<span class="inline-block w-5 h-px bg-secondary ml-2 align-middle"></span>
+      </span>
+      <h2 class="font-h2 text-h2 text-primary">Uma solução para cada gargalo da sua operação.</h2>
+    </div>
+
+    <!-- Tab navigation -->
+    <div class="flex gap-3 mb-16 md:justify-center overflow-x-auto md:overflow-visible no-scrollbar -mx-6 px-6 md:mx-0 md:px-0 pb-1 md:pb-0 reveal reveal-d1">
+      <button class="sol-tab active shrink-0" data-sol="0">
+        <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:15px;'>description</span>Análise de Contratos
+      </button>
+      <button class="sol-tab shrink-0" data-sol="1">
+        <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:15px;'>request_quote</span>Editais & RFPs
+      </button>
+      <button class="sol-tab shrink-0" data-sol="2">
+        <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:15px;'>manage_search</span>Due Diligence
+      </button>
+      <button class="sol-tab shrink-0" data-sol="3">
+        <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:15px;'>policy</span>Auditoria & Compliance
+      </button>
+    </div>
+
+    <!-- Content grid -->
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- LEFT: text panels -->
+      <div>
+
+        <div class="sol-panel active">
+          <span class="inline-flex items-center gap-2 mb-5 font-eyebrow uppercase text-[11px] tracking-widest text-secondary">
+            <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:13px;'>description</span>Análise de Contratos
+          </span>
+          <h3 class="font-h2 text-[32px] leading-tight text-primary mb-5">Revise 50 contratos no tempo que levaria para ler 1.</h3>
+          <p class="text-body text-bm-neutral-600 leading-relaxed mb-8">Extração automática de cláusulas, prazos, obrigações e penalidades. O BlueDocs compara versões, detecta desvios em relação ao template padrão e sinaliza os pontos de risco antes da assinatura. Sem uma hora de leitura linha a linha pelo time jurídico.</p>
+          <div class="flex items-center gap-6">
+            <a href="#" onclick="openLeadModal('solucao-tab'); return false;" class="btn-shimmer inline-block px-7 py-3 rounded-full text-white font-semibold text-sm" style="background:#0f29e9;">Diagnóstico gratuito</a>
+          </div>
+        </div>
+
+        <div class="sol-panel">
+          <span class="inline-flex items-center gap-2 mb-5 font-eyebrow uppercase text-[11px] tracking-widest text-secondary">
+            <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:13px;'>request_quote</span>Editais & RFPs
+          </span>
+          <h3 class="font-h2 text-[32px] leading-tight text-primary mb-5">Responda 10× mais editais com o mesmo time que você tem hoje.</h3>
+          <p class="text-body text-bm-neutral-600 leading-relaxed mb-8">Cada edital chega com centenas de requisitos, prazos e critérios de habilitação. O BlueDocs lê, classifica e extrai automaticamente o que importa, e avisa se você tem perfil para concorrer. Seu time entra em campo só nos que valem a pena.</p>
+          <div class="flex items-center gap-6">
+            <a href="#" onclick="openLeadModal('solucao-tab'); return false;" class="btn-shimmer inline-block px-7 py-3 rounded-full text-white font-semibold text-sm" style="background:#0f29e9;">Diagnóstico gratuito</a>
+          </div>
+        </div>
+
+        <div class="sol-panel">
+          <span class="inline-flex items-center gap-2 mb-5 font-eyebrow uppercase text-[11px] tracking-widest text-secondary">
+            <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:13px;'>manage_search</span>Due Diligence
+          </span>
+          <h3 class="font-h2 text-[32px] leading-tight text-primary mb-5">Centenas de documentos analisados em horas. Não em semanas.</h3>
+          <p class="text-body text-bm-neutral-600 leading-relaxed mb-8">M&A, captação ou auditoria pré-compra: o BlueDocs varre data rooms inteiros, cruza informações entre documentos e entrega um relatório consolidado com os riscos identificados, antes que o prazo do processo feche.</p>
+          <div class="flex items-center gap-6">
+            <a href="#" onclick="openLeadModal('solucao-tab'); return false;" class="btn-shimmer inline-block px-7 py-3 rounded-full text-white font-semibold text-sm" style="background:#0f29e9;">Diagnóstico gratuito</a>
+          </div>
+        </div>
+
+        <div class="sol-panel">
+          <span class="inline-flex items-center gap-2 mb-5 font-eyebrow uppercase text-[11px] tracking-widest text-secondary">
+            <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:13px;'>policy</span>Auditoria & Compliance
+          </span>
+          <h3 class="font-h2 text-[32px] leading-tight text-primary mb-5">LGPD, BACEN, regulações setoriais. Conformidade sem depender de memória.</h3>
+          <p class="text-body text-bm-neutral-600 leading-relaxed mb-8">A cada nova circular, resolução ou exigência regulatória, o BlueDocs rastreia os documentos impactados e sinaliza o que precisa ser revisado. Auditoria deixa de ser evento de pânico e passa a ser processo controlado.</p>
+          <div class="flex items-center gap-6">
+            <a href="#" onclick="openLeadModal('solucao-tab'); return false;" class="btn-shimmer inline-block px-7 py-3 rounded-full text-white font-semibold text-sm" style="background:#0f29e9;">Diagnóstico gratuito</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: visual placeholders -->
+      <div>
+
+        <!-- Visual 0: OCR -->
+        <div class="sol-visual active">
+          <div class="relative">
+            <div class="rounded-2xl bg-white overflow-hidden" style="box-shadow: 0 8px 48px rgba(0,2,83,0.10); border: 1px solid rgba(0,2,83,0.07);">
+              <div class="px-5 py-3.5 flex items-center gap-2 border-b border-bm-neutral-100">
+                <div class="flex gap-1.5">
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                </div>
+                <div class="flex-1 ml-3 h-5 rounded-full bg-bm-neutral-100 flex items-center px-3">
+                  <span class="text-[11px] text-bm-neutral-400 font-mono">Contrato_NDA_v3.pdf — Análise de Cláusulas</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold" style="background:rgba(0,209,0,0.08); color:#00a800;">
+                  <span class="w-1.5 h-1.5 rounded-full bg-bm-green inline-block"></span>Analisando
+                </div>
+              </div>
+              <div class="p-4 relative overflow-hidden">
+                <!-- Animated scan line -->
+                <div class="sol-scan-line"></div>
+
+                <!-- Document content -->
+                <div style="font-family:'Wix Madefor Text',sans-serif;">
+
+                  <!-- Doc meta row -->
+                  <div class="flex items-center justify-between mb-3 pb-2.5" style="border-bottom:1px solid rgba(0,2,83,0.06);">
+                    <div class="flex items-center gap-1.5">
+                      <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:13px;color:#0f29e9;'>description</span>
+                      <span style="font-size:11px;font-weight:600;color:#000253;">Contrato_Fornecimento_Ano_NDA_v3.pdf</span>
+                    </div>
+                    <span style="font-size:9px;font-weight:600;padding:2px 8px;border-radius:20px;background:rgba(254,188,46,0.12);color:#b87500;letter-spacing:0.02em;">8 riscos identificados</span>
+                  </div>
+
+                  <!-- Paragraph lines (neutral) -->
+                  <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:10px;">
+                    <div style="height:7px;border-radius:4px;width:94%;background:rgba(0,2,83,0.07);"></div>
+                    <div style="height:7px;border-radius:4px;width:80%;background:rgba(0,2,83,0.05);"></div>
+                    <div style="height:7px;border-radius:4px;width:88%;background:rgba(0,2,83,0.07);"></div>
+                  </div>
+
+                  <!-- Highlighted clause 1 — Moderado / amber -->
+                  <div class="sol-clause sol-clause-1" style="border-radius:8px;padding:9px 11px;margin-bottom:9px;background:rgba(254,188,46,0.07);border-left:3px solid #febc2e;">
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+                      <div style="flex:1;">
+                        <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#b87500;">Cláusula 7.3  —  Reajuste de índice</span>
+                        <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+                          <div style="height:6px;border-radius:3px;width:90%;background:rgba(184,117,0,0.16);"></div>
+                          <div style="height:6px;border-radius:3px;width:72%;background:rgba(184,117,0,0.12);"></div>
+                        </div>
+                      </div>
+                      <div class="sol-risk-badge sol-risk-badge-amber" style="flex-shrink:0;border-radius:7px;padding:5px 9px;text-align:center;background:rgba(254,188,46,0.13);border:1px solid rgba(254,188,46,0.25);min-width:68px;">
+                        <div style="font-size:9px;font-weight:700;color:#b87500;">⚠ Moderado</div>
+                        <div style="font-size:8px;color:rgba(184,117,0,0.65);margin-top:2px;">Unilateral</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Neutral lines -->
+                  <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:9px;">
+                    <div style="height:7px;border-radius:4px;width:82%;background:rgba(0,2,83,0.06);"></div>
+                    <div style="height:7px;border-radius:4px;width:95%;background:rgba(0,2,83,0.07);"></div>
+                  </div>
+
+                  <!-- Highlighted clause 2 — Crítico / pink-red -->
+                  <div class="sol-clause sol-clause-2" style="border-radius:8px;padding:9px 11px;margin-bottom:9px;background:rgba(241,0,160,0.05);border-left:3px solid #f100a0;">
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+                      <div style="flex:1;">
+                        <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#c4006c;">Cláusula 12.1  —  Penalidades contratuais</span>
+                        <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+                          <div style="height:6px;border-radius:3px;width:78%;background:rgba(196,0,108,0.16);"></div>
+                          <div style="height:6px;border-radius:3px;width:86%;background:rgba(196,0,108,0.12);"></div>
+                        </div>
+                      </div>
+                      <div class="sol-risk-badge sol-risk-badge-red" style="flex-shrink:0;border-radius:7px;padding:5px 9px;text-align:center;background:rgba(241,0,160,0.09);border:1px solid rgba(241,0,160,0.22);min-width:68px;">
+                        <div style="font-size:9px;font-weight:700;color:#c4006c;">🔴 Crítico</div>
+                        <div style="font-size:8px;color:rgba(196,0,108,0.65);margin-top:2px;">Sem limite</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Neutral lines -->
+                  <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:9px;">
+                    <div style="height:7px;border-radius:4px;width:88%;background:rgba(0,2,83,0.06);"></div>
+                    <div style="height:7px;border-radius:4px;width:67%;background:rgba(0,2,83,0.05);"></div>
+                    <div style="height:7px;border-radius:4px;width:93%;background:rgba(0,2,83,0.07);"></div>
+                  </div>
+
+                  <!-- Highlighted clause 3 — Atenção / blue -->
+                  <div class="sol-clause sol-clause-3" style="border-radius:8px;padding:9px 11px;margin-bottom:11px;background:rgba(15,41,233,0.04);border-left:3px solid #0f29e9;">
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+                      <div style="flex:1;">
+                        <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#0f29e9;">Cláusula 3.2  —  Prazo de vigência</span>
+                        <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px;">
+                          <div style="height:6px;border-radius:3px;width:84%;background:rgba(15,41,233,0.13);"></div>
+                          <div style="height:6px;border-radius:3px;width:60%;background:rgba(15,41,233,0.09);"></div>
+                        </div>
+                      </div>
+                      <div class="sol-risk-badge sol-risk-badge-blue" style="flex-shrink:0;border-radius:7px;padding:5px 9px;text-align:center;background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.18);min-width:68px;">
+                        <div style="font-size:9px;font-weight:700;color:#0f29e9;">ℹ Atenção</div>
+                        <div style="font-size:8px;color:rgba(15,41,233,0.55);margin-top:2px;">Tácita</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Summary bar -->
+                  <div class="sol-summary-bar" style="border-radius:8px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,2,83,0.03);border:1px solid rgba(0,2,83,0.07);">
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:14px;color:#0f29e9;'>check_circle</span>
+                      <span style="font-size:10px;font-weight:600;color:rgba(0,2,83,0.45);">Análise concluída · 47 cláusulas</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                      <span style="font-size:10px;font-weight:700;color:#c4006c;">1 crítico</span>
+                      <span style="font-size:10px;font-weight:700;color:#b87500;">1 moderado</span>
+                      <span style="font-size:10px;font-weight:700;color:#0f29e9;">1 atenção</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="absolute bottom-2 right-2 md:-bottom-4 md:-right-3 rounded-xl px-4 py-3 flex items-center gap-3" style="background:white; border:1px solid rgba(0,2,83,0.08); box-shadow:0 8px 24px rgba(0,2,83,0.09);">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0f29e9,#7b00dc);">
+                <span class="material-symbols-outlined text-white" style='font-variation-settings:"FILL" 1;font-size:17px;'>bolt</span>
+              </div>
+              <div>
+                <p class="font-semibold text-primary text-[13px] leading-tight">8 cláusulas de risco</p>
+                <p class="text-[11px] text-bm-neutral-400 leading-tight">identificadas automaticamente</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual 1: NLP -->
+        <div class="sol-visual">
+          <div class="relative">
+            <div class="rounded-2xl bg-white overflow-hidden" style="box-shadow: 0 8px 48px rgba(0,2,83,0.10); border: 1px solid rgba(0,2,83,0.07);">
+              <div class="px-5 py-3.5 flex items-center gap-2 border-b border-bm-neutral-100">
+                <div class="flex gap-1.5">
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                </div>
+                <div class="flex-1 ml-3 h-5 rounded-full bg-bm-neutral-100 flex items-center px-3">
+                  <span class="text-[11px] text-bm-neutral-400 font-mono">Edital_Licitacao_2024.pdf — Triagem Automática</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold" style="background:rgba(15,41,233,0.07); color:#0f29e9;">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block pulse-dot"></span>Analisando
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="rfp-wrap">
+                  <!-- Document -->
+                  <div class="rfp-doc">
+                    <div class="rfp-scan"></div>
+                    <div class="rfp-doc-hdr">
+                      <div class="rfp-doc-title">Edital Nº 047/2024</div>
+                      <div class="rfp-doc-sub">Concorrência Pública — Obras e Serviços</div>
+                    </div>
+                    <div class="rfp-cla rfp-c1">
+                      <div class="rfp-cla-lbl">Cláusula 1ª · Do Objeto</div>
+                      <div class="rfp-cla-lines">
+                        <div class="rfp-cla-ln" style="width:86%"></div>
+                        <div class="rfp-cla-ln" style="width:71%"></div>
+                      </div>
+                    </div>
+                    <div class="rfp-cla rfp-c2">
+                      <div class="rfp-cla-lbl">Cláusula 2ª · Dos Requisitos</div>
+                      <div class="rfp-cla-lines">
+                        <div class="rfp-cla-ln" style="width:91%"></div>
+                        <div class="rfp-cla-ln" style="width:77%"></div>
+                        <div class="rfp-cla-ln" style="width:64%"></div>
+                      </div>
+                    </div>
+                    <div class="rfp-cla rfp-c3">
+                      <div class="rfp-cla-lbl">Cláusula 5ª · Da Proposta</div>
+                      <div class="rfp-cla-lines">
+                        <div class="rfp-cla-ln" style="width:88%"></div>
+                        <div class="rfp-cla-ln" style="width:73%"></div>
+                      </div>
+                    </div>
+                    <div class="rfp-cla rfp-c4">
+                      <div class="rfp-cla-lbl">Cláusula 7ª · Dos Prazos</div>
+                      <div class="rfp-cla-lines">
+                        <div class="rfp-cla-ln" style="width:83%"></div>
+                        <div class="rfp-cla-ln" style="width:67%"></div>
+                      </div>
+                    </div>
+                    <div class="rfp-cla rfp-c5">
+                      <div class="rfp-cla-lbl">Cláusula 12ª · Das Multas</div>
+                      <div class="rfp-cla-lines">
+                        <div class="rfp-cla-ln" style="width:79%"></div>
+                        <div class="rfp-cla-ln" style="width:91%"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Requirements -->
+                  <div class="rfp-reqs">
+                    <div class="rfp-reqs-hdr">Requisitos extraídos</div>
+                    <div class="rfp-req rfp-ok rfp-r1">
+                      <div class="rfp-ico">✓</div>
+                      <span class="rfp-req-txt">CNPJ ativo e regular</span>
+                    </div>
+                    <div class="rfp-req rfp-ok rfp-r2">
+                      <div class="rfp-ico">✓</div>
+                      <span class="rfp-req-txt">Certidão neg. — Receita Federal</span>
+                    </div>
+                    <div class="rfp-req rfp-ok rfp-r3">
+                      <div class="rfp-ico">✓</div>
+                      <span class="rfp-req-txt">Atestado de capacidade técnica</span>
+                    </div>
+                    <div class="rfp-req rfp-warn rfp-r4">
+                      <div class="rfp-ico">⚠</div>
+                      <span class="rfp-req-txt">Certidão FGTS</span>
+                      <span class="rfp-req-badge">Vencida em 12/04</span>
+                    </div>
+                    <div class="rfp-req rfp-ok rfp-r5">
+                      <div class="rfp-ico">✓</div>
+                      <span class="rfp-req-txt">Registro CREA — válido</span>
+                    </div>
+                    <div class="rfp-result">
+                      <div class="rfp-result-inner">
+                        <div class="rfp-result-ico">✓</div>
+                        <div>
+                          <div class="rfp-result-lbl">Empresa qualificada</div>
+                          <div class="rfp-result-sub">Atende 6/7 requisitos técnicos</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute bottom-2 right-2 md:-bottom-4 md:-right-3 rounded-xl px-4 py-3 flex items-center gap-3" style="background:white; border:1px solid rgba(0,2,83,0.08); box-shadow:0 8px 24px rgba(0,2,83,0.09);">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#7b00dc,#0f29e9);">
+                <span class="material-symbols-outlined text-white" style='font-variation-settings:"FILL" 1;font-size:17px;'>crisis_alert</span>
+              </div>
+              <div>
+                <p class="font-semibold text-primary text-[13px] leading-tight">47 requisitos extraídos</p>
+                <p class="text-[11px] text-bm-neutral-400 leading-tight">em 12 segundos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual 2: ERP -->
+        <div class="sol-visual">
+          <div class="relative">
+            <div class="rounded-2xl bg-white overflow-hidden" style="box-shadow: 0 8px 48px rgba(0,2,83,0.10); border: 1px solid rgba(0,2,83,0.07);">
+              <div class="px-5 py-3.5 flex items-center gap-2 border-b border-bm-neutral-100">
+                <div class="flex gap-1.5">
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                </div>
+                <div class="flex-1 ml-3 h-5 rounded-full bg-bm-neutral-100 flex items-center px-3">
+                  <span class="text-[11px] text-bm-neutral-400 font-mono">DataRoom_MA_Q4.pdf — Due Diligence</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold" style="background:rgba(0,187,255,0.08); color:#0097cc;">
+                  <span class="w-1.5 h-1.5 rounded-full bg-bm-cyan inline-block"></span>Sincronizado
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="dd-wrap">
+                  <!-- Data room tree -->
+                  <div class="dd-tree">
+                    <div class="dd-tree-hdr">
+                      <span class="material-symbols-outlined" style="font-size:11px;">folder_open</span>
+                      DataRoom — M&amp;A Q4
+                    </div>
+                    <div class="dd-cat dd-cat1">
+                      <div class="dd-cat-ico" style="background:rgba(0,200,80,0.09);">
+                        <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:12px;color:#00c850;'>description</span>
+                      </div>
+                      <div class="dd-cat-info">
+                        <div class="dd-cat-name"><span class="dd-cat-lbl">Financeiro</span><span class="dd-cat-cnt">32 docs</span></div>
+                        <div class="dd-track"><div class="dd-bar dd-bar-done"></div></div>
+                      </div>
+                      <div class="dd-cat-badge dd-badge-done">✓</div>
+                    </div>
+                    <div class="dd-cat dd-cat2">
+                      <div class="dd-cat-ico" style="background:rgba(0,200,80,0.09);">
+                        <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:12px;color:#00c850;'>gavel</span>
+                      </div>
+                      <div class="dd-cat-info">
+                        <div class="dd-cat-name"><span class="dd-cat-lbl">Jurídico</span><span class="dd-cat-cnt">28 docs</span></div>
+                        <div class="dd-track"><div class="dd-bar dd-bar-done"></div></div>
+                      </div>
+                      <div class="dd-cat-badge dd-badge-done">✓</div>
+                    </div>
+                    <div class="dd-cat dd-cat3">
+                      <div class="dd-cat-ico" style="background:rgba(15,41,233,0.07);">
+                        <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:12px;color:#0f29e9;'>article</span>
+                      </div>
+                      <div class="dd-cat-info">
+                        <div class="dd-cat-name"><span class="dd-cat-lbl">Contratos</span><span class="dd-cat-cnt">47 docs</span></div>
+                        <div class="dd-track"><div class="dd-bar dd-bar-scan"></div></div>
+                      </div>
+                      <div class="dd-cat-badge dd-badge-scan">···</div>
+                    </div>
+                    <div class="dd-cat dd-cat4">
+                      <div class="dd-cat-ico" style="background:rgba(0,2,83,0.04);">
+                        <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:12px;color:rgba(0,2,83,0.25);'>lightbulb</span>
+                      </div>
+                      <div class="dd-cat-info">
+                        <div class="dd-cat-name"><span class="dd-cat-lbl" style="color:rgba(0,2,83,0.38);">Prop. Intelectual</span><span class="dd-cat-cnt">19 docs</span></div>
+                        <div class="dd-track"><div class="dd-bar"></div></div>
+                      </div>
+                      <div class="dd-cat-badge dd-badge-wait">—</div>
+                    </div>
+                    <div class="dd-cat dd-cat5">
+                      <div class="dd-cat-ico" style="background:rgba(0,2,83,0.04);">
+                        <span class="material-symbols-outlined" style='font-variation-settings:"FILL" 1;font-size:12px;color:rgba(0,2,83,0.25);'>groups</span>
+                      </div>
+                      <div class="dd-cat-info">
+                        <div class="dd-cat-name"><span class="dd-cat-lbl" style="color:rgba(0,2,83,0.38);">RH &amp; Folha</span><span class="dd-cat-cnt">24 docs</span></div>
+                        <div class="dd-track"><div class="dd-bar"></div></div>
+                      </div>
+                      <div class="dd-cat-badge dd-badge-wait">—</div>
+                    </div>
+                  </div>
+                  <!-- Findings panel -->
+                  <div class="dd-findings">
+                    <div class="dd-finds-hdr">Achados</div>
+                    <div class="dd-find dd-find-risk dd-f1">
+                      <div class="dd-find-ico">⚠</div>
+                      <span class="dd-find-txt">Non-compete — prazo 36 meses</span>
+                      <div class="dd-find-tag dd-tag-risk">Risco</div>
+                    </div>
+                    <div class="dd-find dd-find-ok dd-f2">
+                      <div class="dd-find-ico">✓</div>
+                      <span class="dd-find-txt">12 marcas registradas — ativas</span>
+                      <div class="dd-find-tag dd-tag-ok">OK</div>
+                    </div>
+                    <div class="dd-find dd-find-warn dd-f3">
+                      <div class="dd-find-ico">!</div>
+                      <span class="dd-find-txt">Passivo trabalhista — R$ 2.4M</span>
+                      <div class="dd-find-tag dd-tag-warn">Atenção</div>
+                    </div>
+                    <div class="dd-find dd-find-risk dd-f4">
+                      <div class="dd-find-ico">⚠</div>
+                      <span class="dd-find-txt">Patente nº 7831 expira em 04/2025</span>
+                      <div class="dd-find-tag dd-tag-risk">Risco</div>
+                    </div>
+                    <div class="dd-summary">
+                      <div class="dd-summary-inner">
+                        <div class="dd-summary-dot"></div>
+                        <span class="dd-summary-lbl">Análise em andamento · 107 docs</span>
+                        <span class="dd-summary-cnt">3 riscos</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute bottom-2 right-2 md:-bottom-4 md:-right-3 rounded-xl px-4 py-3 flex items-center gap-3" style="background:white; border:1px solid rgba(0,2,83,0.08); box-shadow:0 8px 24px rgba(0,2,83,0.09);">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0f29e9,#00bbff);">
+                <span class="material-symbols-outlined text-white" style='font-variation-settings:"FILL" 1;font-size:17px;'>hub</span>
+              </div>
+              <div>
+                <p class="font-semibold text-primary text-[13px] leading-tight">312 docs analisados</p>
+                <p class="text-[11px] text-bm-neutral-400 leading-tight">em menos de 3 horas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual 3: Security -->
+        <div class="sol-visual">
+          <div class="relative">
+            <div class="rounded-2xl bg-white overflow-hidden" style="box-shadow: 0 8px 48px rgba(0,2,83,0.10); border: 1px solid rgba(0,2,83,0.07);">
+              <div class="px-5 py-3.5 flex items-center gap-2 border-b border-bm-neutral-100">
+                <div class="flex gap-1.5">
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                  <div class="w-3 h-3 rounded-full bg-bm-neutral-200"></div>
+                </div>
+                <div class="flex-1 ml-3 h-5 rounded-full bg-bm-neutral-100 flex items-center px-3">
+                  <span class="text-[11px] text-bm-neutral-400 font-mono">Audit Log — LGPD · BACEN · Compliance</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold" style="background:rgba(0,209,0,0.08); color:#00a800;">
+                  <span class="w-1.5 h-1.5 rounded-full bg-bm-green inline-block"></span>SOC 2 Ativo
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="ac-wrap">
+
+                  <!-- Top bar: title + status pills -->
+                  <div class="ac-topbar">
+                    <span class="ac-topbar-title">Audit Log · LGPD / BACEN</span>
+                    <div class="ac-topbar-stats">
+                      <span class="ac-stat ac-stat-ok">12 conformes</span>
+                      <span class="ac-stat ac-stat-warn">3 atenções</span>
+                      <span class="ac-stat ac-stat-risk">1 crítico</span>
+                    </div>
+                  </div>
+
+                  <!-- Timeline log -->
+                  <div class="ac-log">
+
+                    <!-- Entry 1: OK — Política de retenção -->
+                    <div class="ac-entry ac-e1">
+                      <div class="ac-spine">
+                        <div class="ac-dot ac-dot-ok"></div>
+                        <div class="ac-line"></div>
+                      </div>
+                      <div class="ac-card ac-card-ok">
+                        <div class="ac-card-top">
+                          <span class="ac-card-lbl">Política de retenção de dados</span>
+                          <span class="ac-card-tag ac-tag-ok">Conforme</span>
+                        </div>
+                        <div class="ac-card-sub">Revisada e aprovada em 14/03/2025</div>
+                        <div class="ac-card-ref">LGPD · Art. 15 &amp; 16</div>
+                      </div>
+                    </div>
+
+                    <!-- Entry 2: WARN — Consentimento desatualizado -->
+                    <div class="ac-entry ac-e2">
+                      <div class="ac-spine">
+                        <div class="ac-dot ac-dot-warn"></div>
+                        <div class="ac-line"></div>
+                      </div>
+                      <div class="ac-card ac-card-warn">
+                        <div class="ac-card-top">
+                          <span class="ac-card-lbl">Termos de consentimento</span>
+                          <span class="ac-card-tag ac-tag-warn">Atenção</span>
+                        </div>
+                        <div class="ac-card-sub">Versão desatualizada em 4 contratos de fornecedor</div>
+                        <div class="ac-card-ref">LGPD · Art. 7 — revisão necessária</div>
+                      </div>
+                    </div>
+
+                    <!-- Entry 3: RISK — Circular BACEN -->
+                    <div class="ac-entry ac-e3">
+                      <div class="ac-spine">
+                        <div class="ac-dot ac-dot-risk"></div>
+                        <div class="ac-line"></div>
+                      </div>
+                      <div class="ac-card ac-card-risk">
+                        <div class="ac-card-top">
+                          <span class="ac-card-lbl">Circular BACEN 3.978 — PLD/FT</span>
+                          <span class="ac-card-tag ac-tag-risk">Crítico</span>
+                        </div>
+                        <div class="ac-card-sub">2 cláusulas divergentes identificadas nos contratos de câmbio</div>
+                        <div class="ac-card-ref">BACEN 3.978 · Art. 34 e Art. 51</div>
+                      </div>
+                    </div>
+
+                    <!-- Entry 4: INFO — Resolução CMN -->
+                    <div class="ac-entry ac-e4">
+                      <div class="ac-spine">
+                        <div class="ac-dot ac-dot-info"></div>
+                        <div class="ac-line"></div>
+                      </div>
+                      <div class="ac-card ac-card-info">
+                        <div class="ac-card-top">
+                          <span class="ac-card-lbl">Resolução CMN 4.966 — IFRS 9</span>
+                          <span class="ac-card-tag ac-tag-info">Atualização</span>
+                        </div>
+                        <div class="ac-card-sub">Nova circular publicada — 8 contratos em análise</div>
+                        <div class="ac-card-ref">CMN 4.966 · vigência 01/01/2025</div>
+                      </div>
+                    </div>
+
+                    <!-- Entry 5: Scanning in progress -->
+                    <div class="ac-entry ac-e5">
+                      <div class="ac-spine">
+                        <div class="ac-dot ac-dot-info" style="animation:ddPulse 1.2s ease-in-out 2.2s infinite;"></div>
+                      </div>
+                      <div class="ac-card ac-card-info">
+                        <div class="ac-card-top">
+                          <span class="ac-card-lbl">
+                            Rastreando documentos impactados
+                            <span class="ac-scan-bar"><span class="ac-scan-fill"></span></span>
+                          </span>
+                          <span class="ac-card-tag ac-tag-info">Em curso</span>
+                        </div>
+                        <div class="ac-card-sub">Verificando 23 contratos ativos · SOC 2 Type II</div>
+                      </div>
+                    </div>
+
+                  </div><!-- /.ac-log -->
+
+                  <!-- Compliance score summary -->
+                  <div class="ac-score-wrap">
+                    <svg class="ac-ring-svg" width="36" height="36" viewBox="0 0 36 36">
+                      <circle class="ac-ring-bg" cx="18" cy="18" r="12"/>
+                      <circle class="ac-ring-arc" cx="18" cy="18" r="12"/>
+                      <text x="18" y="22" text-anchor="middle" class="ac-ring-num">80%</text>
+                    </svg>
+                    <div class="ac-score-info">
+                      <div class="ac-score-lbl">Score de Conformidade</div>
+                      <div class="ac-score-sub">16 de 20 obrigações regulatórias atendidas</div>
+                    </div>
+                    <span class="ac-score-right">4 pendências</span>
+                  </div>
+
+                </div><!-- /.ac-wrap -->
+              </div>
+            </div>
+            <div class="absolute bottom-2 right-2 md:-bottom-4 md:-right-3 rounded-xl px-4 py-3 flex items-center gap-3" style="background:white; border:1px solid rgba(0,2,83,0.08); box-shadow:0 8px 24px rgba(0,2,83,0.09);">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#000253,#0f29e9);">
+                <span class="material-symbols-outlined text-white" style='font-variation-settings:"FILL" 1;font-size:17px;'>lock</span>
+              </div>
+              <div>
+                <p class="font-semibold text-primary text-[13px] leading-tight">LGPD Compliant</p>
+                <p class="text-[11px] text-bm-neutral-400 leading-tight">criptografia de ponta a ponta</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== METRICS BAR ===== -->
+<section class="bg-white py-10 border-b border-bm-neutral-200 relative overflow-hidden">
+  <div class="absolute inset-0 dot-pattern opacity-55 pointer-events-none"></div>
+  <div class="max-w-[1240px] mx-auto px-6 relative">
+    <div class="metrics-grid grid grid-cols-2 md:grid-cols-4 divide-y-2 md:divide-y-0 md:divide-x divide-bm-neutral-200">
+      <div class="text-center py-6 md:py-0 reveal">
+        <div class="font-display text-h2 mb-1 text-grad-blue">98%</div>
+        <div class="font-caption text-bm-neutral-500 uppercase tracking-widest text-[11px]">Precisão na extração</div>
+      </div>
+      <div class="text-center py-6 md:py-0 reveal reveal-d1">
+        <div class="font-display text-h2 mb-1 text-grad-blue">10x</div>
+        <div class="font-caption text-bm-neutral-500 uppercase tracking-widest text-[11px]">Velocidade de análise</div>
+      </div>
+      <div class="text-center py-6 md:py-0 reveal reveal-d2">
+        <div class="font-display text-h2 mb-1 text-grad-blue">60%</div>
+        <div class="font-caption text-bm-neutral-500 uppercase tracking-widest text-[11px]">Redução de custos</div>
+      </div>
+      <div class="text-center py-6 md:py-0 reveal reveal-d3">
+        <div class="font-display text-h2 mb-1 text-grad-purple">5M+</div>
+        <div class="font-caption text-bm-neutral-500 uppercase tracking-widest text-[11px]">Documentos processados</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARISON ===== -->
+<section id="comparativo" class="py-24 bg-white relative overflow-hidden" style="scroll-margin-top:72px;">
+  <div class="absolute inset-0 dot-pattern opacity-40 pointer-events-none"></div>
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(15,41,233,0.05) 0%,transparent 65%);transform:translate(25%,-25%);filter:blur(20px);"></div>
+  <div class="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(123,0,220,0.05) 0%,transparent 65%);transform:translate(-20%,20%);filter:blur(20px);"></div>
+
+  <div class="max-w-[1240px] mx-auto px-6 relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-14 reveal">
+      <span class="font-eyebrow uppercase mb-4 block text-secondary" style="letter-spacing:0.15em;">
+        <span class="inline-block w-5 h-px align-middle mr-2 bg-secondary opacity-60"></span>Comparativo de Mercado<span class="inline-block w-5 h-px align-middle ml-2 bg-secondary opacity-60"></span>
+      </span>
+      <h2 class="font-h2 text-h2 text-primary mb-5 leading-tight">BlueDocs não é uma ferramenta.<br>É inteligência aplicada ao seu negócio.</h2>
+      <p class="text-body max-w-[520px] mx-auto text-bm-neutral-500">Veja o que realmente separa uma solução sob medida de um SaaS genérico.</p>
+    </div>
+
+    <!-- Table (desktop) -->
+    <div class="hidden md:block overflow-x-auto reveal reveal-d1">
+      <div style="min-width:780px; position:relative;">
+        <!-- Continuous BlueDocs column highlight -->
+        <div class="absolute inset-y-0 right-0 pointer-events-none" style="width:148px; background:rgba(15,41,233,0.04); border:1.5px solid rgba(15,41,233,0.15); border-radius:8px; z-index:0;"></div>
+
+        <!-- Column headers -->
+        <div class="grid items-end pb-5 mb-1" style="grid-template-columns:1fr repeat(4,148px); border-bottom:2px solid #e8eaf0;">
+          <div></div>
+          <!-- OCR -->
+          <div class="text-center px-3">
+            <div class="w-10 h-10 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:#f1f3f9; border:1px solid #dde1ef;">
+              <span class="material-symbols-outlined" style="font-size:19px;color:#9ca3af;">document_scanner</span>
+            </div>
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#9ca3af;line-height:1.55;font-family:'Outfit',sans-serif;">OCR /<br>Extração<br>Genérica</p>
+          </div>
+          <!-- SaaS -->
+          <div class="text-center px-3">
+            <div class="w-10 h-10 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:#f1f3f9; border:1px solid #dde1ef;">
+              <span class="material-symbols-outlined" style="font-size:19px;color:#9ca3af;">cloud</span>
+            </div>
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#9ca3af;line-height:1.55;font-family:'Outfit',sans-serif;">SaaS de<br>Gestão<br>Documental</p>
+          </div>
+          <!-- BIG4 -->
+          <div class="text-center px-3">
+            <div class="w-10 h-10 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background:#f1f3f9; border:1px solid #dde1ef;">
+              <span class="material-symbols-outlined" style="font-size:19px;color:#9ca3af;">corporate_fare</span>
+            </div>
+            <p style="font-size:10px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#9ca3af;line-height:1.55;font-family:'Outfit',sans-serif;">BIG4 /<br>Consultoria</p>
+          </div>
+          <!-- BlueDocs -->
+          <div class="text-center px-3">
+            <div class="w-10 h-10 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:linear-gradient(135deg,#0f29e9,#7b00dc);box-shadow:0 4px 16px rgba(15,41,233,0.35);">
+              <span style="font-size:12px;font-weight:800;color:#fff;font-family:'Outfit',sans-serif;letter-spacing:0.02em;">BD</span>
+            </div>
+            <p style="font-size:10px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:#0f29e9;line-height:1.55;font-family:'Outfit',sans-serif;">BLUEDOCS</p>
+            <span style="display:inline-block;margin-top:4px;padding:1px 8px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(15,41,233,0.08);color:#0f29e9;border:1px solid rgba(15,41,233,0.2);">Não é SaaS</span>
+          </div>
+        </div>
+
+        <!-- Rows -->
+        <!-- Row 1 -->
+        <div class="grid items-center py-4" style="grid-template-columns:1fr repeat(4,148px); border-bottom:1px solid #f0f2f8;">
+          <div class="flex items-start gap-3 pr-6">
+            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:15px;color:#0f29e9;">description</span>
+            </div>
+            <div>
+              <p style="font-size:13.5px;font-weight:600;color:#000253;line-height:1.35;margin-bottom:2px;font-family:'Outfit',sans-serif;">Entende o contexto do documento</p>
+              <p style="font-size:12px;color:#6b7280;line-height:1.5;">Vai além de extrair texto: interpreta cláusulas, riscos e significado</p>
+            </div>
+          </div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:20px;color:#f59e0b;font-variation-settings:'FILL' 1;">do_not_disturb_on</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="grid items-center py-4" style="grid-template-columns:1fr repeat(4,148px); border-bottom:1px solid #f0f2f8;">
+          <div class="flex items-start gap-3 pr-6">
+            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:15px;color:#0f29e9;">chat</span>
+            </div>
+            <div>
+              <p style="font-size:13.5px;font-weight:600;color:#000253;line-height:1.35;margin-bottom:2px;font-family:'Outfit',sans-serif;">Consulta em linguagem natural</p>
+              <p style="font-size:12px;color:#6b7280;line-height:1.5;">"Quais contratos vencem em Q3 com multa acima de R$50k?"</p>
+            </div>
+          </div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="grid items-center py-4" style="grid-template-columns:1fr repeat(4,148px); border-bottom:1px solid #f0f2f8;">
+          <div class="flex items-start gap-3 pr-6">
+            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:15px;color:#0f29e9;">manage_search</span>
+            </div>
+            <div>
+              <p style="font-size:13.5px;font-weight:600;color:#000253;line-height:1.35;margin-bottom:2px;font-family:'Outfit',sans-serif;">Explicabilidade: White Box AI</p>
+              <p style="font-size:12px;color:#6b7280;line-height:1.5;">Mostra o trecho exato que embasou cada resposta. Auditável por compliance.</p>
+            </div>
+          </div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="grid items-center py-4" style="grid-template-columns:1fr repeat(4,148px); border-bottom:1px solid #f0f2f8;">
+          <div class="flex items-start gap-3 pr-6">
+            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:15px;color:#0f29e9;">lock</span>
+            </div>
+            <div>
+              <p style="font-size:13.5px;font-weight:600;color:#000253;line-height:1.35;margin-bottom:2px;font-family:'Outfit',sans-serif;">Dados 100% no seu ambiente</p>
+              <p style="font-size:12px;color:#6b7280;line-height:1.5;">Roda na conta AWS do cliente. Nenhum documento sai do seu perímetro.</p>
+            </div>
+          </div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:20px;color:#f59e0b;font-variation-settings:'FILL' 1;">do_not_disturb_on</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+        </div>
+
+        <!-- Row 5 -->
+        <div class="grid items-center py-4" style="grid-template-columns:1fr repeat(4,148px); border-bottom:1px solid #f0f2f8;">
+          <div class="flex items-start gap-3 pr-6">
+            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:15px;color:#0f29e9;">hub</span>
+            </div>
+            <div>
+              <p style="font-size:13.5px;font-weight:600;color:#000253;line-height:1.35;margin-bottom:2px;font-family:'Outfit',sans-serif;">Integração profunda com seus sistemas</p>
+              <p style="font-size:12px;color:#6b7280;line-height:1.5;">ERP, CRM, sistemas legados via API. Não é um conector genérico.</p>
+            </div>
+          </div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:20px;color:#f59e0b;font-variation-settings:'FILL' 1;">do_not_disturb_on</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+        </div>
+
+        <!-- Row 6 -->
+        <div class="grid items-center py-4" style="grid-template-columns:1fr repeat(4,148px); border-bottom:1px solid #f0f2f8;">
+          <div class="flex items-start gap-3 pr-6">
+            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:15px;color:#0f29e9;">rocket_launch</span>
+            </div>
+            <div>
+              <p style="font-size:13.5px;font-weight:600;color:#000253;line-height:1.35;margin-bottom:2px;font-family:'Outfit',sans-serif;">Piloto em produção em semanas</p>
+              <p style="font-size:12px;color:#6b7280;line-height:1.5;">Valor real desde o primeiro mês. Não é POC em sandbox.</p>
+            </div>
+          </div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+        </div>
+
+        <!-- Row 7 -->
+        <div class="grid items-center py-4" style="grid-template-columns:1fr repeat(4,148px); border-bottom:1px solid #f0f2f8;">
+          <div class="flex items-start gap-3 pr-6">
+            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:15px;color:#0f29e9;">trending_up</span>
+            </div>
+            <div>
+              <p style="font-size:13.5px;font-weight:600;color:#000253;line-height:1.35;margin-bottom:2px;font-family:'Outfit',sans-serif;">Evolui com o seu negócio</p>
+              <p style="font-size:12px;color:#6b7280;line-height:1.5;">Operação contínua: a solução aprende e cresce. Não entregamos e abandonamos.</p>
+            </div>
+          </div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+        </div>
+
+        <!-- Row 8 (last) -->
+        <div class="grid items-center py-4" style="grid-template-columns:1fr repeat(4,148px);">
+          <div class="flex items-start gap-3 pr-6">
+            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:15px;color:#0f29e9;">analytics</span>
+            </div>
+            <div>
+              <p style="font-size:13.5px;font-weight:600;color:#000253;line-height:1.35;margin-bottom:2px;font-family:'Outfit',sans-serif;">ROI documentado e mensurável</p>
+              <p style="font-size:12px;color:#6b7280;line-height:1.5;">Medimos por métrica de negócio, não por entrega técnica.</p>
+            </div>
+          </div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span style="color:#d1d5db;font-size:20px;line-height:1;font-weight:300;">—</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:20px;color:#f59e0b;font-variation-settings:'FILL' 1;">do_not_disturb_on</span></div>
+          <div class="flex justify-center"><span class="material-symbols-outlined" style="font-size:22px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Comparison cards (mobile only) -->
+    <div class="md:hidden reveal reveal-d1">
+
+      <!-- Column header chips -->
+      <div class="grid grid-cols-4 gap-1 mb-4 pb-4 border-b-2 border-bm-neutral-200">
+        <div class="flex flex-col items-center gap-1">
+          <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background:#f1f3f9;border:1px solid #dde1ef;">
+            <span class="material-symbols-outlined" style="font-size:15px;color:#9ca3af;">document_scanner</span>
+          </div>
+          <p style="font-size:7.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9ca3af;text-align:center;line-height:1.45;font-family:'Outfit',sans-serif;">OCR /<br>Extração</p>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background:#f1f3f9;border:1px solid #dde1ef;">
+            <span class="material-symbols-outlined" style="font-size:15px;color:#9ca3af;">cloud</span>
+          </div>
+          <p style="font-size:7.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9ca3af;text-align:center;line-height:1.45;font-family:'Outfit',sans-serif;">SaaS<br>Documental</p>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background:#f1f3f9;border:1px solid #dde1ef;">
+            <span class="material-symbols-outlined" style="font-size:15px;color:#9ca3af;">corporate_fare</span>
+          </div>
+          <p style="font-size:7.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9ca3af;text-align:center;line-height:1.45;font-family:'Outfit',sans-serif;">BIG4 /<br>Consultoria</p>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,#0f29e9,#7b00dc);box-shadow:0 3px 10px rgba(15,41,233,0.35);">
+            <span style="font-size:10px;font-weight:800;color:#fff;font-family:'Outfit',sans-serif;">BD</span>
+          </div>
+          <p style="font-size:7.5px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#0f29e9;text-align:center;line-height:1.45;font-family:'Outfit',sans-serif;">Blue<br>Docs</p>
+        </div>
+      </div>
+
+      <!-- Feature cards -->
+      <div class="divide-y divide-bm-neutral-100">
+
+        <!-- Row 1 -->
+        <div class="py-4">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:13px;color:#0f29e9;">description</span>
+            </div>
+            <div>
+              <p style="font-size:13px;font-weight:600;color:#000253;line-height:1.35;font-family:'Outfit',sans-serif;">Entende o contexto do documento</p>
+              <p style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-top:2px;">Interpreta cláusulas, riscos e significado</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 rounded-xl overflow-hidden" style="border:1px solid #e8eaf0;">
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span class="material-symbols-outlined" style="font-size:18px;color:#f59e0b;font-variation-settings:'FILL' 1;">do_not_disturb_on</span></div>
+            <div class="flex justify-center items-center py-2.5" style="background:rgba(15,41,233,0.05);"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="py-4">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:13px;color:#0f29e9;">chat</span>
+            </div>
+            <div>
+              <p style="font-size:13px;font-weight:600;color:#000253;line-height:1.35;font-family:'Outfit',sans-serif;">Consulta em linguagem natural</p>
+              <p style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-top:2px;">"Quais contratos vencem em Q3 com multa acima de R$50k?"</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 rounded-xl overflow-hidden" style="border:1px solid #e8eaf0;">
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5" style="background:rgba(15,41,233,0.05);"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="py-4">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:13px;color:#0f29e9;">manage_search</span>
+            </div>
+            <div>
+              <p style="font-size:13px;font-weight:600;color:#000253;line-height:1.35;font-family:'Outfit',sans-serif;">Explicabilidade: White Box AI</p>
+              <p style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-top:2px;">Mostra o trecho exato que embasou cada resposta. Auditável por compliance.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 rounded-xl overflow-hidden" style="border:1px solid #e8eaf0;">
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5" style="background:rgba(15,41,233,0.05);"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="py-4">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:13px;color:#0f29e9;">lock</span>
+            </div>
+            <div>
+              <p style="font-size:13px;font-weight:600;color:#000253;line-height:1.35;font-family:'Outfit',sans-serif;">Dados 100% no seu ambiente</p>
+              <p style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-top:2px;">Roda na conta AWS do cliente. Nenhum documento sai do seu perímetro.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 rounded-xl overflow-hidden" style="border:1px solid #e8eaf0;">
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span class="material-symbols-outlined" style="font-size:18px;color:#f59e0b;font-variation-settings:'FILL' 1;">do_not_disturb_on</span></div>
+            <div class="flex justify-center items-center py-2.5" style="background:rgba(15,41,233,0.05);"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          </div>
+        </div>
+
+        <!-- Row 5 -->
+        <div class="py-4">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:13px;color:#0f29e9;">hub</span>
+            </div>
+            <div>
+              <p style="font-size:13px;font-weight:600;color:#000253;line-height:1.35;font-family:'Outfit',sans-serif;">Integração profunda com seus sistemas</p>
+              <p style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-top:2px;">ERP, CRM, sistemas legados via API. Não é um conector genérico.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 rounded-xl overflow-hidden" style="border:1px solid #e8eaf0;">
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span class="material-symbols-outlined" style="font-size:18px;color:#f59e0b;font-variation-settings:'FILL' 1;">do_not_disturb_on</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+            <div class="flex justify-center items-center py-2.5" style="background:rgba(15,41,233,0.05);"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          </div>
+        </div>
+
+        <!-- Row 6 -->
+        <div class="py-4">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:13px;color:#0f29e9;">rocket_launch</span>
+            </div>
+            <div>
+              <p style="font-size:13px;font-weight:600;color:#000253;line-height:1.35;font-family:'Outfit',sans-serif;">Piloto em produção em semanas</p>
+              <p style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-top:2px;">Valor real desde o primeiro mês. Não é POC em sandbox.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 rounded-xl overflow-hidden" style="border:1px solid #e8eaf0;">
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5" style="background:rgba(15,41,233,0.05);"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          </div>
+        </div>
+
+        <!-- Row 7 -->
+        <div class="py-4">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:13px;color:#0f29e9;">trending_up</span>
+            </div>
+            <div>
+              <p style="font-size:13px;font-weight:600;color:#000253;line-height:1.35;font-family:'Outfit',sans-serif;">Evolui com o seu negócio</p>
+              <p style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-top:2px;">Operação contínua: a solução aprende e cresce. Não entregamos e abandonamos.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 rounded-xl overflow-hidden" style="border:1px solid #e8eaf0;">
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5" style="background:rgba(15,41,233,0.05);"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          </div>
+        </div>
+
+        <!-- Row 8 -->
+        <div class="py-4">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:rgba(15,41,233,0.07);border:1px solid rgba(15,41,233,0.14);">
+              <span class="material-symbols-outlined" style="font-size:13px;color:#0f29e9;">analytics</span>
+            </div>
+            <div>
+              <p style="font-size:13px;font-weight:600;color:#000253;line-height:1.35;font-family:'Outfit',sans-serif;">ROI documentado e mensurável</p>
+              <p style="font-size:11.5px;color:#6b7280;line-height:1.5;margin-top:2px;">Medimos por métrica de negócio, não por entrega técnica.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 rounded-xl overflow-hidden" style="border:1px solid #e8eaf0;">
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span style="color:#d1d5db;font-size:17px;font-weight:300;line-height:1;">—</span></div>
+            <div class="flex justify-center items-center py-2.5 border-r border-bm-neutral-100"><span class="material-symbols-outlined" style="font-size:18px;color:#f59e0b;font-variation-settings:'FILL' 1;">do_not_disturb_on</span></div>
+            <div class="flex justify-center items-center py-2.5" style="background:rgba(15,41,233,0.05);"><span class="material-symbols-outlined" style="font-size:20px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-10 reveal reveal-d2">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined" style="font-size:16px;color:#22c55e;font-variation-settings:'FILL' 1;">check_circle</span>
+        <span style="font-size:12px;color:#6b7280;font-family:'Wix Madefor Text',sans-serif;">Disponível</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined" style="font-size:16px;color:#f59e0b;font-variation-settings:'FILL' 1;">do_not_disturb_on</span>
+        <span style="font-size:12px;color:#6b7280;font-family:'Wix Madefor Text',sans-serif;">Parcial / depende do contrato</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span style="font-size:16px;color:#d1d5db;line-height:1;font-weight:300;">—</span>
+        <span style="font-size:12px;color:#6b7280;font-family:'Wix Madefor Text',sans-serif;">Não disponível</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CASES ===== -->
+<section id="cases" class="py-24 grad-deep text-white overflow-hidden relative" style="scroll-margin-top:72px;">
+  <div class="absolute inset-0 hero-grid pointer-events-none"></div>
+  <div class="absolute top-0 right-0 w-[700px] h-[700px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(123,0,220,0.55) 0%, transparent 65%); transform: translate(35%,-30%); filter: blur(10px);"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(0,187,255,0.35) 0%, transparent 65%); transform: translate(-25%,30%); filter: blur(8px);"></div>
+
+  <div class="max-w-[1240px] mx-auto px-6 relative z-10">
+
+    <!-- Header row: title left + link right -->
+    <div class="flex items-end justify-between gap-8 mb-12 reveal">
+      <div>
+        <span class="font-eyebrow uppercase text-bm-cyan mb-3 block" style="letter-spacing:0.14em;">
+          <span class="inline-block w-5 h-px bg-bm-cyan mr-2 align-middle"></span>Cases<span class="inline-block w-5 h-px bg-bm-cyan ml-2 align-middle"></span>
+        </span>
+        <h2 class="font-h2 text-h2 max-w-2xl leading-tight">Empresas que já trocaram<br><span>leitura manual por resultado.</span></h2>
+      </div>
+    </div>
+
+    <!-- Case 01: Grande Rede Varejista -->
+    <div class="relative mb-8 reveal">
+      <div class="absolute -top-3 -left-3 w-8 h-8 pointer-events-none" style="border-left:2px solid #00bbff; border-top:2px solid #00bbff; border-radius:4px 0 0 0;"></div>
+      <div class="absolute -top-3 -right-3 w-8 h-8 pointer-events-none" style="border-right:2px solid #00bbff; border-top:2px solid #00bbff; border-radius:0 4px 0 0;"></div>
+      <div class="absolute -bottom-3 -left-3 w-8 h-8 pointer-events-none" style="border-left:2px solid #00bbff; border-bottom:2px solid #00bbff; border-radius:0 0 0 4px;"></div>
+      <div class="absolute -bottom-3 -right-3 w-8 h-8 pointer-events-none" style="border-right:2px solid #00bbff; border-bottom:2px solid #00bbff; border-radius:0 0 4px 0;"></div>
+
+      <div class="grid md:grid-cols-[38%_62%] rounded-2xl overflow-hidden" style="border:1px solid rgba(255,255,255,0.1);">
+        <!-- Left: visual identity -->
+        <div class="relative flex flex-col min-h-[200px] md:min-h-[380px] overflow-hidden" style="background:#0f29e9; border-right:1px solid rgba(255,255,255,0.10);">
+          <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 100% 0%, rgba(0,187,255,0.28) 0%, transparent 50%), radial-gradient(ellipse at 0% 100%, rgba(0,2,83,0.55) 0%, transparent 60%);"></div>
+          <div class="absolute inset-0 hero-grid opacity-10 pointer-events-none"></div>
+          <span class="absolute font-display font-black select-none pointer-events-none" style="font-size:200px; line-height:1; letter-spacing:-0.06em; color:rgba(255,255,255,0.05); bottom:-30px; right:-15px;">01</span>
+          <div class="relative z-10 flex flex-col justify-between p-8 md:p-10" style="min-height:380px;">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);">
+                <span class="material-symbols-outlined" style="font-size:13px;color:#ffffff;font-variation-settings:'FILL' 1;">store</span>
+                <span style="font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#ffffff;font-family:'Outfit',sans-serif;">Varejo</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:'Outfit',sans-serif;font-size:76px;font-weight:900;line-height:0.9;letter-spacing:-0.04em;color:#ffffff;margin-bottom:12px;">−50%</div>
+              <div style="font-size:13px;color:rgba(255,255,255,0.60);font-family:'Wix Madefor Text',sans-serif;font-weight:500;">tempo de análise de contratos</div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.15);padding-top:18px;display:flex;gap:18px;align-items:flex-start;">
+              <div>
+                <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:rgba(255,255,255,0.95);">95%</div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.40);font-family:'Wix Madefor Text',sans-serif;margin-top:3px;letter-spacing:0.06em;text-transform:uppercase;">acurácia</div>
+              </div>
+              <div style="width:1px;align-self:stretch;background:rgba(255,255,255,0.12);"></div>
+              <div>
+                <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:rgba(255,255,255,0.95);">−80%</div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.40);font-family:'Wix Madefor Text',sans-serif;margin-top:3px;letter-spacing:0.06em;text-transform:uppercase;">risco jurídico</div>
+              </div>
+              <div style="width:1px;align-self:stretch;background:rgba(255,255,255,0.12);"></div>
+              <div>
+                <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:rgba(255,255,255,0.95);">−70%</div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.40);font-family:'Wix Madefor Text',sans-serif;margin-top:3px;letter-spacing:0.06em;text-transform:uppercase;">consultas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: content -->
+        <div class="p-8 md:p-10 flex flex-col justify-between" style="background:rgba(255,255,255,0.035);">
+          <div>
+            <div class="flex items-center gap-3 mb-7">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold" style="background:rgba(0,187,255,0.15); color:#00bbff; border:1px solid rgba(0,187,255,0.3);">
+                <span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1;">description</span>Análise de Contratos
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold" style="background:rgba(123,0,220,0.15); color:#b87dff; border:1px solid rgba(123,0,220,0.3);">
+                <span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1;">auto_awesome</span>IA Generativa
+              </span>
+            </div>
+            <h3 class="font-h2 leading-snug text-white mb-4" style="font-size:21px;">Grande rede varejista acelerou a análise de contratos de locação de lojas, reduzindo risco jurídico e tempo de revisão com IA.</h3>
+            <p class="leading-relaxed mb-7" style="font-size:14px; color:rgba(255,255,255,0.68);">Com ~50 lojas próprias em expansão, revisão manual consumia horas de executivos e permitia cláusulas indesejadas passarem despercebidas. O BlueDocs automatizou todo o ciclo: extração, classificação por criticidade e comparação com histórico de contratos.</p>
+            <div class="flex gap-3 flex-wrap mb-8">
+              <div class="px-4 py-2.5 rounded-xl" style="background:rgba(0,187,255,0.12); border:1px solid rgba(0,187,255,0.25);">
+                <span class="font-display font-bold block" style="font-size:24px; line-height:1; letter-spacing:-0.03em; color:#00bbff;">−50%</span>
+                <p class="text-[11px] mt-1" style="color:rgba(255,255,255,0.58);">tempo de análise</p>
+              </div>
+              <div class="px-4 py-2.5 rounded-xl" style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15);">
+                <span class="font-display font-bold block" style="font-size:24px; line-height:1; letter-spacing:-0.03em; color:#ffffff;">95%</span>
+                <p class="text-[11px] mt-1" style="color:rgba(255,255,255,0.58);">acurácia nas cláusulas</p>
+              </div>
+              <div class="px-4 py-2.5 rounded-xl" style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15);">
+                <span class="font-display font-bold block" style="font-size:24px; line-height:1; letter-spacing:-0.03em; color:#ffffff;">−80%</span>
+                <p class="text-[11px] mt-1" style="color:rgba(255,255,255,0.58);">risco de cláusulas indesejadas</p>
+              </div>
+              <div class="px-4 py-2.5 rounded-xl" style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15);">
+                <span class="font-display font-bold block" style="font-size:24px; line-height:1; letter-spacing:-0.03em; color:#ffffff;">−70%</span>
+                <p class="text-[11px] mt-1" style="color:rgba(255,255,255,0.58);">consultas ao jurídico</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 02: Multinacional de Tecnologia -->
+    <div class="relative mb-16 reveal reveal-d1">
+      <div class="absolute -top-3 -left-3 w-8 h-8 pointer-events-none" style="border-left:2px solid rgba(123,0,220,0.7); border-top:2px solid rgba(123,0,220,0.7); border-radius:4px 0 0 0;"></div>
+      <div class="absolute -top-3 -right-3 w-8 h-8 pointer-events-none" style="border-right:2px solid rgba(123,0,220,0.7); border-top:2px solid rgba(123,0,220,0.7); border-radius:0 4px 0 0;"></div>
+      <div class="absolute -bottom-3 -left-3 w-8 h-8 pointer-events-none" style="border-left:2px solid rgba(123,0,220,0.7); border-bottom:2px solid rgba(123,0,220,0.7); border-radius:0 0 0 4px;"></div>
+      <div class="absolute -bottom-3 -right-3 w-8 h-8 pointer-events-none" style="border-right:2px solid rgba(123,0,220,0.7); border-bottom:2px solid rgba(123,0,220,0.7); border-radius:0 0 4px 0;"></div>
+
+      <div class="grid md:grid-cols-[62%_38%] rounded-2xl overflow-hidden" style="border:1px solid rgba(255,255,255,0.1);">
+        <!-- Left: content -->
+        <div class="p-8 md:p-10 flex flex-col justify-between" style="background:rgba(255,255,255,0.035);">
+          <div>
+            <div class="flex items-center gap-3 mb-7">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold" style="background:rgba(123,0,220,0.18); color:#b87dff; border:1px solid rgba(123,0,220,0.35);">
+                <span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1;">scan_document</span>Extração de Documentos
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold" style="background:rgba(0,187,255,0.15); color:#00bbff; border:1px solid rgba(0,187,255,0.3);">
+                <span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1;">auto_awesome</span>IA Generativa
+              </span>
+            </div>
+            <h3 class="font-h2 leading-snug text-white mb-4" style="font-size:21px;">Multinacional de tecnologia substituiu OCR tradicional por IA generativa, simplificando arquitetura e eliminando retreinamento de modelos.</h3>
+            <p class="leading-relaxed mb-7" style="font-size:14px; color:rgba(255,255,255,0.68);">A cada novo layout de CNH ou RG, era necessário coletar dados, rotular exemplos e retreinar modelos. O BlueDocs substituiu o pipeline completo por uma solução centralizada com IA generativa capaz de interpretar semanticamente qualquer documento, independente do layout.</p>
+            <div class="flex gap-3 flex-wrap mb-8">
+              <div class="px-4 py-2.5 rounded-xl" style="background:rgba(123,0,220,0.15); border:1px solid rgba(123,0,220,0.3);">
+                <span class="font-display font-bold block" style="font-size:24px; line-height:1; letter-spacing:-0.03em; color:#b87dff;">+75%</span>
+                <p class="text-[11px] mt-1" style="color:rgba(255,255,255,0.58);">acurácia em docs padrão</p>
+              </div>
+              <div class="px-4 py-2.5 rounded-xl" style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15);">
+                <span class="font-display font-bold block" style="font-size:24px; line-height:1; letter-spacing:-0.03em; color:#ffffff;">−30%</span>
+                <p class="text-[11px] mt-1" style="color:rgba(255,255,255,0.58);">latência de processamento</p>
+              </div>
+              <div class="px-4 py-2.5 rounded-xl" style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15);">
+                <span class="font-display font-bold block" style="font-size:24px; line-height:1; letter-spacing:-0.03em; color:#ffffff;">Zero</span>
+                <p class="text-[11px] mt-1" style="color:rgba(255,255,255,0.58);">retreinamento por layout</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: visual identity -->
+        <div class="relative flex flex-col min-h-[200px] overflow-hidden" style="background:#7b00dc; border-left:1px solid rgba(255,255,255,0.10);">
+          <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 0% 100%, rgba(241,0,160,0.28) 0%, transparent 55%), radial-gradient(ellipse at 100% 0%, rgba(0,2,83,0.45) 0%, transparent 60%);"></div>
+          <div class="absolute inset-0 hero-grid opacity-10 pointer-events-none"></div>
+          <span class="absolute font-display font-black select-none pointer-events-none" style="font-size:200px; line-height:1; letter-spacing:-0.06em; color:rgba(255,255,255,0.05); bottom:-30px; left:-15px;">02</span>
+          <div class="relative z-10 flex flex-col justify-between p-8 md:p-10" style="min-height:380px;">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);">
+                <span class="material-symbols-outlined" style="font-size:13px;color:#ffffff;font-variation-settings:'FILL' 1;">memory</span>
+                <span style="font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#ffffff;font-family:'Outfit',sans-serif;">Tecnologia</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:'Outfit',sans-serif;font-size:76px;font-weight:900;line-height:0.9;letter-spacing:-0.04em;color:#ffffff;margin-bottom:12px;">Zero</div>
+              <div style="font-size:13px;color:rgba(255,255,255,0.60);font-family:'Wix Madefor Text',sans-serif;font-weight:500;">retreinamentos por layout</div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.15);padding-top:18px;display:flex;gap:18px;align-items:flex-start;">
+              <div>
+                <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:rgba(255,255,255,0.95);">+75%</div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.40);font-family:'Wix Madefor Text',sans-serif;margin-top:3px;letter-spacing:0.06em;text-transform:uppercase;">acurácia</div>
+              </div>
+              <div style="width:1px;align-self:stretch;background:rgba(255,255,255,0.12);"></div>
+              <div>
+                <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:rgba(255,255,255,0.95);">−30%</div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.40);font-family:'Wix Madefor Text',sans-serif;margin-top:3px;letter-spacing:0.06em;text-transform:uppercase;">latência</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ===== CTA / LEAD FORM ===== -->
+<section id="contato" class="py-24 text-white relative overflow-hidden cta-bg">
+  <!-- Top accent line -->
+  <div class="absolute top-0 left-0 w-full h-px pointer-events-none" style="background:linear-gradient(90deg,transparent,rgba(15,41,233,0.4),transparent);"></div>
+
+  <div class="max-w-[1240px] mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+
+    <div class="reveal">
+      <h2 class="font-h1 text-h2 mb-6 leading-tight">Veja o BlueDocs em ação no seu cenário.</h2>
+      <p class="text-bm-neutral-400 text-lede mb-10 leading-relaxed">
+        Nosso time analisa o seu volume documental e mostra exatamente onde a IA recupera mais tempo e custo, com os seus contratos, os seus editais, os seus arquivos.
+      </p>
+      <ul class="space-y-5">
+        <li class="flex items-center gap-4">
+          <div class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,209,0,0.14);">
+            <span class="material-symbols-outlined text-bm-green" style="font-size:15px;font-variation-settings:'FILL' 1;">check</span>
+          </div>
+          <span class="text-white/82">Demo ao vivo, sem roteiro genérico</span>
+        </li>
+        <li class="flex items-center gap-4">
+          <div class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,209,0,0.14);">
+            <span class="material-symbols-outlined text-bm-green" style="font-size:15px;font-variation-settings:'FILL' 1;">check</span>
+          </div>
+          <span class="text-white/82">Estimativa de ROI do seu cenário específico</span>
+        </li>
+        <li class="flex items-center gap-4">
+          <div class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(0,209,0,0.14);">
+            <span class="material-symbols-outlined text-bm-green" style="font-size:15px;font-variation-settings:'FILL' 1;">check</span>
+          </div>
+          <span class="text-white/82">Sem custo para começar o diagnóstico</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="reveal reveal-d1 flex items-center justify-center">
+      <div class="w-full rounded-2xl p-8 flex flex-col items-center text-center gap-7" style="background:linear-gradient(145deg,rgba(15,41,233,0.14) 0%,rgba(123,0,220,0.12) 100%);border:1px solid rgba(255,255,255,0.12);">
+        <!-- Icon -->
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center" style="background:linear-gradient(135deg,#0f29e9,#7b00dc);box-shadow:0 8px 32px rgba(15,41,233,0.35);">
+          <span class="material-symbols-outlined text-white" style="font-size:28px;font-variation-settings:'FILL' 1,'wght' 400;">insights</span>
+        </div>
+        <!-- Text -->
+        <div>
+          <p class="font-display font-bold text-white mb-2" style="font-size:20px;letter-spacing:-0.01em;">Análise personalizada</p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.65;font-family:'Wix Madefor Text',sans-serif;">Mostre seus documentos reais. Nosso time mapeia onde a IA gera mais resultado para a sua operação, sem custo.</p>
+        </div>
+        <!-- CTA -->
+        <button onclick="openLeadModal('cta-section')" class="btn-shimmer w-full grad-brand text-white font-bold py-4 rounded-lg shadow-glow-pink text-sm transition-transform" style="letter-spacing:0.02em;">
+          Diagnóstico gratuito
+        </button>
+        <!-- Trust -->
+        <p class="flex items-center gap-1.5" style="font-size:11px;color:rgba(255,255,255,0.35);">
+          <span class="material-symbols-outlined" style="font-size:13px;font-variation-settings:'FILL' 1;">lock</span>
+          Seus dados estão protegidos. Sem spam, nunca.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="porque" class="py-24 bg-white relative overflow-hidden" style="scroll-margin-top:72px;">
+  <div class="absolute inset-0 dot-pattern opacity-30 pointer-events-none"></div>
+  <div class="max-w-[780px] mx-auto px-6 relative">
+
+    <div class="mb-14 text-center reveal">
+      <span class="font-eyebrow uppercase text-secondary mb-3 block" style="letter-spacing:0.14em; font-size:11px;">Perguntas frequentes</span>
+      <h2 class="font-h2 text-h2 text-primary">Por que escolher o BlueDocs?</h2>
+    </div>
+
+    <div class="faq-list space-y-0 reveal">
+
+      <div class="faq-item border-b border-bm-neutral-200">
+        <button class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left group">
+          <span class="font-semibold text-primary text-[17px] leading-snug group-hover:text-secondary transition-colors duration-200">Como o BlueDocs se diferencia de ferramentas genéricas de IA?</span>
+          <span class="faq-icon shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" style="border:1.5px solid #dfe3ee; color:#000253;">
+            <span class="material-symbols-outlined" style="font-size:18px; font-variation-settings:'FILL' 0,'wght' 300;">add</span>
+          </span>
+        </button>
+        <div class="faq-answer overflow-hidden" style="max-height:0; transition:max-height 0.35s ease;">
+          <p class="text-bm-neutral-600 leading-relaxed pb-6" style="font-size:15px;">Ferramentas genéricas são treinadas para responder qualquer coisa de forma genérica. O BlueDocs é treinado especificamente nos documentos da sua operação: contratos, editais, cláusulas, termos técnicos do seu setor. E responde com precisão cirúrgica, citando o trecho exato do documento. A diferença é entre um assistente generalista e um especialista no seu negócio.</p>
+        </div>
+      </div>
+
+      <div class="faq-item border-b border-bm-neutral-200">
+        <button class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left group">
+          <span class="font-semibold text-primary text-[17px] leading-snug group-hover:text-secondary transition-colors duration-200">Em quanto tempo consigo ver resultados concretos?</span>
+          <span class="faq-icon shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" style="border:1.5px solid #dfe3ee; color:#000253;">
+            <span class="material-symbols-outlined" style="font-size:18px; font-variation-settings:'FILL' 0,'wght' 300;">add</span>
+          </span>
+        </button>
+        <div class="faq-answer overflow-hidden" style="max-height:0; transition:max-height 0.35s ease;">
+          <p class="text-bm-neutral-600 leading-relaxed pb-6" style="font-size:15px;">A maioria dos clientes registra ROI comprovado em menos de 30 dias. A implantação leva de 1 a 2 semanas. Nesse período configuramos o modelo, conectamos ao seu ambiente e validamos os primeiros documentos reais com o seu time. O dia um já é produtivo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item border-b border-bm-neutral-200">
+        <button class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left group">
+          <span class="font-semibold text-primary text-[17px] leading-snug group-hover:text-secondary transition-colors duration-200">O BlueDocs funciona com qualquer tipo de documento?</span>
+          <span class="faq-icon shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" style="border:1.5px solid #dfe3ee; color:#000253;">
+            <span class="material-symbols-outlined" style="font-size:18px; font-variation-settings:'FILL' 0,'wght' 300;">add</span>
+          </span>
+        </button>
+        <div class="faq-answer overflow-hidden" style="max-height:0; transition:max-height 0.35s ease;">
+          <p class="text-bm-neutral-600 leading-relaxed pb-6" style="font-size:15px;">Sim. O BlueDocs processa PDFs nativos, documentos escaneados (via OCR inteligente), contratos Word, editais em formato de imagem e arquivos de múltiplas páginas com estrutura complexa. Se o documento existe na sua operação, o BlueDocs consegue lê-lo, extrair dados e responder perguntas sobre ele.</p>
+        </div>
+      </div>
+
+      <div class="faq-item border-b border-bm-neutral-200">
+        <button class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left group">
+          <span class="font-semibold text-primary text-[17px] leading-snug group-hover:text-secondary transition-colors duration-200">Como funciona a integração com o ERP que já usamos?</span>
+          <span class="faq-icon shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" style="border:1.5px solid #dfe3ee; color:#000253;">
+            <span class="material-symbols-outlined" style="font-size:18px; font-variation-settings:'FILL' 0,'wght' 300;">add</span>
+          </span>
+        </button>
+        <div class="faq-answer overflow-hidden" style="max-height:0; transition:max-height 0.35s ease;">
+          <p class="text-bm-neutral-600 leading-relaxed pb-6" style="font-size:15px;">O BlueDocs se conecta via API aos principais ERPs do mercado: SAP, TOTVS, Oracle, Microsoft Dynamics e outros. Cada documento processado alimenta automaticamente os workflows dos seus setores: compras, financeiro, jurídico, operações. Não há digitação manual, nem conferência campo a campo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item border-b border-bm-neutral-200">
+        <button class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left group">
+          <span class="font-semibold text-primary text-[17px] leading-snug group-hover:text-secondary transition-colors duration-200">Meus documentos ficam seguros? Onde os dados são armazenados?</span>
+          <span class="faq-icon shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" style="border:1.5px solid #dfe3ee; color:#000253;">
+            <span class="material-symbols-outlined" style="font-size:18px; font-variation-settings:'FILL' 0,'wght' 300;">add</span>
+          </span>
+        </button>
+        <div class="faq-answer overflow-hidden" style="max-height:0; transition:max-height 0.35s ease;">
+          <p class="text-bm-neutral-600 leading-relaxed pb-6" style="font-size:15px;">O BlueDocs roda dentro da sua própria conta AWS. Nenhum dado sai da sua infraestrutura sem autorização explícita. Toda operação é protegida com criptografia de ponta a ponta, logs de auditoria por ação e controle de acesso por perfil. A solução está alinhada à LGPD e a regulações setoriais de compliance.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger w-full flex items-center justify-between gap-6 py-6 text-left group">
+          <span class="font-semibold text-primary text-[17px] leading-snug group-hover:text-secondary transition-colors duration-200">Preciso de equipe técnica interna para operar o BlueDocs?</span>
+          <span class="faq-icon shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300" style="border:1.5px solid #dfe3ee; color:#000253;">
+            <span class="material-symbols-outlined" style="font-size:18px; font-variation-settings:'FILL' 0,'wght' 300;">add</span>
+          </span>
+        </button>
+        <div class="faq-answer overflow-hidden" style="max-height:0; transition:max-height 0.35s ease;">
+          <p class="text-bm-neutral-600 leading-relaxed pb-6" style="font-size:15px;">Não. O BlueDocs é operado pelo usuário final via interface conversacional. Qualquer analista do time jurídico, financeiro ou de compras consegue usar sem treinamento técnico. A BlueMetrics cuida de toda a infraestrutura, atualizações de modelo e suporte. Seu time usa, a gente mantém.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-white border-t border-bm-neutral-200">
+  <div class="max-w-[1240px] mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row justify-between gap-10 pb-10 border-b border-bm-neutral-100">
+
+      <!-- Logo + endereço + redes sociais -->
+      <div class="flex flex-col gap-4">
+        <img alt="BlueMetrics" class="h-6 w-auto" src="bluemetrics_logo_RGB_blue_horizontal.png"/>
+        <address class="not-italic text-xs text-bm-neutral-500 leading-relaxed" style="font-family:'Wix Madefor Text',sans-serif;">
+          Av. Ipiranga, 6681 — Partenon<br>
+          Porto Alegre – RS &nbsp;·&nbsp; TECNOPUC
+        </address>
+        <div class="flex gap-2 mt-1">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/bluemetrics.ai/" target="_blank" rel="noopener noreferrer"
+             title="Instagram BlueMetrics"
+             style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #e5e7eb;color:#9ca3af;transition:color .2s,border-color .2s;"
+             onmouseover="this.style.color='#f100a0';this.style.borderColor='#f100a0';"
+             onmouseout="this.style.color='#9ca3af';this.style.borderColor='#e5e7eb';">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/company/bluemetrics" target="_blank" rel="noopener noreferrer"
+             title="LinkedIn BlueMetrics"
+             style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #e5e7eb;color:#9ca3af;transition:color .2s,border-color .2s;"
+             onmouseover="this.style.color='#0f29e9';this.style.borderColor='#0f29e9';"
+             onmouseout="this.style.color='#9ca3af';this.style.borderColor='#e5e7eb';">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="flex flex-col gap-3">
+        <p class="text-[10px] font-bold text-bm-neutral-400 uppercase tracking-widest mb-1" style="font-family:'Outfit',sans-serif;">Links</p>
+        <a class="text-xs text-bm-neutral-500 hover:text-primary transition-colors duration-200 font-medium" href="privacidade.html">Privacidade</a>
+        <a class="text-xs text-bm-neutral-500 hover:text-primary transition-colors duration-200 font-medium" href="#contato">Contato</a>
+      </div>
+    </div>
+
+    <div class="pt-6 text-xs text-bm-neutral-400 text-center md:text-left" style="font-family:'Wix Madefor Text',sans-serif;">
+      © BlueMetrics 2026. Todos os direitos reservados.
+    </div>
+  </div>
+</footer>
+
+<script>
+  function getUTMs() {
+    const p = new URLSearchParams(window.location.search);
+    const keys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+    const utms = {};
+    keys.forEach(k => { if (p.get(k)) utms[k] = p.get(k); });
+    return utms;
+  }
+
+  // Mobile nav toggle
+  function toggleMobileNav() {
+    document.getElementById('mobile-nav').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon .material-symbols-outlined');
+      const isOpen = answer.style.maxHeight !== '0px' && answer.style.maxHeight !== '';
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.querySelector('.faq-answer').style.maxHeight = '0px';
+        const ic = i.querySelector('.faq-icon');
+        ic.style.background = '';
+        ic.style.borderColor = '#dfe3ee';
+        ic.style.color = '#000253';
+        i.querySelector('.faq-icon .material-symbols-outlined').textContent = 'add';
+      });
+
+      // Open clicked (if it was closed)
+      if (!isOpen) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        const ic = trigger.querySelector('.faq-icon');
+        ic.style.background = '#000253';
+        ic.style.borderColor = '#000253';
+        ic.style.color = '#ffffff';
+        icon.textContent = 'remove';
+      }
+    });
+  });
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Progress line animation
+  const lineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('animate');
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.line-grow').forEach(el => lineObserver.observe(el));
+
+  // Solution tabs
+  const solTabs = document.querySelectorAll('.sol-tab');
+  const solPanels = document.querySelectorAll('.sol-panel');
+  const solVisuals = document.querySelectorAll('.sol-visual');
+  solTabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      solTabs.forEach(t => t.classList.remove('active'));
+      solPanels.forEach(p => p.classList.remove('active'));
+      solVisuals.forEach(v => v.classList.remove('active'));
+      tab.classList.add('active');
+      solPanels[i].classList.add('active');
+      solVisuals[i].classList.add('active');
+    });
+  });
+
+  // ── Lead Modal ──
+  let _modalSource = 'unknown';
+
+  function openLeadModal(source) {
+    _modalSource = source || 'unknown';
+    const modal = document.getElementById('lead-modal');
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    goStep1();
+    document.getElementById('lead-form').reset();
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'cta_click', cta_source: _modalSource });
+    window.dataLayer.push({ event: 'lead_modal_open', cta_source: _modalSource });
+  }
+
+  function openLeadModalPrefilled() {
+    const nome     = document.getElementById('cta-nome').value.trim();
+    const email    = document.getElementById('cta-email').value.trim();
+    const empresa  = document.getElementById('cta-empresa').value.trim();
+    const segmento = document.getElementById('cta-segmento').value;
+    openLeadModal('cta-section');
+    // Pre-fill after openLeadModal's reset
+    if (nome)     document.querySelector('#lead-form [name="nome"]').value = nome;
+    if (email)    document.querySelector('#lead-form [name="email"]').value = email;
+    if (empresa)  document.querySelector('#lead-form [name="empresa"]').value = empresa;
+    if (segmento) document.querySelector('#lead-form [name="segmento"]').value = segmento;
+  }
+
+  function closeLeadModal() {
+    document.getElementById('lead-modal').classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  function handleModalBackdrop(e) {
+    if (e.target === document.getElementById('lead-modal')) closeLeadModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLeadModal(); });
+
+  function goStep1() {
+    document.getElementById('step1').classList.add('active');
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('dot1').classList.add('active');
+    document.getElementById('dot2').classList.remove('active');
+    document.getElementById('step-counter').textContent = 'Etapa 1 de 2';
+    document.getElementById('modal-title').textContent = 'Comece agora';
+    document.getElementById('modal-subtitle').textContent = 'Preencha seus dados e um especialista BlueMetrics entra em contato em até 1 dia útil.';
+  }
+
+  function goStep2() {
+    const s1 = document.getElementById('step1');
+    const inputs = s1.querySelectorAll('[required]');
+    let valid = true;
+    inputs.forEach(inp => {
+      inp.style.borderColor = '';
+      if (!inp.value.trim()) { inp.style.borderColor = '#f100a0'; valid = false; inp.focus(); }
+    });
+    if (!valid) return;
+    s1.classList.remove('active');
+    document.getElementById('step2').classList.add('active');
+    document.getElementById('dot1').classList.add('active');
+    document.getElementById('dot2').classList.add('active');
+    document.getElementById('step-counter').textContent = 'Etapa 2 de 2';
+    document.getElementById('modal-title').textContent = 'Sobre a sua empresa';
+    document.getElementById('modal-subtitle').textContent = 'Mais um passo para ter seu diagnóstico personalizado a caminho.';
+    // GTM event: step 1 complete
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'lead_form_step1', cta_source: _modalSource });
+  }
+
+  async function submitLeadForm() {
+    const s2inputs = document.getElementById('step2').querySelectorAll('[required]');
+    let valid = true;
+    s2inputs.forEach(inp => {
+      inp.style.borderColor = '';
+      if (!inp.value.trim()) { inp.style.borderColor = '#f100a0'; valid = false; }
+    });
+    if (!valid) return;
+
+    const form = document.getElementById('lead-form');
+    const data = Object.fromEntries(new FormData(form));
+    const utms = getUTMs();
+
+    // Persist lead data for the thank-you page event (sessionStorage survives same-tab navigation)
+    sessionStorage.setItem('bluedocs_lead', JSON.stringify({ ...data, _source: _modalSource, ...utms }));
+
+    // Fire structured 'lead' event (standard GA4 / Google Ads conversion event name)
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'lead',
+      form_id: 'lead_modal',
+      cta_source: _modalSource,
+      lead_name: data.nome,
+      lead_email: data.email,
+      lead_phone: data.telefone,
+      lead_company: data.empresa,
+      lead_job_title: data.cargo,
+      lead_segment: data.segmento,
+      lead_company_size: data.funcionarios,
+      lead_docs_volume: data.documentos,
+      lead_revenue: data.receita,
+      lead_website: data.site || '',
+      ...utms,
+    });
+
+    const submitBtn = document.querySelector('[onclick="submitLeadForm()"]');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando...'; }
+
+    // Run HubSpot call and GTM flush in parallel; redirect after both settle (max 5s)
+    const hubspotCall = fetch('/api/submit-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...data, ...utms })
+    }).then(async res => {
+      if (!res.ok) console.error('[submit-lead] HTTP', res.status, await res.text().catch(() => ''));
+    }).catch(e => console.warn('HubSpot submission error:', e));
+
+    // Give GTM tags 400ms to fire before unloading the page
+    await Promise.race([hubspotCall, new Promise(r => setTimeout(r, 5000))]);
+    await new Promise(r => setTimeout(r, 400));
+
+    window.location.href = '/obrigado';
+  }
+
+  // Navbar scroll shadow
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav-scrolled', window.scrollY > 12);
+  }, { passive: true });
+
+  // ── Hero Chat Mockup Animation ────────────────────────────
+  (function() {
+    const conversations = [
+      {
+        q: 'Quais contratos vencem em Q3?',
+        lines: [
+          'Encontrei <strong>3 contratos</strong> com vencimento entre julho e setembro.',
+          '📄 Fornecedor A — vence em <strong style="color:#00bbff">14/07</strong>',
+          '📄 Logística X — vence em <strong style="color:#00bbff">02/09</strong>',
+          '⚠️ Serviços Y — <span style="color:#febc2e">18 dias para renovação</span>'
+        ]
+      },
+      {
+        q: 'Estamos qualificados para esse edital?',
+        lines: [
+          '✅ Sim. A empresa atende <strong>8 de 10</strong> requisitos técnicos.',
+          'Pendências identificadas:',
+          '⚠️ Certidão FGTS — <span style="color:#febc2e">vencida em 12/04</span>',
+          '⚠️ Atestado técnico — <span style="color:#febc2e">desatualizado</span>'
+        ]
+      },
+      {
+        q: 'Com base no nosso histórico, esse contrato é um risco?',
+        lines: [
+          '⚠️ <strong>Risco moderado.</strong> Cláusulas com histórico de disputas:',
+          'Cláusula 7.3 — <span style="color:#f100a0">reajuste unilateral de índice</span>',
+          'Cláusula 12.1 — <span style="color:#f100a0">prazo de resposta em 24h</span>',
+          'Recomendo revisão antes de assinar.'
+        ]
+      }
+    ];
+
+    const messagesEl  = document.getElementById('mock-messages');
+    const inputTextEl = document.getElementById('mock-input-text');
+    if (!messagesEl || !inputTextEl) return;
+
+    let turn = 0;
+
+    function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function setInput(text) {
+      inputTextEl.innerHTML = text + '<span class="mock-cursor"></span>';
+    }
+
+    async function typeInput(text) {
+      let typed = '';
+      const charDelay = 1600 / text.length; // spread across ~1.6s
+      for (const ch of text) {
+        typed += ch;
+        setInput(typed);
+        await delay(charDelay);
+      }
+    }
+
+    function appendMessage(html, cls) {
+      const el = document.createElement('div');
+      el.className = cls;
+      el.innerHTML = html;
+      messagesEl.appendChild(el);
+      return el;
+    }
+
+    function appendThinking() {
+      const el = document.createElement('div');
+      el.className = 'mock-thinking-wrap';
+      el.innerHTML = '<div class="mock-dot-pulse"></div><div class="mock-dot-pulse"></div><div class="mock-dot-pulse"></div>';
+      messagesEl.appendChild(el);
+      return el;
+    }
+
+    async function runTurn(conv) {
+      // 1. Type in input
+      await typeInput(conv.q);
+      await delay(200);
+
+      // 2. Send → user bubble
+      setInput('');
+      appendMessage(conv.q, 'mock-msg-user');
+      await delay(300);
+
+      // 3. Thinking dots
+      const thinking = appendThinking();
+      await delay(1100);
+
+      // 4. Replace thinking with AI response
+      thinking.remove();
+      const aiEl = document.createElement('div');
+      aiEl.className = 'mock-msg-ai';
+      aiEl.innerHTML = `
+        <div class="mock-ai-header">
+          <div class="mock-ai-avatar">BD</div>
+          <span class="mock-ai-name">BlueDocs</span>
+        </div>
+        ${conv.lines.map(l => `<div class="mock-msg-line">${l}</div>`).join('')}
+      `;
+      messagesEl.appendChild(aiEl);
+
+      // Stagger lines in
+      const lineEls = aiEl.querySelectorAll('.mock-msg-line');
+      for (let i = 0; i < lineEls.length; i++) {
+        await delay(i === 0 ? 0 : 130);
+        lineEls[i].classList.add('vis');
+      }
+
+      // 5. Reading pause
+      await delay(3600);
+
+      // 6. Fade out all messages
+      messagesEl.style.transition = 'opacity 0.6s ease';
+      messagesEl.style.opacity = '0';
+      await delay(650);
+      messagesEl.innerHTML = '';
+      messagesEl.style.opacity = '1';
+      setInput('');
+    }
+
+    async function loop() {
+      await delay(800); // initial pause
+      while (true) {
+        await runTurn(conversations[turn % conversations.length]);
+        turn++;
+        await delay(400);
+      }
+    }
+
+    loop();
+  })();
+</script>
+
+<!-- ===== LEAD MODAL ===== -->
+<div id="lead-modal" class="fixed inset-0 z-[9999] items-center justify-center p-4 md:p-6" style="background:rgba(0,2,83,0.75); backdrop-filter:blur(6px);" onclick="handleModalBackdrop(event)">
+  <div class="modal-card relative w-full max-w-[880px] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row" style="max-height:92vh;">
+
+    <!-- Left: Form -->
+    <div class="bg-white flex-1 overflow-y-auto" style="padding:clamp(28px,5vw,52px);">
+
+      <!-- Header -->
+      <div class="mb-8">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="step-dot active" id="dot1"></div>
+          <div class="step-dot" id="dot2"></div>
+          <span class="text-[11px] font-eyebrow uppercase tracking-widest ml-2" style="color:#b0b8d0;" id="step-counter">Etapa 1 de 2</span>
+        </div>
+        <h2 class="font-display text-primary leading-tight mb-1" style="font-size:clamp(22px,2.5vw,28px); font-weight:700;" id="modal-title">Comece agora</h2>
+        <p class="text-bm-neutral-500 text-sm leading-relaxed" id="modal-subtitle">Preencha seus dados e um especialista BlueMetrics entra em contato em até 1 dia útil.</p>
+      </div>
+
+      <form id="lead-form" novalidate>
+        <!-- Step 1 -->
+        <div class="modal-step active space-y-4" id="step1">
+          <div>
+            <label class="modal-label">Nome completo <span style="color:#f100a0;">*</span></label>
+            <input class="modal-input" type="text" name="nome" placeholder="Seu nome completo" required />
+          </div>
+          <div>
+            <label class="modal-label">E-mail corporativo <span style="color:#f100a0;">*</span></label>
+            <input class="modal-input" type="email" name="email" placeholder="nome@empresa.com.br" required />
+          </div>
+          <div>
+            <label class="modal-label">Telefone / WhatsApp <span style="color:#f100a0;">*</span></label>
+            <input class="modal-input" type="tel" name="telefone" placeholder="(11) 9 0000-0000" required />
+          </div>
+          <div>
+            <label class="modal-label">Cargo <span style="color:#f100a0;">*</span></label>
+            <select class="modal-input modal-select" name="cargo" required>
+              <option value="" disabled selected>Selecione seu cargo</option>
+              <option value="CEO / Fundador">CEO / Fundador</option>
+              <option value="CFO / Diretor Financeiro">CFO / Diretor Financeiro</option>
+              <option value="Diretor Jurídico">Diretor Jurídico</option>
+              <option value="Gerente de Contratos">Gerente de Contratos</option>
+              <option value="Gerente Jurídico">Gerente Jurídico</option>
+              <option value="Analista Jurídico">Analista Jurídico</option>
+              <option value="Compliance / Risco">Compliance / Risco</option>
+              <option value="Gerente de Operações">Gerente de Operações</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+          <button type="button" onclick="goStep2()" class="btn-shimmer w-full text-white font-bold py-3.5 rounded-xl text-sm mt-2 transition-transform" style="background:linear-gradient(135deg,#000253,#0f29e9);">
+            Próximo <span class="material-symbols-outlined align-middle" style="font-size:16px;">arrow_forward</span>
+          </button>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="modal-step space-y-4" id="step2">
+          <div>
+            <label class="modal-label">Nome da empresa <span style="color:#f100a0;">*</span></label>
+            <input class="modal-input" type="text" name="empresa" placeholder="Razão social ou nome fantasia" required />
+          </div>
+          <div>
+            <label class="modal-label">Site da empresa <span style="color:#f100a0;">*</span></label>
+            <input class="modal-input" type="url" name="site" placeholder="https://suaempresa.com.br" required />
+          </div>
+          <div>
+            <label class="modal-label">Segmento da empresa <span style="color:#f100a0;">*</span></label>
+            <select class="modal-input modal-select" name="segmento" required>
+              <option value="" disabled selected>Selecione o segmento</option>
+              <option value="Jurídico / Advocacia">Jurídico / Advocacia</option>
+              <option value="Financeiro / Bancos">Financeiro / Bancos</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Governo / Setor Público">Governo / Setor Público</option>
+              <option value="Construção / Engenharia">Construção / Engenharia</option>
+              <option value="Logística / Supply Chain">Logística / Supply Chain</option>
+              <option value="Tecnologia">Tecnologia</option>
+              <option value="Indústria">Indústria</option>
+              <option value="Varejo / E-commerce">Varejo / E-commerce</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+          <div>
+            <label class="modal-label">Receita anual da empresa <span style="color:#f100a0;">*</span></label>
+            <select class="modal-input modal-select" name="receita" required>
+              <option value="" disabled selected>Selecione a faixa de receita</option>
+              <option value="Até R$ 10 milhões/ano">Até R$ 10 milhões/ano</option>
+              <option value="R$ 10M – R$ 50M/ano">R$ 10M – R$ 50M/ano</option>
+              <option value="Acima de R$ 50 milhões/ano">Acima de R$ 50 milhões/ano</option>
+              <option value="Acima de R$ 200 milhões/ano">Acima de R$ 200 milhões/ano</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="modal-label">Nº de funcionários <span style="color:#f100a0;">*</span></label>
+              <select class="modal-input modal-select" name="funcionarios" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="1 – 10">1 – 10</option>
+                <option value="11 – 50">11 – 50</option>
+                <option value="51 – 200">51 – 200</option>
+                <option value="201 – 500">201 – 500</option>
+                <option value="Mais de 500">Mais de 500</option>
+              </select>
+            </div>
+            <div>
+              <label class="modal-label">Documentos críticos/mês <span style="color:#f100a0;">*</span></label>
+              <select class="modal-input modal-select" name="documentos" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="Menos de 10">Menos de 10</option>
+                <option value="10 – 50">10 – 50</option>
+                <option value="50 – 200">50 – 200</option>
+                <option value="Mais de 200">Mais de 200</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex gap-3 pt-1">
+            <button type="button" onclick="goStep1()" class="flex-shrink-0 border rounded-xl px-5 py-3.5 text-sm font-semibold transition-colors" style="border-color:#dfe3ee; color:#000253;">
+              <span class="material-symbols-outlined align-middle" style="font-size:16px;">arrow_back</span> Voltar
+            </button>
+            <button type="button" onclick="submitLeadForm()" class="btn-shimmer flex-1 text-white font-bold py-3.5 rounded-xl text-sm transition-transform" style="background:linear-gradient(135deg,#000253,#0f29e9);">
+              Diagnóstico gratuito
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <p class="text-[10px] text-bm-neutral-400 uppercase tracking-wider text-center mt-5">Ao enviar, você concorda com nossa Política de Privacidade.</p>
+    </div>
+
+    <!-- Right: Brand panel -->
+    <div class="hidden md:flex flex-col justify-between grad-deep relative overflow-hidden" style="width:300px; min-width:300px; padding:40px 36px;">
+      <div class="absolute inset-0 hero-grid opacity-40 pointer-events-none"></div>
+      <div class="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(123,0,220,0.5) 0%,transparent 70%); transform:translate(40%,-30%); filter:blur(8px);"></div>
+
+      <div class="relative z-10">
+        <img src="bluemetrics_logo_RGB_blue_horizontal.png" alt="BlueMetrics" style="height:28px; filter:brightness(0) invert(1); opacity:0.9; margin-bottom:36px;" />
+        <h3 class="font-display text-white leading-snug mb-8" style="font-size:20px; font-weight:700;">Seu diagnóstico é personalizado, não um demo genérico.</h3>
+        <ul class="space-y-5">
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined shrink-0 mt-0.5" style="font-size:18px; color:#00bbff; font-variation-settings:'FILL' 1;">check_circle</span>
+            <span class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.82);">ROI estimado para o seu volume</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined shrink-0 mt-0.5" style="font-size:18px; color:#00bbff; font-variation-settings:'FILL' 1;">check_circle</span>
+            <span class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.82);">Sem taxas de implementação inicial</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-outlined shrink-0 mt-0.5" style="font-size:18px; color:#00bbff; font-variation-settings:'FILL' 1;">check_circle</span>
+            <span class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.82);">Resposta em até 1 dia útil</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="relative z-10 mt-8 pt-7" style="border-top:1px solid rgba(255,255,255,0.12);">
+        <p class="text-[11px] uppercase tracking-widest mb-3" style="color:rgba(255,255,255,0.4);">Prefere falar diretamente?</p>
+        <a href="mailto:contato@bluemetrics.com.br" class="flex items-center gap-2 text-sm font-semibold" style="color:#00bbff;">
+          <span class="material-symbols-outlined" style="font-size:16px; font-variation-settings:'FILL' 1;">mail</span>
+          contato@bluemetrics.com.br
+        </a>
+      </div>
+    </div>
+
+    <!-- Close button -->
+    <button onclick="closeLeadModal()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full flex items-center justify-center transition-all" style="background:rgba(0,2,83,0.08);" aria-label="Fechar">
+      <span class="material-symbols-outlined" style="font-size:20px; color:#000253;">close</span>
+    </button>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  const sectionIds = ['hero', 'custo-invisivel', 'solucoes', 'comparativo', 'cases', 'porque'];
+  const navLinks = document.querySelectorAll('.nav-link[data-section]');
+
+  function updateActive() {
+    const navH = (document.getElementById('main-nav') || {offsetHeight:60}).offsetHeight;
+    let current = sectionIds[0];
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= navH + 40) current = id;
+    }
+    navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === current));
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+})();
+
+// Floating CTA show/hide
+(function() {
+  const btn = document.getElementById('float-cta');
+  const hero = document.getElementById('hero');
+  const cta  = document.getElementById('contato');
+  if (!btn) return;
+
+  function update() {
+    const heroBottom = hero ? hero.getBoundingClientRect().bottom : 500;
+    const ctaTop     = cta  ? cta.getBoundingClientRect().top    : Infinity;
+    const pastHero   = heroBottom < 0;
+    const nearCta    = ctaTop < window.innerHeight * 0.85;
+    const show = pastHero && !nearCta;
+    btn.classList.toggle('visible', show);
+    btn.setAttribute('aria-hidden', show ? 'false' : 'true');
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>

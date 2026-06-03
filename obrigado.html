@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="scroll-behavior:smooth;">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MNVPH77L');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Solicitação recebida — BlueDocs by BlueMetrics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#000253',
+          secondary: '#0f29e9',
+          'bm-cyan': '#00bbff',
+          'bm-purple': '#7b00dc',
+          'bm-pink': '#f100a0',
+        },
+        fontFamily: {
+          display: ['Outfit', 'sans-serif'],
+          body: ['"Wix Madefor Text"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Wix+Madefor+Text:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Wix Madefor Text', sans-serif; background:#000253; color:#fff; }
+
+  .grad-deep  { background: linear-gradient(145deg, #000253 0%, #030a8b 40%, #0c27e8 70%, #7b00dc 100%); }
+  .grad-brand { background: linear-gradient(135deg, #0f29e9 0%, #7b00dc 100%); }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 52px 52px;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(28px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @keyframes checkPop {
+    0%   { opacity:0; transform:scale(0.4) rotate(-15deg); }
+    60%  { transform:scale(1.12) rotate(3deg); }
+    100% { opacity:1; transform:scale(1) rotate(0deg); }
+  }
+  @keyframes pulseRing {
+    0%   { transform:scale(1); opacity:0.4; }
+    75%  { transform:scale(1.6); opacity:0; }
+    100% { transform:scale(1.6); opacity:0; }
+  }
+  @keyframes shimmerLine {
+    0%   { transform:scaleX(0); opacity:0; }
+    30%  { opacity:1; }
+    100% { transform:scaleX(1); opacity:1; }
+  }
+
+  .anim-fade-up { opacity:0; animation: fadeUp 0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .delay-0  { animation-delay: 0.05s; }
+  .delay-1  { animation-delay: 0.2s; }
+  .delay-2  { animation-delay: 0.35s; }
+  .delay-3  { animation-delay: 0.5s; }
+  .delay-4  { animation-delay: 0.65s; }
+
+  .check-anim {
+    opacity:0;
+    animation: checkPop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s forwards;
+  }
+  .pulse-ring {
+    animation: pulseRing 2.5s ease-out infinite;
+  }
+  .pulse-ring-2 {
+    animation: pulseRing 2.5s ease-out 0.9s infinite;
+  }
+
+  .step-line {
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: shimmerLine 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+
+  /* Glass card */
+  .glass-card {
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .glass-card-cyan {
+    background: rgba(0,187,255,0.07);
+    border: 1px solid rgba(0,187,255,0.18);
+  }
+
+  /* Step number badge */
+  .step-badge {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    background: rgba(0,187,255,0.15);
+    color: #00bbff;
+    border: 1px solid rgba(0,187,255,0.32);
+  }
+
+  /* Back button */
+  .btn-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; font-family: 'Wix Madefor Text', sans-serif;
+    color: rgba(255,255,255,0.65);
+    border: 1px solid rgba(255,255,255,0.14);
+    padding: 10px 20px; border-radius: 10px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+  .btn-back:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.28);
+    background: rgba(255,255,255,0.06);
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MNVPH77L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<script>
+  // Read lead data saved by the form on index.html
+  var _lead = {};
+  try { _lead = JSON.parse(sessionStorage.getItem('bluedocs_lead') || '{}'); } catch(e) {}
+  sessionStorage.removeItem('bluedocs_lead');
+
+  window.dataLayer = window.dataLayer || [];
+
+  // Primary conversion event — fires on the thank-you page with all form fields
+  window.dataLayer.push({
+    event: 'lead',
+    page_type: 'thank_you',
+    form_id: 'lead_modal',
+    cta_source: _lead._source || 'direct',
+    lead_name: _lead.nome || '',
+    lead_email: _lead.email || '',
+    lead_phone: _lead.telefone || '',
+    lead_company: _lead.empresa || '',
+    lead_job_title: _lead.cargo || '',
+    lead_segment: _lead.segmento || '',
+    lead_company_size: _lead.funcionarios || '',
+    lead_docs_volume: _lead.documentos || '',
+    lead_revenue: _lead.receita || '',
+    lead_website: _lead.site || '',
+  });
+</script>
+
+<div class="grad-deep min-h-screen relative overflow-hidden flex flex-col">
+
+  <!-- Grid overlay -->
+  <div class="absolute inset-0 hero-grid pointer-events-none opacity-60"></div>
+
+  <!-- Glows -->
+  <div class="absolute top-0 right-0 pointer-events-none" style="width:700px;height:700px;background:radial-gradient(circle,rgba(123,0,220,0.52) 0%,transparent 65%);transform:translate(35%,-30%);filter:blur(10px);"></div>
+  <div class="absolute bottom-0 left-0 pointer-events-none" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,187,255,0.28) 0%,transparent 65%);transform:translate(-25%,30%);filter:blur(10px);"></div>
+  <div class="absolute top-1/2 left-1/2 pointer-events-none" style="width:600px;height:600px;background:radial-gradient(circle,rgba(15,41,233,0.18) 0%,transparent 65%);transform:translate(-50%,-50%);filter:blur(24px);"></div>
+
+  <!-- Header -->
+  <header class="relative z-10 px-8 py-6 flex items-center">
+    <a href="index.html">
+      <img src="bluemetrics_logo_RGB_blue_horizontal.png" alt="BlueMetrics" style="height:28px; filter:brightness(0) invert(1); opacity:0.88;" />
+    </a>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-1 flex items-center justify-center px-6 py-12 relative z-10">
+    <div class="max-w-[580px] w-full text-center">
+
+      <!-- Check icon with rings -->
+      <div class="relative inline-flex items-center justify-center mb-10">
+        <div class="pulse-ring absolute rounded-full pointer-events-none" style="width:88px;height:88px;background:rgba(0,187,255,0.18);"></div>
+        <div class="pulse-ring-2 absolute rounded-full pointer-events-none" style="width:88px;height:88px;background:rgba(0,187,255,0.10);"></div>
+        <div class="check-anim relative w-[76px] h-[76px] rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,rgba(0,187,255,0.22),rgba(123,0,220,0.22));border:1.5px solid rgba(0,187,255,0.45);">
+          <span class="material-symbols-outlined" style="font-size:36px;color:#00bbff;font-variation-settings:'FILL' 1,'wght' 600;">check</span>
+        </div>
+      </div>
+
+      <!-- Eyebrow -->
+      <p class="anim-fade-up delay-0 mb-4" style="font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;color:rgba(0,187,255,0.8);text-transform:uppercase;">Diagnóstico solicitado</p>
+
+      <!-- Headline -->
+      <h1 class="anim-fade-up delay-1 mb-5 leading-tight" style="font-family:'Outfit',sans-serif;font-size:clamp(32px,4.5vw,48px);font-weight:700;letter-spacing:-0.025em;">
+        Seu diagnóstico está<br>a caminho.
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="anim-fade-up delay-2 mb-12 leading-relaxed" style="font-size:17px;color:rgba(255,255,255,0.68);max-width:460px;margin-left:auto;margin-right:auto;">
+        Nosso time analisa o seu perfil e entra em contato em até <strong style="color:#00bbff;font-weight:600;">1 dia útil</strong> com uma análise personalizada para o volume de documentos da sua operação.
+      </p>
+
+      <!-- Next steps card -->
+      <div class="anim-fade-up delay-3 glass-card rounded-2xl overflow-hidden mb-8 text-left">
+
+        <div class="px-8 py-4" style="border-bottom:1px solid rgba(255,255,255,0.07);">
+          <p style="font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.35);">O que acontece agora</p>
+        </div>
+
+        <ul class="px-8 py-7 space-y-6">
+          <li class="flex items-start gap-4">
+            <span class="step-badge" style="animation-delay:0.55s;">1</span>
+            <div>
+              <p class="font-semibold text-white mb-1" style="font-size:14px;font-family:'Outfit',sans-serif;">Especialista analisa seu perfil</p>
+              <p style="font-size:13px;color:rgba(255,255,255,0.58);line-height:1.65;">Mapeamos o seu volume de documentos e identificamos onde o BlueDocs gera maior retorno para a sua operação.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="step-badge" style="animation-delay:0.65s;">2</span>
+            <div>
+              <p class="font-semibold text-white mb-1" style="font-size:14px;font-family:'Outfit',sans-serif;">Você recebe a estimativa de ROI</p>
+              <p style="font-size:13px;color:rgba(255,255,255,0.58);line-height:1.65;">Por e-mail, com os números do seu cenário — não uma simulação genérica.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="step-badge" style="animation-delay:0.75s;">3</span>
+            <div>
+              <p class="font-semibold text-white mb-1" style="font-size:14px;font-family:'Outfit',sans-serif;">Demo ao vivo com seus documentos</p>
+              <p style="font-size:13px;color:rgba(255,255,255,0.58);line-height:1.65;">Uma demonstração com contratos, editais ou arquivos reais da sua empresa — para que você veja o BlueDocs funcionando no seu contexto.</p>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Divider + trust signal -->
+        <div class="px-8 py-4 flex items-center gap-3" style="border-top:1px solid rgba(255,255,255,0.07);background:rgba(0,187,255,0.05);">
+          <span class="material-symbols-outlined flex-shrink-0" style="font-size:16px;color:#00bbff;font-variation-settings:'FILL' 1;">lock</span>
+          <p style="font-size:12px;color:rgba(255,255,255,0.45);">Seus dados estão protegidos. Não compartilhamos informações com terceiros.</p>
+        </div>
+      </div>
+
+      <!-- Back link -->
+      <div class="anim-fade-up delay-4">
+        <a href="index.html" class="btn-back">
+          <span class="material-symbols-outlined" style="font-size:15px;">arrow_back</span>
+          Voltar para a página inicial
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3" style="border-top:1px solid rgba(255,255,255,0.07);">
+    <p style="font-size:11px;color:rgba(255,255,255,0.28);">© 2025 BlueMetrics. Todos os direitos reservados.</p>
+    <div class="flex gap-6">
+      <a href="#" style="font-size:11px;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">Privacidade</a>
+      <a href="#" style="font-size:11px;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">Termos de Uso</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

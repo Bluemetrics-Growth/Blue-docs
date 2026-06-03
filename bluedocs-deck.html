@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Wix+Madefor+Text:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --primary:#000253; --blue:#0f29e9;
+  --cyan:#00bbff; --purple:#7b00dc; --pink:#f100a0;
+  --n50:#f6f7fb; --n100:#eef0f7; --n200:#dfe3ee;
+  --n400:#97a0bc; --n500:#6a7494;
+}
+body { font-family:'Wix Madefor Text',sans-serif; background:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+@page { size:A4 landscape; margin:0; }
+
+.slide {
+  width:297mm; height:210mm;
+  position:relative; overflow:hidden;
+  page-break-after:always; page-break-inside:avoid;
+  display:flex;
+}
+.slide:last-child { page-break-after:auto; }
+
+/* ── shared ── */
+.grid-veil {
+  position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.038) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.038) 1px, transparent 1px);
+  background-size:44px 44px;
+}
+.dot-veil {
+  position:absolute; inset:0; pointer-events:none;
+  background-image:radial-gradient(circle,rgba(15,41,233,0.055) 1px,transparent 1px);
+  background-size:18px 18px;
+}
+.glow { position:absolute; border-radius:50%; filter:blur(14px); }
+
+.eyebrow {
+  font-family:'Outfit',sans-serif; font-size:8pt; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  display:flex; align-items:center; gap:8px;
+}
+.eyebrow::before,.eyebrow::after {
+  content:''; display:block; width:18px; height:1px;
+  background:currentColor; opacity:.55;
+}
+
+.page-stamp {
+  position:absolute; bottom:7mm; right:12mm;
+  font-family:'Outfit',sans-serif; font-size:7pt; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; opacity:.25;
+}
+
+
+/* ════════════════════════════════════════════
+   SLIDE 1 — CAPA
+════════════════════════════════════════════ */
+.s1-bg {
+  position:absolute; inset:0;
+  background:linear-gradient(145deg,#000253 0%,#0b1fa6 45%,#7b00dc 100%);
+}
+.s1-inner {
+  position:relative; z-index:2;
+  width:100%; height:100%;
+  display:grid; grid-template-columns:1fr 1fr;
+}
+.s1-left {
+  padding:13mm 8mm 13mm 14mm;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.s1-logobar { display:flex; align-items:center; gap:10px; }
+.s1-logobar img { height:14px; width:auto; filter:brightness(0) invert(1); opacity:.85; }
+.s1-logo-sep { width:1px; height:22px; background:rgba(255,255,255,.22); }
+.s1-product { display:flex; flex-direction:column; }
+.s1-product strong { font-family:'Outfit',sans-serif; font-size:13pt; font-weight:800; color:#fff; letter-spacing:-.01em; }
+.s1-product small { font-family:'Outfit',sans-serif; font-size:6.5pt; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.38); }
+
+.s1-copy { }
+.s1-kicker {
+  font-family:'Outfit',sans-serif; font-size:8.5pt; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--cyan);
+  margin-bottom:12px;
+}
+.s1-headline {
+  font-family:'Outfit',sans-serif; font-size:30pt; font-weight:800;
+  line-height:1.07; letter-spacing:-.03em; color:#fff;
+  margin-bottom:14px;
+}
+.s1-headline em { font-style:normal; color:var(--cyan); }
+.s1-sub {
+  font-size:11pt; line-height:1.6; color:rgba(255,255,255,.65);
+  max-width:115mm;
+}
+
+.s1-bottom-bar {
+  display:flex; gap:20px; padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.s1-stat strong { display:block; font-family:'Outfit',sans-serif; font-size:20pt; font-weight:900; letter-spacing:-.04em; color:#fff; line-height:1; }
+.s1-stat span { font-size:7.5pt; color:rgba(255,255,255,.38); letter-spacing:.07em; text-transform:uppercase; margin-top:2px; display:block; }
+.s1-sep { width:1px; background:rgba(255,255,255,.1); }
+
+/* right: mockup hint */
+.s1-right {
+  padding:10mm 12mm 10mm 6mm;
+  display:flex; align-items:center; justify-content:center;
+}
+.mockup-shell {
+  width:100%; max-height:170px;
+  border-radius:12px; overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+  background:#0d0f1c;
+}
+.mock-bar {
+  display:flex; align-items:center; gap:8px;
+  padding:8px 12px;
+  background:#13162a;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.mock-dots { display:flex; gap:4px; }
+.mock-dot { width:8px; height:8px; border-radius:50%; }
+.mock-title { flex:1; text-align:center; font-family:'Outfit',sans-serif; font-size:9.5pt; color:rgba(255,255,255,.3); letter-spacing:.05em; }
+.mock-badge { font-size:8pt; color:rgba(0,187,255,.8); background:rgba(0,187,255,.09); border:1px solid rgba(0,187,255,.22); padding:2px 8px; border-radius:20px; font-family:'Wix Madefor Text',sans-serif; white-space:nowrap; }
+.mock-body { display:flex; height:130px; }
+.mock-sidebar { width:110px; padding:10px 8px; border-right:1px solid rgba(255,255,255,.06); flex-shrink:0; }
+.mock-sidebar-label { font-size:7.5pt; color:rgba(255,255,255,.2); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; font-family:'Outfit',sans-serif; }
+.mock-doc { display:flex; align-items:center; gap:5px; padding:4px 5px; border-radius:5px; margin-bottom:2px; }
+.mock-doc-icon { font-size:10pt; }
+.mock-doc-name { font-size:8.5pt; color:rgba(255,255,255,.35); font-family:'Wix Madefor Text',sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.mock-chat { flex:1; padding:10px 10px; display:flex; flex-direction:column; gap:8px; justify-content:flex-end; }
+.mock-msg-user {
+  align-self:flex-end;
+  background:rgba(15,41,233,.75); color:#fff;
+  padding:6px 10px; border-radius:10px 10px 2px 10px;
+  font-size:9pt; font-family:'Wix Madefor Text',sans-serif; max-width:75%;
+}
+.mock-msg-ai {
+  align-self:flex-start;
+  background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.82);
+  padding:8px 10px; border-radius:2px 10px 10px 10px;
+  font-size:8.5pt; font-family:'Wix Madefor Text',sans-serif; max-width:88%; line-height:1.5;
+}
+.mock-ai-hdr { display:flex; align-items:center; gap:5px; margin-bottom:4px; }
+.mock-ai-avatar { width:14px; height:14px; border-radius:50%; background:linear-gradient(135deg,#0f29e9,#7b00dc); display:flex; align-items:center; justify-content:center; font-size:7pt; color:#fff; font-weight:700; font-family:'Outfit',sans-serif; flex-shrink:0; }
+.mock-ai-name { font-size:8pt; font-weight:600; color:rgba(0,187,255,.8); font-family:'Outfit',sans-serif; letter-spacing:.04em; }
+
+
+/* ════════════════════════════════════════════
+   SLIDE 2 — O ANTES (problema)
+════════════════════════════════════════════ */
+.s2-bg { position:absolute; inset:0; background:linear-gradient(145deg,#030a8b 0%,#0c27e8 55%,#7b00dc 100%); }
+.s2-inner {
+  position:relative; z-index:2; width:100%; height:100%;
+  padding:12mm 14mm;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.s2-header { text-align:center; }
+.s2-header .eyebrow { color:var(--cyan); justify-content:center; margin-bottom:8px; }
+.s2-header h2 { font-family:'Outfit',sans-serif; font-size:26pt; font-weight:800; color:#fff; line-height:1.1; letter-spacing:-.02em; }
+.s2-header h2 em { font-style:normal; color:var(--cyan); }
+
+.s2-pains {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+}
+.s2-pain {
+  background:rgba(255,255,255,.048);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  padding:16px 14px 14px;
+  display:flex; flex-direction:column; gap:10px;
+  position:relative; overflow:hidden;
+}
+.s2-pain::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,rgba(0,187,255,.5),transparent);
+}
+.s2-pain-num {
+  font-family:'Outfit',sans-serif; font-size:30pt; font-weight:900;
+  letter-spacing:-.05em; line-height:1;
+}
+.s2-pain-num.c1 { color:var(--cyan); }
+.s2-pain-num.c2 { color:#c084fc; }
+.s2-pain-num.c3 { color:var(--cyan); }
+.s2-pain-num.c4 { color:#c084fc; }
+.s2-pain-label { font-size:7.5pt; color:rgba(255,255,255,.38); letter-spacing:.07em; text-transform:uppercase; font-family:'Outfit',sans-serif; margin-top:-4px; }
+.s2-pain h4 { font-family:'Outfit',sans-serif; font-size:11.5pt; font-weight:700; color:#fff; line-height:1.3; }
+.s2-pain p { font-size:8.5pt; color:rgba(255,255,255,.62); line-height:1.6; }
+
+.s2-footer-line {
+  text-align:center;
+  font-family:'Outfit',sans-serif; font-size:10pt; font-weight:600;
+  color:rgba(255,255,255,.42);
+  padding-top:6px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.s2-footer-line span { color:var(--cyan); }
+
+
+/* ════════════════════════════════════════════
+   SLIDE 3 — O QUE É O BLUEDOCS (solução)
+════════════════════════════════════════════ */
+.s3-inner {
+  width:100%; height:100%;
+  display:grid; grid-template-columns:1fr 1fr;
+}
+.s3-left {
+  background:linear-gradient(155deg,#000253 0%,#0b1fa6 60%,#7b00dc 100%);
+  padding:14mm 10mm 14mm 14mm;
+  display:flex; flex-direction:column; justify-content:center;
+  gap:14px; position:relative; overflow:hidden;
+}
+.s3-glow { position:absolute; bottom:-20%; right:-10%; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(0,187,255,.35) 0%,transparent 65%); filter:blur(14px); }
+.s3-left .eyebrow { color:var(--cyan); position:relative; z-index:1; }
+.s3-headline {
+  font-family:'Outfit',sans-serif; font-size:28pt; font-weight:800;
+  color:#fff; line-height:1.1; letter-spacing:-.03em;
+  position:relative; z-index:1;
+}
+.s3-headline em { font-style:normal; color:var(--cyan); }
+.s3-desc { font-size:10pt; color:rgba(255,255,255,.65); line-height:1.65; max-width:100mm; position:relative; z-index:1; }
+.s3-tags { display:flex; gap:7px; flex-wrap:wrap; position:relative; z-index:1; }
+.s3-tag {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:4px 11px; border-radius:100px;
+  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18);
+  font-family:'Outfit',sans-serif; font-size:7.5pt; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:#fff;
+}
+
+.s3-right {
+  padding:12mm 14mm 12mm 8mm;
+  background:#fff;
+  display:flex; flex-direction:column; justify-content:center; gap:12px;
+}
+.s3-right .eyebrow { color:var(--blue); margin-bottom:4px; }
+.s3-flows { display:flex; flex-direction:column; gap:8px; }
+.s3-flow {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:12px 14px; border-radius:10px;
+  background:var(--n50); border:1px solid var(--n200);
+}
+.s3-flow-icon {
+  width:32px; height:32px; border-radius:8px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:14px;
+}
+.s3-flow-1 .s3-flow-icon { background:rgba(15,41,233,.08); }
+.s3-flow-2 .s3-flow-icon { background:rgba(123,0,220,.08); }
+.s3-flow-3 .s3-flow-icon { background:rgba(0,187,255,.08); }
+.s3-flow-4 .s3-flow-icon { background:rgba(15,41,233,.08); }
+.s3-flow-text h4 { font-family:'Outfit',sans-serif; font-size:10.5pt; font-weight:700; color:var(--primary); margin-bottom:2px; }
+.s3-flow-text p { font-size:8.5pt; color:var(--n500); line-height:1.5; }
+.s3-flow-result {
+  margin-left:auto; flex-shrink:0; text-align:right;
+  font-family:'Outfit',sans-serif; font-size:11pt; font-weight:800;
+  letter-spacing:-.02em; color:var(--blue);
+  white-space:nowrap;
+}
+
+
+/* ════════════════════════════════════════════
+   SLIDE 4 — MÉTRICAS (números grandes)
+════════════════════════════════════════════ */
+.s4-bg { position:absolute; inset:0; background:linear-gradient(145deg,#030a8b,#0c27e8 55%,#7b00dc); }
+.s4-inner {
+  position:relative; z-index:2; width:100%; height:100%;
+  padding:12mm 14mm;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.s4-header { text-align:center; }
+.s4-header .eyebrow { color:var(--cyan); justify-content:center; margin-bottom:8px; }
+.s4-header h2 { font-family:'Outfit',sans-serif; font-size:20pt; font-weight:800; color:#fff; letter-spacing:-.02em; }
+
+.s4-big { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.s4-num-card {
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:14px; padding:16px 12px 14px;
+  text-align:center; display:flex; flex-direction:column; gap:6px;
+}
+.s4-num {
+  font-family:'Outfit',sans-serif; font-size:48pt; font-weight:900;
+  letter-spacing:-.05em; line-height:1;
+  background:linear-gradient(135deg,#fff 30%,rgba(0,187,255,.85));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.s4-num-label { font-family:'Outfit',sans-serif; font-size:8pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4); line-height:1.4; }
+
+.s4-bottom { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.s4-pillar {
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+  border-radius:10px; padding:12px 14px;
+  display:flex; gap:10px; align-items:flex-start;
+}
+.s4-pillar-ico {
+  width:28px; height:28px; border-radius:6px; flex-shrink:0;
+  background:linear-gradient(135deg,rgba(0,187,255,.2),rgba(123,0,220,.2));
+  border:1px solid rgba(0,187,255,.2);
+  display:flex; align-items:center; justify-content:center; font-size:13px;
+}
+.s4-pillar h4 { font-family:'Outfit',sans-serif; font-size:9.5pt; font-weight:700; color:#fff; margin-bottom:2px; }
+.s4-pillar p { font-size:8pt; color:rgba(255,255,255,.5); line-height:1.55; }
+
+
+/* ════════════════════════════════════════════
+   SLIDE 5 — COMPARATIVO
+════════════════════════════════════════════ */
+.s5-inner {
+  width:100%; height:100%;
+  padding:10mm 14mm;
+  display:flex; flex-direction:column; gap:0;
+}
+.s5-header { text-align:center; margin-bottom:6mm; }
+.s5-header .eyebrow { color:var(--blue); justify-content:center; margin-bottom:6px; }
+.s5-header h2 { font-family:'Outfit',sans-serif; font-size:20pt; font-weight:800; color:var(--primary); letter-spacing:-.02em; line-height:1.2; }
+.s5-header p { font-size:9pt; color:var(--n500); margin-top:4px; }
+
+.comp-wrap { flex:1; overflow:hidden; }
+table.comp {
+  width:100%; border-collapse:collapse; font-size:8.5pt;
+}
+table.comp thead th {
+  padding:8px 7px; font-family:'Outfit',sans-serif; font-size:7.5pt;
+  font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+  border-bottom:2px solid var(--n200); text-align:center;
+}
+.th-feat { text-align:left !important; color:var(--n500); }
+.th-bd { color:var(--blue) !important; background:rgba(15,41,233,.04); border-left:1.5px solid rgba(15,41,233,.15); border-right:1.5px solid rgba(15,41,233,.15); border-radius:7px 7px 0 0; }
+.th-bd small { font-size:6.5pt; font-weight:700; letter-spacing:.08em; background:rgba(15,41,233,.09); color:var(--blue); border:1px solid rgba(15,41,233,.18); padding:1px 6px; border-radius:4px; display:inline-block; margin-top:2px; }
+
+table.comp tbody tr { border-bottom:1px solid #f0f2f8; }
+table.comp tbody td { padding:7px 7px; text-align:center; vertical-align:middle; }
+.td-feat { text-align:left !important; }
+.td-bd { background:rgba(15,41,233,.025); border-left:1.5px solid rgba(15,41,233,.1); border-right:1.5px solid rgba(15,41,233,.1); }
+table.comp tfoot td.tf-bd { background:rgba(15,41,233,.03); border-left:1.5px solid rgba(15,41,233,.1); border-right:1.5px solid rgba(15,41,233,.1); border-bottom:1.5px solid rgba(15,41,233,.1); border-radius:0 0 7px 7px; height:6px; }
+.feat-name { font-family:'Outfit',sans-serif; font-size:9pt; font-weight:600; color:var(--primary); display:block; }
+.feat-desc { font-size:7.5pt; color:var(--n400); display:block; margin-top:1px; }
+.ck-y { color:#22c55e; font-size:14pt; }
+.ck-p { color:#f59e0b; font-size:13pt; }
+.ck-n { color:#d1d5db; font-size:14pt; font-weight:300; }
+
+.comp-legend { display:flex; gap:14px; justify-content:center; margin-top:6px; padding-top:6px; border-top:1px solid var(--n200); }
+.comp-legend-item { display:flex; align-items:center; gap:4px; font-size:7.5pt; color:var(--n500); }
+
+
+/* ════════════════════════════════════════════
+   SLIDE 6 — CASES
+════════════════════════════════════════════ */
+.s6-bg { position:absolute; inset:0; background:linear-gradient(145deg,#000253 0%,#0b1fa6 50%,#7b00dc 100%); }
+.s6-inner {
+  position:relative; z-index:2; width:100%; height:100%;
+  padding:12mm 14mm;
+  display:flex; flex-direction:column; gap:8mm;
+}
+.s6-header { text-align:center; }
+.s6-header .eyebrow { color:var(--cyan); justify-content:center; margin-bottom:6px; }
+.s6-header h2 { font-family:'Outfit',sans-serif; font-size:22pt; font-weight:800; color:#fff; letter-spacing:-.02em; line-height:1.2; }
+
+.s6-cases { display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1; }
+.s6-case {
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09);
+  border-radius:14px; overflow:hidden; display:flex;
+}
+.s6-case-accent {
+  width:8px; flex-shrink:0;
+}
+.s6-case-1 .s6-case-accent { background:linear-gradient(180deg,var(--blue),var(--cyan)); }
+.s6-case-2 .s6-case-accent { background:linear-gradient(180deg,var(--purple),var(--pink)); }
+.s6-case-body { padding:14px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
+.s6-case-sector {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:2px 9px; border-radius:100px; width:fit-content;
+  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18);
+  font-family:'Outfit',sans-serif; font-size:7pt; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; color:#fff;
+}
+.s6-case-big {
+  font-family:'Outfit',sans-serif; font-size:42pt; font-weight:900;
+  letter-spacing:-.05em; line-height:1; color:#fff;
+}
+.s6-case-1 .s6-case-big { color:var(--cyan); }
+.s6-case-2 .s6-case-big { color:#c084fc; }
+.s6-case-sublabel { font-size:8.5pt; color:rgba(255,255,255,.45); margin-top:-2px; }
+.s6-case-body h3 { font-family:'Outfit',sans-serif; font-size:10.5pt; font-weight:700; color:#fff; line-height:1.35; }
+.s6-case-body p { font-size:8.5pt; color:rgba(255,255,255,.58); line-height:1.6; }
+.s6-kpis { display:flex; gap:7px; flex-wrap:wrap; margin-top:2px; }
+.s6-kpi {
+  padding:4px 9px; border-radius:7px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+}
+.s6-kpi strong { font-family:'Outfit',sans-serif; font-size:10.5pt; font-weight:800; letter-spacing:-.02em; color:#fff; display:block; line-height:1; }
+.s6-kpi span { font-size:7pt; color:rgba(255,255,255,.4); display:block; margin-top:2px; }
+.s6-case-1 .s6-kpi:first-child strong { color:var(--cyan); }
+.s6-case-2 .s6-kpi:first-child strong { color:#c084fc; }
+
+/* logos hint */
+.s6-proof {
+  display:flex; align-items:center; gap:10px;
+  padding-top:6px; border-top:1px solid rgba(255,255,255,.08);
+}
+.s6-proof-label { font-family:'Outfit',sans-serif; font-size:7.5pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.28); white-space:nowrap; }
+.s6-proof-logos { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+.s6-proof-logo { height:16px; width:auto; max-width:70px; object-fit:contain; filter:brightness(0) invert(1) opacity(.3); }
+
+
+/* ════════════════════════════════════════════
+   SLIDE 7 — POR QUÊ BLUEDOCS (diferenciais)
+════════════════════════════════════════════ */
+.s7-inner {
+  width:100%; height:100%;
+  display:grid; grid-template-columns:1fr 1fr;
+}
+.s7-left {
+  padding:12mm 10mm 12mm 14mm;
+  display:flex; flex-direction:column; justify-content:center; gap:12px;
+  background:var(--n50);
+}
+.s7-left .eyebrow { color:var(--blue); margin-bottom:4px; }
+.s7-left h2 { font-family:'Outfit',sans-serif; font-size:22pt; font-weight:800; color:var(--primary); line-height:1.15; letter-spacing:-.02em; }
+.s7-left p { font-size:10pt; color:var(--n500); line-height:1.65; }
+
+.s7-diffs { display:flex; flex-direction:column; gap:8px; }
+.s7-diff {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:10px 12px; border-radius:9px;
+  background:#fff; border:1px solid var(--n200);
+}
+.s7-diff-num {
+  width:26px; height:26px; border-radius:50%; flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Outfit',sans-serif; font-size:9pt; font-weight:800; color:#fff;
+}
+.s7-diff h4 { font-family:'Outfit',sans-serif; font-size:10pt; font-weight:700; color:var(--primary); margin-bottom:2px; }
+.s7-diff p { font-size:8.5pt; color:var(--n500); line-height:1.5; }
+
+.s7-right {
+  background:linear-gradient(155deg,#000253 0%,#0b1fa6 50%,#7b00dc 100%);
+  padding:12mm 14mm 12mm 10mm;
+  display:flex; flex-direction:column; justify-content:center; gap:14px;
+  position:relative; overflow:hidden;
+}
+.s7-glow { position:absolute; top:-10%; right:-10%; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(123,0,220,.45) 0%,transparent 65%); filter:blur(14px); }
+.s7-right .eyebrow { color:var(--cyan); position:relative; z-index:1; }
+.s7-faq-items { display:flex; flex-direction:column; gap:10px; position:relative; z-index:1; }
+.s7-faq {
+  padding:11px 14px; border-radius:9px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.09);
+  border-left:3px solid var(--cyan);
+}
+.s7-faq h4 { font-family:'Outfit',sans-serif; font-size:9.5pt; font-weight:700; color:#fff; margin-bottom:3px; }
+.s7-faq p { font-size:8pt; color:rgba(255,255,255,.58); line-height:1.55; }
+
+
+/* ════════════════════════════════════════════
+   SLIDE 8 — PRÓXIMO PASSO (CTA)
+════════════════════════════════════════════ */
+.s8-bg { position:absolute; inset:0; background:linear-gradient(145deg,#000253 0%,#0b1fa6 45%,#7b00dc 100%); }
+.s8-inner {
+  position:relative; z-index:2; width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  padding:12mm 14mm; gap:16mm;
+}
+.s8-left { flex:1; display:flex; flex-direction:column; gap:14px; }
+.s8-kicker { font-family:'Outfit',sans-serif; font-size:8.5pt; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--cyan); }
+.s8-headline { font-family:'Outfit',sans-serif; font-size:32pt; font-weight:800; color:#fff; line-height:1.06; letter-spacing:-.03em; }
+.s8-headline em { font-style:normal; color:var(--cyan); }
+.s8-desc { font-size:10.5pt; color:rgba(255,255,255,.65); line-height:1.65; max-width:110mm; }
+.s8-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.s8-list li {
+  display:flex; align-items:center; gap:10px;
+  font-size:10pt; color:rgba(255,255,255,.82);
+}
+.s8-list li::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--cyan); flex-shrink:0;
+}
+
+.s8-right {
+  width:100mm; flex-shrink:0;
+  display:flex; flex-direction:column; gap:12px;
+}
+.s8-box {
+  border-radius:14px; padding:20px 22px;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.13);
+  display:flex; flex-direction:column; gap:12px;
+}
+.s8-box-icon {
+  width:42px; height:42px; border-radius:10px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  box-shadow:0 6px 22px rgba(15,41,233,.4);
+  display:flex; align-items:center; justify-content:center; font-size:18px;
+}
+.s8-box h3 { font-family:'Outfit',sans-serif; font-size:14pt; font-weight:800; color:#fff; line-height:1.2; }
+.s8-box p { font-size:8.5pt; color:rgba(255,255,255,.55); line-height:1.6; }
+.s8-cta-btn {
+  display:block; text-align:center;
+  padding:10px 0; border-radius:8px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  font-family:'Outfit',sans-serif; font-size:10pt; font-weight:700;
+  letter-spacing:.02em; color:#fff;
+  box-shadow:0 6px 20px rgba(15,41,233,.35);
+}
+.s8-trust { display:flex; align-items:center; justify-content:center; gap:6px; font-size:7.5pt; color:rgba(255,255,255,.3); }
+
+.s8-contact {
+  padding:12px 14px; border-radius:10px;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09);
+  display:flex; align-items:center; gap:10px;
+}
+.s8-contact img { height:11px; width:auto; filter:brightness(0) invert(1); opacity:.55; }
+.s8-contact-sep { width:1px; height:28px; background:rgba(255,255,255,.12); }
+.s8-contact-info strong { display:block; font-size:8.5pt; color:rgba(255,255,255,.7); font-family:'Outfit',sans-serif; font-weight:600; }
+.s8-contact-info span { display:block; font-size:7.5pt; color:rgba(255,255,255,.35); margin-top:1px; }
+.s8-contact-info a { display:block; font-size:8pt; color:var(--cyan); font-weight:600; font-family:'Outfit',sans-serif; margin-top:2px; text-decoration:none; }
+</style>
+</head>
+<body>
+
+
+<!-- ══════════════════════════════════
+  S1 — CAPA
+══════════════════════════════════ -->
+<div class="slide">
+  <div class="s1-bg"></div>
+  <div class="grid-veil"></div>
+  <div class="glow" style="right:-5%;top:-15%;width:240mm;height:240mm;background:radial-gradient(circle,rgba(123,0,220,.5) 0%,transparent 65%);"></div>
+  <div class="glow" style="left:-4%;bottom:-10%;width:160mm;height:160mm;background:radial-gradient(circle,rgba(0,187,255,.3) 0%,transparent 65%);"></div>
+
+  <div class="s1-inner">
+    <div class="s1-left">
+      <div class="s1-logobar">
+        <img src="bluemetrics_logo_RGB_blue_horizontal.png" alt="BlueMetrics"/>
+        <div class="s1-logo-sep"></div>
+        <div class="s1-product">
+          <strong>BlueDocs</strong>
+          <small>Solução</small>
+        </div>
+      </div>
+
+      <div class="s1-copy">
+        <p class="s1-kicker">Material Comercial</p>
+        <h1 class="s1-headline">
+          O trabalho de<br><em>3 analistas.</em><br>Sem erro.
+        </h1>
+        <p class="s1-sub">IA generativa treinada nos seus documentos — contratos, editais, data rooms. Resultado desde o primeiro mês.</p>
+      </div>
+
+      <div class="s1-bottom-bar">
+        <div class="s1-stat"><strong>98%</strong><span>Precisão</span></div>
+        <div class="s1-sep"></div>
+        <div class="s1-stat"><strong>10×</strong><span>Velocidade</span></div>
+        <div class="s1-sep"></div>
+        <div class="s1-stat"><strong>60%</strong><span>Menos custo</span></div>
+        <div class="s1-sep"></div>
+        <div class="s1-stat"><strong>&lt; 30d</strong><span>ROI</span></div>
+      </div>
+    </div>
+
+    <div class="s1-right">
+      <div class="mockup-shell">
+        <div class="mock-bar">
+          <div class="mock-dots">
+            <div class="mock-dot" style="background:#ff5f57;"></div>
+            <div class="mock-dot" style="background:#febc2e;"></div>
+            <div class="mock-dot" style="background:#28c840;"></div>
+          </div>
+          <div class="mock-title">BlueDocs</div>
+          <div class="mock-badge">Grupo Montanha</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-sidebar">
+            <div class="mock-sidebar-label">Documentos</div>
+            <div class="mock-doc"><span class="mock-doc-icon">📄</span><span class="mock-doc-name">Contrato_FornA.pdf</span></div>
+            <div class="mock-doc"><span class="mock-doc-icon">📄</span><span class="mock-doc-name">Edital_PP_2024.pdf</span></div>
+            <div class="mock-doc"><span class="mock-doc-icon">📄</span><span class="mock-doc-name">Contrato_LogX.pdf</span></div>
+            <div class="mock-doc"><span class="mock-doc-icon">⚖️</span><span class="mock-doc-name">Acordo_Serv_Y.pdf</span></div>
+          </div>
+          <div class="mock-chat">
+            <div class="mock-msg-user">Quais contratos vencem em Q3?</div>
+            <div class="mock-msg-ai">
+              <div class="mock-ai-hdr">
+                <div class="mock-ai-avatar">BD</div>
+                <span class="mock-ai-name">BlueDocs</span>
+              </div>
+              3 contratos vencem entre jul–set. Fornecedor A em 14/07 e Serviços Y com <span style="color:#febc2e;">18 dias para renovação</span>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-stamp" style="color:rgba(255,255,255,.25);">bluemetrics.com.br</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+  S2 — O PROBLEMA
+══════════════════════════════════ -->
+<div class="slide">
+  <div class="s2-bg"></div>
+  <div class="grid-veil"></div>
+  <div class="glow" style="right:-8%;top:-20%;width:220mm;height:220mm;background:radial-gradient(circle,rgba(0,187,255,.07) 0%,transparent 65%);"></div>
+
+  <div class="s2-inner">
+    <div class="s2-header">
+      <p class="eyebrow" style="color:var(--cyan);justify-content:center;">Custo de Oportunidade</p>
+      <h2>Seu time lê documentos.<br><em>A IA entende todos.</em></h2>
+    </div>
+
+    <div class="s2-pains">
+      <div class="s2-pain">
+        <div class="s2-pain-num c1">40%</div>
+        <div class="s2-pain-label">do tempo</div>
+        <h4>Leitura manual que consome horas</h4>
+        <p>Analistas sênior lendo PDFs de 200+ páginas linha a linha — o gargalo mais caro da sua operação.</p>
+      </div>
+      <div class="s2-pain">
+        <div class="s2-pain-num c2">3×</div>
+        <div class="s2-pain-label">mais caro revisar</div>
+        <h4>Uma vírgula mal lida pode custar uma fortuna</h4>
+        <p>Erros em contratos geram multas, litígios e rescisões milionárias. Com volume, o risco é inevitável.</p>
+      </div>
+      <div class="s2-pain">
+        <div class="s2-pain-num c3">72h</div>
+        <div class="s2-pain-label">due diligence médio</div>
+        <h4>Decisões travadas pela velocidade humana</h4>
+        <p>M&A, licitações e auditorias paralisados. Oportunidades perdidas enquanto o concorrente já decidiu.</p>
+      </div>
+      <div class="s2-pain">
+        <div class="s2-pain-num c4">∞</div>
+        <div class="s2-pain-label">PDFs inacessíveis</div>
+        <h4>Seu acervo é um buraco negro</h4>
+        <p>Décadas de contratos arquivados. Ninguém sabe o que está dentro de cada um. Conhecimento preso.</p>
+      </div>
+    </div>
+
+    <div class="s2-footer-line">
+      Você paga por <span>horas lidas</span>, não por <span>decisões tomadas</span>.
+    </div>
+  </div>
+  <div class="page-stamp" style="color:rgba(255,255,255,.25);">bluemetrics.com.br</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+  S3 — A SOLUÇÃO
+══════════════════════════════════ -->
+<div class="slide">
+  <div class="dot-veil"></div>
+  <div class="s3-inner">
+    <div class="s3-left">
+      <div class="grid-veil"></div>
+      <div class="s3-glow"></div>
+      <p class="eyebrow" style="color:var(--cyan);">Nossa Solução</p>
+      <h2 class="s3-headline">Uma solução para cada gargalo<br>da sua <em>operação.</em></h2>
+      <p class="s3-desc">O BlueDocs não é uma ferramenta genérica de IA. É treinado nos seus documentos, integrado aos seus sistemas e entrega resultado medido por métrica de negócio.</p>
+      <div class="s3-tags">
+        <span class="s3-tag">Análise de Contratos</span>
+        <span class="s3-tag">Editais & RFPs</span>
+        <span class="s3-tag">Due Diligence</span>
+        <span class="s3-tag">Auditoria & Compliance</span>
+      </div>
+    </div>
+
+    <div class="s3-right">
+      <p class="eyebrow" style="color:var(--blue);">O que acontece na prática</p>
+      <div class="s3-flows">
+        <div class="s3-flow s3-flow-1">
+          <div class="s3-flow-icon">📄</div>
+          <div class="s3-flow-text">
+            <h4>Análise de Contratos</h4>
+            <p>Extração de cláusulas, riscos e desvios vs. template. Sem leitura linha a linha.</p>
+          </div>
+          <div class="s3-flow-result">−50% tempo</div>
+        </div>
+        <div class="s3-flow s3-flow-2">
+          <div class="s3-flow-icon">🏛</div>
+          <div class="s3-flow-text">
+            <h4>Editais & RFPs</h4>
+            <p>Triagem automática de requisitos. Seu time entra só nos editais que valem.</p>
+          </div>
+          <div class="s3-flow-result">10× mais editais</div>
+        </div>
+        <div class="s3-flow s3-flow-3">
+          <div class="s3-flow-icon">🔍</div>
+          <div class="s3-flow-text">
+            <h4>Due Diligence</h4>
+            <p>Data rooms inteiros varridos, riscos consolidados, antes do prazo fechar.</p>
+          </div>
+          <div class="s3-flow-result">312 docs / 3h</div>
+        </div>
+        <div class="s3-flow s3-flow-4">
+          <div class="s3-flow-icon">🛡</div>
+          <div class="s3-flow-text">
+            <h4>Auditoria & Compliance</h4>
+            <p>LGPD, BACEN, regulações setoriais. Conformidade contínua, não só no evento de auditoria.</p>
+          </div>
+          <div class="s3-flow-result">Score 80%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-stamp" style="color:var(--n400);">bluemetrics.com.br</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+  S4 — NÚMEROS
+══════════════════════════════════ -->
+<div class="slide">
+  <div class="s4-bg"></div>
+  <div class="grid-veil"></div>
+  <div class="glow" style="left:10%;bottom:-10%;width:200mm;height:200mm;background:radial-gradient(circle,rgba(15,41,233,.12) 0%,transparent 65%);"></div>
+
+  <div class="s4-inner">
+    <div class="s4-header">
+      <p class="eyebrow" style="color:var(--cyan);justify-content:center;">Resultados em Produção</p>
+      <h2>Eficiência que aparece no P&L.</h2>
+    </div>
+
+    <div class="s4-big">
+      <div class="s4-num-card">
+        <div class="s4-num">98%</div>
+        <div class="s4-num-label">Precisão na extração de dados</div>
+      </div>
+      <div class="s4-num-card">
+        <div class="s4-num">10×</div>
+        <div class="s4-num-label">Velocidade de análise documental</div>
+      </div>
+      <div class="s4-num-card">
+        <div class="s4-num">60%</div>
+        <div class="s4-num-label">Redução de custos operacionais</div>
+      </div>
+      <div class="s4-num-card">
+        <div class="s4-num">5M+</div>
+        <div class="s4-num-label">Documentos processados</div>
+      </div>
+    </div>
+
+    <div class="s4-bottom">
+      <div class="s4-pillar">
+        <div class="s4-pillar-ico">🔒</div>
+        <div>
+          <h4>Dados no seu ambiente</h4>
+          <p>Roda na sua conta AWS. Nenhum documento sai do seu perímetro. LGPD e SOC 2.</p>
+        </div>
+      </div>
+      <div class="s4-pillar">
+        <div class="s4-pillar-ico">🧠</div>
+        <div>
+          <h4>White Box AI — auditável</h4>
+          <p>Cada resposta cita o trecho exato do documento. Rastreável por compliance.</p>
+        </div>
+      </div>
+      <div class="s4-pillar">
+        <div class="s4-pillar-ico">🚀</div>
+        <div>
+          <h4>ROI em menos de 30 dias</h4>
+          <p>Implantação de 1–2 semanas. Valor real desde o primeiro mês de operação.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-stamp" style="color:rgba(255,255,255,.25);">bluemetrics.com.br</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+  S5 — COMPARATIVO
+══════════════════════════════════ -->
+<div class="slide">
+  <div class="dot-veil"></div>
+  <div class="s5-inner">
+    <div class="s5-header">
+      <p class="eyebrow" style="color:var(--blue);justify-content:center;">Comparativo de Mercado</p>
+      <h2>BlueDocs não é uma ferramenta.<br>É inteligência aplicada ao seu negócio.</h2>
+      <p>O que realmente separa uma solução sob medida de um SaaS genérico.</p>
+    </div>
+
+    <div class="comp-wrap">
+      <table class="comp">
+        <thead>
+          <tr>
+            <th class="th-feat">Capacidade</th>
+            <th style="color:#9ca3af;font-weight:700;font-size:7.5pt;">OCR /<br>Extração</th>
+            <th style="color:#9ca3af;font-weight:700;font-size:7.5pt;">SaaS<br>Documental</th>
+            <th style="color:#9ca3af;font-weight:700;font-size:7.5pt;">BIG4 /<br>Consultoria</th>
+            <th class="th-bd">BLUEDOCS<br><small>Não é SaaS</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-feat"><span class="feat-name">Entende o contexto do documento</span><span class="feat-desc">Interpreta cláusulas, riscos e significado — não só extrai texto</span></td>
+            <td><span class="ck-n">—</span></td><td><span class="ck-n">—</span></td><td><span class="ck-p">◑</span></td>
+            <td class="td-bd"><span class="ck-y">✓</span></td>
+          </tr>
+          <tr>
+            <td class="td-feat"><span class="feat-name">Consulta em linguagem natural</span><span class="feat-desc">"Quais contratos vencem em Q3 com multa acima de R$50k?"</span></td>
+            <td><span class="ck-n">—</span></td><td><span class="ck-n">—</span></td><td><span class="ck-n">—</span></td>
+            <td class="td-bd"><span class="ck-y">✓</span></td>
+          </tr>
+          <tr>
+            <td class="td-feat"><span class="feat-name">Dados 100% no seu ambiente</span><span class="feat-desc">Roda na AWS do cliente. Zero data leakage. LGPD.</span></td>
+            <td><span class="ck-n">—</span></td><td><span class="ck-n">—</span></td><td><span class="ck-p">◑</span></td>
+            <td class="td-bd"><span class="ck-y">✓</span></td>
+          </tr>
+          <tr>
+            <td class="td-feat"><span class="feat-name">Integração com ERP / CRM / sistemas legados</span><span class="feat-desc">SAP, TOTVS, Oracle, MS Dynamics e outros via API</span></td>
+            <td><span class="ck-n">—</span></td><td><span class="ck-p">◑</span></td><td><span class="ck-y">✓</span></td>
+            <td class="td-bd"><span class="ck-y">✓</span></td>
+          </tr>
+          <tr>
+            <td class="td-feat"><span class="feat-name">Evolui com o negócio — não é entrega única</span><span class="feat-desc">Operação contínua: a solução aprende e cresce junto</span></td>
+            <td><span class="ck-n">—</span></td><td><span class="ck-n">—</span></td><td><span class="ck-n">—</span></td>
+            <td class="td-bd"><span class="ck-y">✓</span></td>
+          </tr>
+          <tr>
+            <td class="td-feat"><span class="feat-name">ROI documentado por métrica de negócio</span><span class="feat-desc">Não por entrega técnica — por impacto real e mensurável</span></td>
+            <td><span class="ck-n">—</span></td><td><span class="ck-n">—</span></td><td><span class="ck-p">◑</span></td>
+            <td class="td-bd"><span class="ck-y">✓</span></td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td></td><td></td><td></td><td></td><td class="tf-bd"></td></tr></tfoot>
+      </table>
+    </div>
+
+    <div class="comp-legend">
+      <div class="comp-legend-item"><span class="ck-y" style="font-size:11pt;">✓</span> Disponível</div>
+      <div class="comp-legend-item"><span class="ck-p" style="font-size:11pt;">◑</span> Parcial</div>
+      <div class="comp-legend-item"><span class="ck-n" style="font-size:11pt;">—</span> Não disponível</div>
+    </div>
+  </div>
+  <div class="page-stamp" style="color:var(--n400);">bluemetrics.com.br</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+  S6 — CASES
+══════════════════════════════════ -->
+<div class="slide">
+  <div class="s6-bg"></div>
+  <div class="grid-veil"></div>
+  <div class="glow" style="right:-8%;top:-20%;width:220mm;height:220mm;background:radial-gradient(circle,rgba(123,0,220,.5) 0%,transparent 65%);"></div>
+
+  <div class="s6-inner">
+    <div class="s6-header">
+      <p class="eyebrow" style="color:var(--cyan);justify-content:center;">Cases de Sucesso</p>
+      <h2>Empresas que trocaram leitura manual por resultado.</h2>
+    </div>
+
+    <div class="s6-cases">
+      <div class="s6-case s6-case-1">
+        <div class="s6-case-accent"></div>
+        <div class="s6-case-body">
+          <div class="s6-case-sector">🛍 Varejo</div>
+          <div class="s6-case-big">−50%</div>
+          <div class="s6-case-sublabel">no tempo de análise de contratos</div>
+          <h3>Grande rede varejista automatizou revisão de contratos de locação e eliminou o risco de cláusulas indesejadas.</h3>
+          <p>Com ~50 lojas em expansão, revisão manual consumia horas de executivos sênior. O BlueDocs automatizou extração, classificação por criticidade e comparação com o histórico de contratos.</p>
+          <div class="s6-kpis">
+            <div class="s6-kpi"><strong>−50%</strong><span>tempo análise</span></div>
+            <div class="s6-kpi"><strong>95%</strong><span>acurácia</span></div>
+            <div class="s6-kpi"><strong>−80%</strong><span>risco jurídico</span></div>
+            <div class="s6-kpi"><strong>−70%</strong><span>consultas ao jurídico</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s6-case s6-case-2">
+        <div class="s6-case-accent"></div>
+        <div class="s6-case-body">
+          <div class="s6-case-sector">💻 Tecnologia</div>
+          <div class="s6-case-big">Zero</div>
+          <div class="s6-case-sublabel">retreinamentos por layout de documento</div>
+          <h3>Multinacional substituiu OCR tradicional por IA generativa, simplificando arquitetura e eliminando ciclos de retreinamento.</h3>
+          <p>A cada novo layout de CNH ou RG, o ciclo de rotulagem e retreinamento parava tudo. O BlueDocs lê e interpreta semanticamente qualquer documento, independente do formato.</p>
+          <div class="s6-kpis">
+            <div class="s6-kpi"><strong>+75%</strong><span>acurácia</span></div>
+            <div class="s6-kpi"><strong>−30%</strong><span>latência</span></div>
+            <div class="s6-kpi"><strong>Zero</strong><span>retreinamento</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s6-proof">
+      <span class="s6-proof-label">Também confiam</span>
+      <div class="s6-proof-logos">
+        <img class="s6-proof-logo" src="Logos - cases/Philco-logo.png" alt="Philco"/>
+        <img class="s6-proof-logo" src="Logos - cases/britania-logo.png" alt="Britania"/>
+        <img class="s6-proof-logo" src="Logos - cases/webmotors-logo.png" alt="Webmotors"/>
+        <img class="s6-proof-logo" src="Logos - cases/logo - jorge.png" alt="Jorge Bischoff"/>
+        <img class="s6-proof-logo" src="Logos - cases/logo - benoit.png" alt="Benoit"/>
+      </div>
+    </div>
+  </div>
+  <div class="page-stamp" style="color:rgba(255,255,255,.25);">bluemetrics.com.br</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+  S7 — POR QUÊ BLUEDOCS
+══════════════════════════════════ -->
+<div class="slide">
+  <div class="dot-veil"></div>
+  <div class="s7-inner">
+    <div class="s7-left">
+      <div>
+        <p class="eyebrow" style="color:var(--blue);margin-bottom:8px;">Por que escolher</p>
+        <h2>O BlueDocs não entrega tecnologia. Entrega resultado.</h2>
+        <p style="margin-top:10px;">Diferença entre um assistente generalista e um especialista no seu negócio.</p>
+      </div>
+      <div class="s7-diffs">
+        <div class="s7-diff">
+          <div class="s7-diff-num">1</div>
+          <div>
+            <h4>Treinado nos seus documentos</h4>
+            <p>Não responde qualquer coisa de forma genérica — conhece seus contratos, seus termos, seu setor.</p>
+          </div>
+        </div>
+        <div class="s7-diff">
+          <div class="s7-diff-num">2</div>
+          <div>
+            <h4>Resultado desde o dia 1 em produção</h4>
+            <p>Implantação de 1–2 semanas. ROI medido por hora salva, risco evitado e volume processado.</p>
+          </div>
+        </div>
+        <div class="s7-diff">
+          <div class="s7-diff-num">3</div>
+          <div>
+            <h4>Cresce com você — não é entrega única</h4>
+            <p>A BlueMetrics cuida de toda a infraestrutura. Seu time usa, a gente mantém e evolui.</p>
+          </div>
+        </div>
+        <div class="s7-diff">
+          <div class="s7-diff-num">4</div>
+          <div>
+            <h4>Equipe técnica interna? Não precisa.</h4>
+            <p>Interface conversacional. Qualquer analista usa sem treinamento técnico.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s7-right">
+      <div class="grid-veil"></div>
+      <div class="s7-glow"></div>
+      <p class="eyebrow" style="color:var(--cyan);">Dúvidas frequentes</p>
+      <div class="s7-faq-items">
+        <div class="s7-faq">
+          <h4>Funciona com qualquer tipo de documento?</h4>
+          <p>Sim — PDF nativo, escaneado (OCR), Word, imagem, múltiplas páginas. Se existe na sua operação, o BlueDocs lê.</p>
+        </div>
+        <div class="s7-faq">
+          <h4>Os documentos ficam seguros?</h4>
+          <p>Roda na sua conta AWS. Zero data leakage. Criptografia ponta a ponta, logs de auditoria por ação. LGPD compliant.</p>
+        </div>
+        <div class="s7-faq">
+          <h4>Como integra com o ERP que já usamos?</h4>
+          <p>API para SAP, TOTVS, Oracle, MS Dynamics e outros. Alimenta seus workflows automaticamente — sem digitação.</p>
+        </div>
+        <div class="s7-faq">
+          <h4>Em quanto tempo vejo resultado?</h4>
+          <p>ROI comprovado em menos de 30 dias. Implantação em 1–2 semanas. O dia 1 já é produtivo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-stamp" style="color:var(--n400);">bluemetrics.com.br</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+  S8 — PRÓXIMO PASSO
+══════════════════════════════════ -->
+<div class="slide">
+  <div class="s8-bg"></div>
+  <div class="grid-veil"></div>
+  <div class="glow" style="left:5%;top:-20%;width:200mm;height:200mm;background:radial-gradient(circle,rgba(15,41,233,.18) 0%,transparent 65%);"></div>
+  <div class="glow" style="right:10%;bottom:-15%;width:180mm;height:180mm;background:radial-gradient(circle,rgba(0,187,255,.12) 0%,transparent 65%);"></div>
+
+  <div class="s8-inner">
+    <div class="s8-left">
+      <p class="s8-kicker">Diagnóstico gratuito</p>
+      <h2 class="s8-headline">Veja o BlueDocs em ação<br>no <em>seu cenário.</em></h2>
+      <p class="s8-desc">Nosso time analisa o seu volume documental e mostra exatamente onde a IA recupera mais tempo e custo — com os seus contratos, os seus editais, os seus arquivos.</p>
+      <ul class="s8-list">
+        <li>Demo ao vivo, sem roteiro genérico</li>
+        <li>Estimativa de ROI do seu cenário específico</li>
+        <li>Sem custo para começar</li>
+      </ul>
+    </div>
+
+    <div class="s8-right">
+      <div class="s8-box">
+        <div class="s8-box-icon">💡</div>
+        <h3>Análise personalizada</h3>
+        <p>Mostre seus documentos reais. Nosso time mapeia onde a IA gera mais resultado para a sua operação.</p>
+        <span class="s8-cta-btn">Solicitar diagnóstico gratuito</span>
+        <div class="s8-trust">🔒 Seus dados protegidos. Sem spam.</div>
+      </div>
+
+      <div class="s8-contact">
+        <img src="bluemetrics_logo_RGB_blue_horizontal.png" alt="BlueMetrics"/>
+        <div class="s8-contact-sep"></div>
+        <div class="s8-contact-info">
+          <strong>BlueMetrics — Porto Alegre, RS</strong>
+          <span>Av. Ipiranga, 6681 · TECNOPUC</span>
+          <a href="#">bluemetrics.com.br</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-stamp" style="color:rgba(255,255,255,.25);">bluemetrics.com.br</div>
+</div>
+
+
+</body>
+</html>
