@@ -1,3 +1,12 @@
+// Normaliza telefone BR para E.164 (+55DDDNÚMERO), formato exigido pelo HubSpot para WhatsApp
+function normalizePhoneBR(raw) {
+  if (!raw) return raw;
+  let digits = String(raw).replace(/\D/g, '').replace(/^0+/, '');
+  // 12-13 dígitos começando com 55 = já tem código do país (evita confundir com DDD 55)
+  if (!(digits.length >= 12 && digits.startsWith('55'))) digits = '55' + digits;
+  return '+' + digits;
+}
+
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
@@ -19,6 +28,8 @@ export default async function handler(req, res) {
     'Content-Type': 'application/json',
   };
 
+  const phone = normalizePhoneBR(telefone);
+
   const parts = nome.trim().split(' ');
   const firstname = parts[0];
   const lastname = parts.slice(1).join(' ') || '';
@@ -28,7 +39,7 @@ export default async function handler(req, res) {
   // 1. Create Contact — core fields only (guaranteed safe)
   const coreProps = {
     firstname, lastname, email,
-    phone: telefone,
+    phone,
     jobtitle: cargo,
     company: empresa,
   };
@@ -65,7 +76,7 @@ export default async function handler(req, res) {
       // LGPD: interesse legítimo — lead cadastrado na landing page
       hs_legal_basis: 'Legitimate interest – prospect/lead',
       // Número de telefone do WhatsApp
-      numero_de_telefone_do_whatsapp: telefone,
+      numero_de_telefone_do_whatsapp: phone,
       // UTM → propriedades de origem do HubSpot
       ...(utm_source   && { hs_analytics_source: utm_source }),
       ...(utm_medium   && { origem: utm_medium }),

@@ -2724,6 +2724,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     const form = document.getElementById('lead-form');
     const data = Object.fromEntries(new FormData(form));
+    // Normaliza telefone BR para E.164 (+55DDDNÚMERO) — formato exigido pelo HubSpot para WhatsApp
+    if (data.telefone) {
+      let digits = String(data.telefone).replace(/\D/g, '').replace(/^0+/, '');
+      if (!(digits.length >= 12 && digits.startsWith('55'))) digits = '55' + digits;
+      data.telefone = '+' + digits;
+    }
     const utms = getUTMs();
 
     // Persist lead data for the thank-you page event (sessionStorage survives same-tab navigation)
