@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/conteudov1", "destination": "https://vazamentoo-roi.vercel.app/conteudov1" },
+    { "source": "/conteudov1/:path*", "destination": "https://vazamentoo-roi.vercel.app/conteudov1/:path*" },
     { "source": "/obrigado", "destination": "/obrigado.html" },
     { "source": "/privacidade", "destination": "/privacidade.html" }
   ]
