@@ -107,7 +107,7 @@ export default async function handler(req, res) {
     headers,
     body: JSON.stringify({
       properties: {
-        dealname: `${nome} — ${empresa}`,
+        dealname: `${empresa} - BlueDocs`,
         pipeline: '894815044',
         dealstage: '1352162349',
         origem_do_negocio: 'Bluemetrics',
