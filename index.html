@@ -2692,6 +2692,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('modal-subtitle').textContent = 'Preencha seus dados e um especialista BlueMetrics entra em contato em até 1 dia útil.';
   }
 
+  // Provedores de e-mail gratuitos/pessoais — bloqueados no formulário (apenas e-mail corporativo)
+  const FREE_EMAIL_DOMAINS = new Set([
+    'gmail.com', 'googlemail.com',
+    'hotmail.com', 'hotmail.com.br', 'outlook.com', 'outlook.com.br', 'live.com', 'live.com.br', 'msn.com',
+    'yahoo.com', 'yahoo.com.br', 'ymail.com', 'rocketmail.com',
+    'icloud.com', 'me.com', 'mac.com',
+    'aol.com', 'gmx.com', 'mail.com', 'zoho.com',
+    'proton.me', 'protonmail.com',
+    'yandex.com', 'yandex.ru',
+    'uol.com.br', 'bol.com.br', 'terra.com.br', 'ig.com.br', 'globo.com', 'globomail.com',
+    'r7.com', 'oi.com.br', 'pop.com.br', 'superig.com.br',
+  ]);
+
+  function isCorporateEmail(email) {
+    const value = (email || '').trim().toLowerCase();
+    // formato básico de e-mail
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return false;
+    const domain = value.split('@')[1];
+    return !FREE_EMAIL_DOMAINS.has(domain);
+  }
+
   function goStep2() {
     const s1 = document.getElementById('step1');
     const inputs = s1.querySelectorAll('[required]');
@@ -2701,6 +2722,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (!inp.value.trim()) { inp.style.borderColor = '#f100a0'; valid = false; inp.focus(); }
     });
     if (!valid) return;
+
+    // Bloqueia e-mails não corporativos (provedores gratuitos/pessoais)
+    const emailInput = s1.querySelector('[name="email"]');
+    const emailError = document.getElementById('email-error');
+    if (emailInput && !isCorporateEmail(emailInput.value)) {
+      emailInput.style.borderColor = '#f100a0';
+      if (emailError) emailError.style.display = 'block';
+      emailInput.focus();
+      return;
+    }
+    if (emailError) emailError.style.display = 'none';
     s1.classList.remove('active');
     document.getElementById('step2').classList.add('active');
     document.getElementById('dot1').classList.add('active');
@@ -2929,7 +2961,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div>
             <label class="modal-label">E-mail corporativo <span style="color:#f100a0;">*</span></label>
-            <input class="modal-input" type="email" name="email" placeholder="nome@empresa.com.br" required />
+            <input class="modal-input" type="email" name="email" placeholder="nome@empresa.com.br" required oninput="this.style.borderColor='';document.getElementById('email-error').style.display='none';" />
+            <span id="email-error" style="display:none;color:#f100a0;font-size:12px;margin-top:6px;line-height:1.4;">Use seu e-mail corporativo. Não aceitamos provedores gratuitos (Gmail, Hotmail, Outlook, etc.).</span>
           </div>
           <div>
             <label class="modal-label">Telefone / WhatsApp <span style="color:#f100a0;">*</span></label>
