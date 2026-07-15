@@ -13,9 +13,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <title>BlueDocs | Inteligência Artificial para Documentação</title>
 <link rel="icon" type="image/png" href="/favicon.ico"/>
 <link rel="shortcut icon" href="/favicon.ico"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind: pre-compiled & purged CSS (replaces the render-blocking Play CDN) -->
+<link rel="stylesheet" href="/styles.css"/>
+<!-- Fonts: preconnect + non-blocking load -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Wix+Madefor+Text:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Wix+Madefor+Text:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet"/>
+</noscript>
 <style>
   :root {
     --primary: #000253;
@@ -57,6 +65,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .reveal-d1 { transition-delay: 0.1s; }
   .reveal-d2 { transition-delay: 0.2s; }
   .reveal-d3 { transition-delay: 0.3s; }
+
+  /* LP analysis — topic 2: smaller display headlines on mobile so proof (metrics,
+     comparativo, cases) surfaces with less scroll. ~20% reduction. */
+  @media (max-width: 640px) {
+    .text-h2 { font-size: 38px !important; line-height: 1.18 !important; }
+    .text-h3 { font-size: 25px !important; }
+    #hero h1 { font-size: 30px !important; }
+  }
 
   /* Nav link underline */
   .nav-link { position: relative; padding-bottom: 2px; }
@@ -737,122 +753,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .logo-client:hover { opacity: 1; }
 </style>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        "colors": {
-          "inverse-surface": "#303037",
-          "secondary": "#0f29e9",
-          "primary-fixed": "#e0e0ff",
-          "bm-cyan": "#00bbff",
-          "bm-lime": "#caca00",
-          "on-tertiary-container": "#e66957",
-          "bm-neutral-400": "#97a0bc",
-          "secondary-fixed-dim": "#bdc2ff",
-          "surface-variant": "#e4e1eb",
-          "bm-neutral-100": "#eef0f7",
-          "on-secondary": "#ffffff",
-          "on-background": "#1b1b22",
-          "inverse-on-surface": "#f2eff9",
-          "on-primary-container": "#7b84f6",
-          "error-container": "#ffdad6",
-          "bm-orange": "#ff4400",
-          "bm-pink": "#f100a0",
-          "bm-green": "#00d100",
-          "bm-neutral-300": "#c4cadd",
-          "secondary-container": "#384cff",
-          "on-tertiary-fixed-variant": "#852217",
-          "on-secondary-fixed": "#000865",
-          "surface-container": "#efecf7",
-          "tertiary-fixed-dim": "#ffb4a8",
-          "surface-container-highest": "#e4e1eb",
-          "outline-variant": "#c6c5d5",
-          "surface-container-low": "#f5f2fc",
-          "bm-neutral-700": "#333b57",
-          "inverse-primary": "#bec2ff",
-          "secondary-fixed": "#dfe0ff",
-          "on-secondary-container": "#e1e2ff",
-          "on-primary-fixed": "#00036b",
-          "error": "#ba1a1a",
-          "on-error-container": "#93000a",
-          "on-error": "#ffffff",
-          "tertiary-container": "#590000",
-          "tertiary": "#320000",
-          "primary-container": "#030a8b",
-          "bm-neutral-200": "#dfe3ee",
-          "bm-purple": "#7b00dc",
-          "bm-neutral-500": "#6a7494",
-          "primary-fixed-dim": "#bec2ff",
-          "on-tertiary": "#ffffff",
-          "bm-neutral-50": "#f6f7fb",
-          "surface-tint": "#4952c1",
-          "bm-neutral-800": "#1e2440",
-          "bm-neutral-900": "#0c1130",
-          "outline": "#767684",
-          "surface": "#fbf8ff",
-          "bm-pale-blue": "#bee0e3",
-          "surface-bright": "#fbf8ff",
-          "on-primary": "#ffffff",
-          "on-surface-variant": "#454653",
-          "surface-container-lowest": "#ffffff",
-          "tertiary-fixed": "#ffdad4",
-          "on-surface": "#1b1b22",
-          "on-tertiary-fixed": "#410000",
-          "primary": "#000253",
-          "surface-dim": "#dbd9e3",
-          "bm-neutral-600": "#4c5575",
-          "surface-container-high": "#e9e7f1",
-          "on-primary-fixed-variant": "#2f38a8",
-          "background": "#fbf8ff",
-          "bm-midnight": "#162132",
-          "on-secondary-fixed-variant": "#001fde"
-        },
-        "borderRadius": {
-          "DEFAULT": "0.25rem",
-          "lg": "0.5rem",
-          "xl": "0.75rem",
-          "full": "9999px"
-        },
-        "spacing": {
-          "xs": "4px",
-          "container-max": "1240px",
-          "lg": "24px",
-          "gutter": "24px",
-          "xl": "48px",
-          "md": "16px",
-          "base": "4px",
-          "sm": "8px"
-        },
-        "fontFamily": {
-          "h3": ["Outfit"],
-          "display": ["Outfit"],
-          "body-sm": ["Wix Madefor Text"],
-          "body": ["Wix Madefor Text"],
-          "caption": ["Wix Madefor Text"],
-          "eyebrow": ["Wix Madefor Text"],
-          "h4": ["Outfit"],
-          "lede": ["Wix Madefor Text"],
-          "h1": ["Outfit"],
-          "h2": ["Outfit"]
-        },
-        "fontSize": {
-          "h3": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
-          "display": ["76px", {"lineHeight": "1.08", "letterSpacing": "-0.04em", "fontWeight": "700"}],
-          "body-sm": ["14px", {"lineHeight": "1.45", "fontWeight": "400"}],
-          "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-          "caption": ["12px", {"lineHeight": "1.45", "fontWeight": "500"}],
-          "eyebrow": ["12px", {"lineHeight": "1.45", "letterSpacing": "0.12em", "fontWeight": "600"}],
-          "h4": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
-          "lede": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
-          "h1": ["60px", {"lineHeight": "1.08", "letterSpacing": "-0.04em", "fontWeight": "700"}],
-          "h2": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-        }
-      }
-    }
-  }
-</script>
+<!-- tailwind runtime config removed: now compiled into /styles.css -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -883,7 +784,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header id="main-nav" class="sticky top-0 z-50 w-full">
   <nav class="flex justify-between items-center max-w-[1240px] mx-auto px-6 py-3.5">
     <a href="#hero" class="flex items-center gap-2.5 group" style="text-decoration:none;">
-      <img alt="BlueMetrics" style="height:18px;width:auto;opacity:0.75;transition:opacity 0.2s;" class="group-hover:opacity-100" src="bluemetrics_logo_RGB_blue_horizontal.png"/>
+      <img alt="BlueMetrics" width="999" height="110" fetchpriority="high" decoding="async" style="height:18px;width:auto;opacity:0.75;transition:opacity 0.2s;" class="group-hover:opacity-100" src="logos/bluemetrics.webp"/>
       <div style="width:1px;height:28px;background:#e5e7ef;flex-shrink:0;"></div>
       <div style="display:flex;flex-direction:column;gap:1px;line-height:1;">
         <span style="font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;color:#0f29e9;letter-spacing:-0.01em;">BlueDocs</span>
@@ -1025,26 +926,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="logos-viewport">
     <div class="logos-track">
       <div class="logos-set">
-        <img src="Logos%20-%20cases/Philco-logo.png" class="logo-client" alt="Philco">
-        <img src="Logos%20-%20cases/britania-logo.png" class="logo-client" alt="Britania" style="height:32px;">
-        <img src="Logos%20-%20cases/webmotors-logo.png" class="logo-client" alt="Webmotors">
-        <img src="Logos%20-%20cases/logo%20-%20belshop.png" class="logo-client" alt="BelShop" style="height:52px;">
-        <img src="Logos%20-%20cases/7945321e6aa6c97c9276d8b844553a9cf11648d8-1226x417.png" class="logo-client" alt="Dafiti">
-        <img src="Logos%20-%20cases/LobbyCRE.AI-logo-1.png" class="logo-client" alt="LobbyCRE.AI">
-        <img src="Logos%20-%20cases/logo%20-%20jorge.png" class="logo-client" alt="Jorge Bischoff" style="height:36px;">
-        <img src="Logos%20-%20cases/logo%20-%20benoit.png" class="logo-client" alt="Lojas Benoit" style="height:32px;">
-        <img src="Logos%20-%20cases/5875ee7d-b912-4309-b6f3-9660d83beda7-1715796501678.png" class="logo-client" alt="3E" style="height:36px;">
+        <img src="logos/philco.webp" width="370" height="110" loading="lazy" decoding="async" class="logo-client" alt="Philco">
+        <img src="logos/britania.webp" width="570" height="110" loading="lazy" decoding="async" class="logo-client" alt="Britania" style="height:32px;">
+        <img src="logos/webmotors.webp" width="514" height="98" loading="lazy" decoding="async" class="logo-client" alt="Webmotors">
+        <img src="logos/belshop.webp" width="142" height="110" loading="lazy" decoding="async" class="logo-client" alt="BelShop" style="height:52px;">
+        <img src="logos/dafiti.webp" width="323" height="110" loading="lazy" decoding="async" class="logo-client" alt="Dafiti">
+        <img src="logos/lobbycre.webp" width="427" height="110" loading="lazy" decoding="async" class="logo-client" alt="LobbyCRE.AI">
+        <img src="logos/jorge.webp" width="521" height="110" loading="lazy" decoding="async" class="logo-client" alt="Jorge Bischoff" style="height:36px;">
+        <img src="logos/benoit.webp" width="505" height="100" loading="lazy" decoding="async" class="logo-client" alt="Lojas Benoit" style="height:32px;">
+        <img src="logos/3e.webp" width="330" height="110" loading="lazy" decoding="async" class="logo-client" alt="3E" style="height:36px;">
       </div>
       <div class="logos-set" aria-hidden="true">
-        <img src="Logos%20-%20cases/Philco-logo.png" class="logo-client" alt="">
-        <img src="Logos%20-%20cases/britania-logo.png" class="logo-client" alt="" style="height:32px;">
-        <img src="Logos%20-%20cases/webmotors-logo.png" class="logo-client" alt="">
-        <img src="Logos%20-%20cases/logo%20-%20belshop.png" class="logo-client" alt="" style="height:52px;">
-        <img src="Logos%20-%20cases/7945321e6aa6c97c9276d8b844553a9cf11648d8-1226x417.png" class="logo-client" alt="">
-        <img src="Logos%20-%20cases/LobbyCRE.AI-logo-1.png" class="logo-client" alt="">
-        <img src="Logos%20-%20cases/logo%20-%20jorge.png" class="logo-client" alt="" style="height:36px;">
-        <img src="Logos%20-%20cases/logo%20-%20benoit.png" class="logo-client" alt="" style="height:32px;">
-        <img src="Logos%20-%20cases/5875ee7d-b912-4309-b6f3-9660d83beda7-1715796501678.png" class="logo-client" alt="" style="height:36px;">
+        <img src="logos/philco.webp" width="370" height="110" loading="lazy" decoding="async" class="logo-client" alt="">
+        <img src="logos/britania.webp" width="570" height="110" loading="lazy" decoding="async" class="logo-client" alt="" style="height:32px;">
+        <img src="logos/webmotors.webp" width="514" height="98" loading="lazy" decoding="async" class="logo-client" alt="">
+        <img src="logos/belshop.webp" width="142" height="110" loading="lazy" decoding="async" class="logo-client" alt="" style="height:52px;">
+        <img src="logos/dafiti.webp" width="323" height="110" loading="lazy" decoding="async" class="logo-client" alt="">
+        <img src="logos/lobbycre.webp" width="427" height="110" loading="lazy" decoding="async" class="logo-client" alt="">
+        <img src="logos/jorge.webp" width="521" height="110" loading="lazy" decoding="async" class="logo-client" alt="" style="height:36px;">
+        <img src="logos/benoit.webp" width="505" height="100" loading="lazy" decoding="async" class="logo-client" alt="" style="height:32px;">
+        <img src="logos/3e.webp" width="330" height="110" loading="lazy" decoding="async" class="logo-client" alt="" style="height:36px;">
       </div>
     </div>
   </div>
@@ -1987,30 +1888,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="md:hidden reveal reveal-d1">
 
       <!-- Column header chips -->
-      <div class="grid grid-cols-4 gap-1 mb-4 pb-4 border-b-2 border-bm-neutral-200">
+      <div class="grid grid-cols-4 gap-1 mb-4 pb-4 border-b-2 border-bm-neutral-200" style="position:sticky;top:52px;z-index:20;background:#fbf8ff;padding-top:10px;box-shadow:0 6px 10px -8px rgba(0,2,83,0.18);">
         <div class="flex flex-col items-center gap-1">
           <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background:#f1f3f9;border:1px solid #dde1ef;">
             <span class="material-symbols-outlined" style="font-size:15px;color:#9ca3af;">document_scanner</span>
           </div>
-          <p style="font-size:7.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9ca3af;text-align:center;line-height:1.45;font-family:'Outfit',sans-serif;">OCR /<br>Extração</p>
+          <p style="font-size:10px;font-weight:700;letter-spacing:0.03em;text-transform:uppercase;color:#9ca3af;text-align:center;line-height:1.3;font-family:'Outfit',sans-serif;">OCR /<br>Extração</p>
         </div>
         <div class="flex flex-col items-center gap-1">
           <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background:#f1f3f9;border:1px solid #dde1ef;">
             <span class="material-symbols-outlined" style="font-size:15px;color:#9ca3af;">cloud</span>
           </div>
-          <p style="font-size:7.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9ca3af;text-align:center;line-height:1.45;font-family:'Outfit',sans-serif;">SaaS<br>Documental</p>
+          <p style="font-size:10px;font-weight:700;letter-spacing:0.03em;text-transform:uppercase;color:#9ca3af;text-align:center;line-height:1.3;font-family:'Outfit',sans-serif;">SaaS<br>Documental</p>
         </div>
         <div class="flex flex-col items-center gap-1">
           <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background:#f1f3f9;border:1px solid #dde1ef;">
             <span class="material-symbols-outlined" style="font-size:15px;color:#9ca3af;">corporate_fare</span>
           </div>
-          <p style="font-size:7.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9ca3af;text-align:center;line-height:1.45;font-family:'Outfit',sans-serif;">BIG4 /<br>Consultoria</p>
+          <p style="font-size:10px;font-weight:700;letter-spacing:0.03em;text-transform:uppercase;color:#9ca3af;text-align:center;line-height:1.3;font-family:'Outfit',sans-serif;">BIG4 /<br>Consultoria</p>
         </div>
         <div class="flex flex-col items-center gap-1">
           <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:linear-gradient(135deg,#0f29e9,#7b00dc);box-shadow:0 3px 10px rgba(15,41,233,0.35);">
             <span style="font-size:10px;font-weight:800;color:#fff;font-family:'Outfit',sans-serif;">BD</span>
           </div>
-          <p style="font-size:7.5px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#0f29e9;text-align:center;line-height:1.45;font-family:'Outfit',sans-serif;">Blue<br>Docs</p>
+          <p style="font-size:10px;font-weight:800;letter-spacing:0.03em;text-transform:uppercase;color:#0f29e9;text-align:center;line-height:1.3;font-family:'Outfit',sans-serif;">Blue<br>Docs</p>
         </div>
       </div>
 
@@ -2517,7 +2418,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Logo + endereço + redes sociais -->
       <div class="flex flex-col gap-4">
-        <img alt="BlueMetrics" class="h-6 w-auto" src="bluemetrics_logo_RGB_blue_horizontal.png"/>
+        <img alt="BlueMetrics" width="999" height="110" loading="lazy" decoding="async" class="h-6 w-auto" src="logos/bluemetrics.webp"/>
         <address class="not-italic text-xs text-bm-neutral-500 leading-relaxed" style="font-family:'Wix Madefor Text',sans-serif;">
           Av. Ipiranga, 6681 — Partenon<br>
           Porto Alegre – RS &nbsp;·&nbsp; TECNOPUC
@@ -3034,7 +2935,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(123,0,220,0.5) 0%,transparent 70%); transform:translate(40%,-30%); filter:blur(8px);"></div>
 
       <div class="relative z-10">
-        <img src="bluemetrics_logo_RGB_blue_horizontal.png" alt="BlueMetrics" style="height:28px; filter:brightness(0) invert(1); opacity:0.9; margin-bottom:36px;" />
+        <img src="logos/bluemetrics.webp" width="999" height="110" loading="lazy" decoding="async" alt="BlueMetrics" style="height:28px; filter:brightness(0) invert(1); opacity:0.9; margin-bottom:36px;" />
         <h3 class="font-display text-white leading-snug mb-8" style="font-size:20px; font-weight:700;">Seu diagnóstico é personalizado, não um demo genérico.</h3>
         <ul class="space-y-5">
           <li class="flex items-start gap-3">
