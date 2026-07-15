@@ -4,5 +4,19 @@
     { "source": "/conteudov1/:path*", "destination": "https://vazamentoo-roi.vercel.app/conteudov1/:path*" },
     { "source": "/obrigado", "destination": "/obrigado.html" },
     { "source": "/privacidade", "destination": "/privacidade.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.(webp|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|otf|mp4|webm)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(css|js)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    }
   ]
-} 
+}
