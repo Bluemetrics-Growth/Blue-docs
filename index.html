@@ -2574,6 +2574,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.body.classList.add('modal-open');
     goStep1();
     document.getElementById('lead-form').reset();
+    clearEmailError();
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'cta_click', cta_source: _modalSource });
     window.dataLayer.push({ event: 'lead_modal_open', cta_source: _modalSource });
@@ -2613,6 +2614,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('modal-subtitle').textContent = 'Preencha seus dados e um especialista BlueMetrics entra em contato em até 1 dia útil.';
   }
 
+  // Provedores de e-mail gratuitos/pessoais — cadastro exige e-mail corporativo.
+  const BLOCKED_EMAIL_DOMAINS = new Set([
+    'gmail.com','googlemail.com',
+    'hotmail.com','hotmail.com.br','outlook.com','outlook.com.br','live.com','live.com.br','msn.com','passport.com',
+    'yahoo.com','yahoo.com.br','ymail.com','rocketmail.com',
+    'icloud.com','me.com','mac.com',
+    'aol.com','aol.com.br',
+    'bol.com.br','uol.com.br','uol.com','terra.com.br','terra.com','ig.com.br','globo.com','globomail.com','r7.com','oi.com.br','zipmail.com.br','click21.com.br','pop.com.br','superig.com.br','bemol.com.br','ibest.com.br',
+    'protonmail.com','proton.me','pm.me','tutanota.com','tuta.io','gmx.com','gmx.net','mail.com','zoho.com','zohomail.com','yandex.com','yandex.ru','inbox.com','fastmail.com','hey.com',
+    'mailinator.com','guerrillamail.com','guerrillamail.info','10minutemail.com','temp-mail.org','tempmail.com','trashmail.com','yopmail.com','getnada.com','sharklasers.com','throwawaymail.com','maildrop.cc','dispostable.com','mailnesia.com','fakeinbox.com','emailondeck.com','moakt.com',
+  ]);
+
+  function isCorporateEmail(email) {
+    const value = String(email || '').trim().toLowerCase();
+    const at = value.lastIndexOf('@');
+    if (at === -1) return false;
+    const domain = value.slice(at + 1);
+    if (!domain || domain.indexOf('.') === -1) return false;
+    return !BLOCKED_EMAIL_DOMAINS.has(domain);
+  }
+
+  function showEmailError(msg) {
+    const el = document.getElementById('email-error');
+    if (el) { el.textContent = msg; el.style.display = 'block'; }
+  }
+
+  function clearEmailError() {
+    const el = document.getElementById('email-error');
+    if (el) { el.textContent = ''; el.style.display = 'none'; }
+  }
+
   function goStep2() {
     const s1 = document.getElementById('step1');
     const inputs = s1.querySelectorAll('[required]');
@@ -2622,6 +2654,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (!inp.value.trim()) { inp.style.borderColor = '#f100a0'; valid = false; inp.focus(); }
     });
     if (!valid) return;
+
+    // Exige e-mail corporativo (bloqueia gmail, yahoo, hotmail, etc.)
+    const emailInput = s1.querySelector('[name="email"]');
+    if (emailInput && !isCorporateEmail(emailInput.value)) {
+      emailInput.style.borderColor = '#f100a0';
+      showEmailError('Por favor, utilize um e-mail corporativo. Não aceitamos e-mails pessoais (Gmail, Yahoo, Hotmail, etc.).');
+      emailInput.focus();
+      return;
+    }
+    clearEmailError();
     s1.classList.remove('active');
     document.getElementById('step2').classList.add('active');
     document.getElementById('dot1').classList.add('active');
@@ -2851,6 +2893,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div>
             <label class="modal-label">E-mail corporativo <span style="color:#f100a0;">*</span></label>
             <input class="modal-input" type="email" name="email" placeholder="nome@empresa.com.br" required />
+            <p id="email-error" style="display:none; color:#f100a0; font-size:12px; margin-top:6px; line-height:1.4;"></p>
           </div>
           <div>
             <label class="modal-label">Telefone / WhatsApp <span style="color:#f100a0;">*</span></label>

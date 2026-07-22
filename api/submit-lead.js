@@ -1,3 +1,40 @@
+// Provedores de e-mail gratuitos / pessoais / descartáveis — não são domínios corporativos.
+// Leads com esses domínios são bloqueados no cadastro.
+const BLOCKED_EMAIL_DOMAINS = new Set([
+  // Google
+  'gmail.com', 'googlemail.com',
+  // Microsoft
+  'hotmail.com', 'hotmail.com.br', 'outlook.com', 'outlook.com.br', 'live.com',
+  'live.com.br', 'msn.com', 'passport.com',
+  // Yahoo
+  'yahoo.com', 'yahoo.com.br', 'ymail.com', 'rocketmail.com',
+  // Apple
+  'icloud.com', 'me.com', 'mac.com',
+  // AOL / Verizon
+  'aol.com', 'aol.com.br',
+  // Provedores brasileiros
+  'bol.com.br', 'uol.com.br', 'uol.com', 'terra.com.br', 'terra.com',
+  'ig.com.br', 'globo.com', 'globomail.com', 'r7.com', 'oi.com.br',
+  'zipmail.com.br', 'click21.com.br', 'pop.com.br', 'superig.com.br',
+  'bemol.com.br', 'ibest.com.br',
+  // Outros provedores gratuitos
+  'protonmail.com', 'proton.me', 'pm.me', 'tutanota.com', 'tuta.io',
+  'gmx.com', 'gmx.net', 'mail.com', 'zoho.com', 'zohomail.com',
+  'yandex.com', 'yandex.ru', 'inbox.com', 'fastmail.com', 'hey.com',
+  // Descartáveis / temporários
+  'mailinator.com', 'guerrillamail.com', 'guerrillamail.info', '10minutemail.com',
+  'temp-mail.org', 'tempmail.com', 'trashmail.com', 'yopmail.com', 'getnada.com',
+  'sharklasers.com', 'throwawaymail.com', 'maildrop.cc', 'dispostable.com',
+  'mailnesia.com', 'fakeinbox.com', 'emailondeck.com', 'moakt.com',
+]);
+
+function extractEmailDomain(email) {
+  if (typeof email !== 'string') return '';
+  const at = email.lastIndexOf('@');
+  if (at === -1) return '';
+  return email.slice(at + 1).trim().toLowerCase();
+}
+
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
@@ -9,6 +46,16 @@ export default async function handler(req, res) {
 
   if (!nome || !email || !empresa) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  // Bloqueia domínios não corporativos (gmail, yahoo, hotmail, descartáveis, etc.)
+  const emailDomain = extractEmailDomain(email);
+  if (!emailDomain || BLOCKED_EMAIL_DOMAINS.has(emailDomain)) {
+    console.warn('[submit-lead] Blocked non-corporate email domain:', emailDomain || '(invalid)');
+    return res.status(422).json({
+      error: 'corporate_email_required',
+      message: 'Por favor, utilize um e-mail corporativo. Não aceitamos e-mails pessoais (Gmail, Yahoo, Hotmail, etc.).',
+    });
   }
 
   const token = process.env.HUBSPOT_TOKEN;
